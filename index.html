@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rancho Quilla - Alquiler de Cabañas en el Dique</title>
+  <meta name="description" content="Vení a relajarte en Rancho Quilla, cabañas premium en el dique rodeadas de naturaleza y aire libre. Reservá tu estadía hoy mismo.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  
+  <!-- CSS Entrypoint -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- Floating Logo (Scroll Animated) -->
+  <div id="animated-logo"><img src="assets/images/logo.png" alt="Rancho Quilla" id="logo-img"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header id="main-header">
+    <div class="nav-container">
+      <!-- Mobile hamburger menu -->
+      <button class="burger-menu" id="burger-toggle" aria-label="Abrir menú de navegación">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </button>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#inicio" class="nav-link active" id="link-inicio">Inicio</a>
+        <a href="#rancho-quilla" class="nav-link" id="link-rancho-quilla">Rancho Quilla</a>
+        <a href="#otras-cabanas" class="nav-link" id="link-otras-cabanas">Otras Cabañas</a>
+        <a href="#fotos" class="nav-link" id="link-fotos">Fotos</a>
+        <a href="#beneficios" class="nav-link" id="link-beneficios">Experiencia</a>
+        <a href="#resenas" class="nav-link" id="link-resenas">Reseñas</a>
+        <a href="#ubicacion" class="nav-link" id="link-ubicacion">Ubicación</a>
+        <a href="#contacto" class="nav-link" id="link-contacto">Contacto</a>
+      </nav>
+
+      <!-- Logo Target in Navbar (Top Right slot where the floating logo will sit) -->
+      <div class="logo-target-wrapper">
+        <div id="logo-target"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. Hero Section -->
+  <section id="inicio" class="hero">
+    <div class="hero-bg-container">
+      <div class="hero-panel hero-panel-left"></div>
+      <div class="hero-panel hero-panel-right"></div>
+    </div>
+    
+    <div class="hero-content">
+      <h2 class="hero-subtitle">Cabañas de Montaña y Lago</h2>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Deslizar</span>
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Highlight Phrase Block -->
+  <div class="phrase-section" id="phrase-block">
+    <div class="phrase-container">
+      <div class="phrase-icon">
+        <!-- Leaf SVG Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 8C14.24 8 12.0005 10.24 12.0005 13C12.0005 14.54 12.7 15.92 13.8 16.84C13.38 17.58 12.76 18.2 12.0005 18.68C11.24 18.2 10.62 17.58 10.2 16.84C11.3 15.92 12.0005 14.54 12.0005 13C12.0005 10.24 9.7605 8 7.0005 8C4.2405 8 2.0005 10.24 2.0005 13C2.0005 17.42 12.0005 22 12.0005 22C12.0005 22 22.0005 17.42 22.0005 13C22.0005 10.24 19.76 8 17 8Z"/></svg>
+      </div>
+      <p class="phrase-text">UN ESPACIO ÚNICO PARA RELAJARTE</p>
+      <div class="phrase-divider"></div>
+    </div>
+  </div>
+
+  <!-- 3. Main Cabin Section: Rancho Quilla -->
+  <section id="rancho-quilla" class="main-cabin-section">
+    <div class="main-cabin-container">
+      <div class="main-cabin-details">
+        <span class="main-cabin-tag">La cabaña estrella</span>
+        <h2 class="main-cabin-title">Rancho Quilla</h2>
+        <p class="main-cabin-desc">
+          Nuestra cabaña principal combina calidez rústica con detalles premium en una ubicación inigualable. Diseñada con amplios ventanales para integrarse con el paisaje forestal y ofrecer vistas directas hacia el dique, es el refugio ideal para reconectarse con el silencio y la naturaleza.
+        </p>
+        
+        <div class="main-cabin-amenities">
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <!-- Users Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <span class="amenity-text">Capacidad hasta 6 personas</span>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <!-- Water Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <span class="amenity-text">Vista directa al dique</span>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <!-- Fireplace/Fire Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.91c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm0-7c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 14c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm0-3.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zM12 3a9 9 0 0 0-9 9c0 4.97 4.03 9 9 9s9-4.03 9-9a9 9 0 0 0-9-9z"/></svg>
+            </div>
+            <span class="amenity-text">Hogar a leña y calefacción</span>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <!-- WiFi Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21l-1.4-1.4C5.4 14.4 2 10.6 2 6.5 2 3.4 4.4 1 7.5 1c1.7 0 3.4.8 4.5 2.1C13.1 1.8 14.8 1 16.5 1 19.6 1 22 3.4 22 6.5c0 4.1-3.4 7.9-8.6 13.1L12 21z"/></svg>
+            </div>
+            <span class="amenity-text">Cocina equipada y deck privado</span>
+          </div>
+        </div>
+
+        <a href="https://wa.me/5491112345678?text=Hola!%20Me%20interesa%20consultar%20disponibilidad%20para%20la%20cabaña%20Rancho%20Quilla" target="_blank" class="btn btn-primary btn-whatsapp" id="btn-reserve-main">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.982L2 22l5.233-1.371a9.936 9.936 0 0 0 4.779 1.21h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.038-5.176-2.925-7.064C17.195 2.903 14.686 2 12.012 2zm5.79 13.882c-.318.893-1.554 1.637-2.146 1.745-.515.093-1.189.171-3.466-.774-2.91-1.21-4.787-4.177-4.933-4.37-.145-.195-1.16-1.542-1.16-2.946 0-1.405.736-2.094 1-2.383.263-.29.57-.362.76-.362h.547c.174 0 .411-.066.643.493.238.572.812 1.986.883 2.13.072.144.12.313.024.506-.096.193-.145.313-.289.482-.144.17-.303.38-.433.51-.145.144-.296.302-.127.59.169.289.75 1.238 1.611 2.004.861.766 1.588 1.002 1.877 1.146.289.145.457.12.625-.072.169-.193.722-.843.915-1.132.193-.29.385-.24.65-.145.264.096 1.685.795 1.974.939.29.144.482.217.554.337.072.12.072.7-.246 1.593z"/></svg>
+          Reservar Rancho Quilla
+        </a>
+      </div>
+
+      <div class="main-cabin-image-wrapper">
+        <img src="assets/images/rancho_quilla_main.png" alt="Cabaña Rancho Quilla principal frente al lago" class="main-cabin-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Other Cabins Section -->
+  <section id="otras-cabanas" class="other-cabins-section">
+    <div class="other-cabins-container">
+      <div class="section-header">
+        <h2 class="title-underline">Otras Cabañas</h2>
+        <p>Conocé nuestras alternativas complementarias, preparadas con el mismo confort y rodeadas del entorno natural del dique.</p>
+      </div>
+
+      <div class="cabins-grid">
+        <!-- Cabin Card 1 -->
+        <article class="cabin-card" id="cabin-card-lake">
+          <div class="cabin-card-img-wrapper">
+            <img src="assets/images/cabin_lake.png" alt="Cabaña Del Lago" class="cabin-card-img">
+          </div>
+          <div class="cabin-card-content">
+            <h3 class="cabin-card-title">Cabaña del Lago</h3>
+            <p class="cabin-card-desc">Un diseño minimalista en forma de A-frame, ubicada a pocos metros del espejo de agua. Ideal para parejas que buscan intimidad y una vista despejada al amanecer.</p>
+            <div class="cabin-card-features">
+              <span class="cabin-card-feature">Capacidad 2 pers.</span>
+              <span class="cabin-card-feature">Deck al lago</span>
+            </div>
+            <a href="https://wa.me/5491112345678?text=Hola!%20Me%20interesa%20consultar%20disponibilidad%20para%20la%20Cabaña%20del%20Lago" target="_blank" class="btn btn-outline" id="btn-reserve-lake">Consultar Disponibilidad</a>
+          </div>
+        </article>
+
+        <!-- Cabin Card 2 -->
+        <article class="cabin-card" id="cabin-card-forest">
+          <div class="cabin-card-img-wrapper">
+            <img src="assets/images/cabin_forest.png" alt="Cabaña Del Bosque" class="cabin-card-img">
+          </div>
+          <div class="cabin-card-content">
+            <h3 class="cabin-card-title">Cabaña del Bosque</h3>
+            <p class="cabin-card-desc">Construida en piedra y troncos centenarios, rodeada de un denso bosque de pinos silvestres. Ofrece máxima privacidad y un entorno de cuentos.</p>
+            <div class="cabin-card-features">
+              <span class="cabin-card-feature">Capacidad 4 pers.</span>
+              <span class="cabin-card-feature">Parrilla propia</span>
+            </div>
+            <a href="https://wa.me/5491112345678?text=Hola!%20Me%20interesa%20consultar%20disponibilidad%20para%20la%20Cabaña%20del%20Bosque" target="_blank" class="btn btn-outline" id="btn-reserve-forest">Consultar Disponibilidad</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Interactive Photo Carousel -->
+  <section id="fotos" class="carousel-section">
+    <div class="section-header">
+      <h2 class="title-underline">Galeria de Experiencias</h2>
+      <p>Un recorrido visual por las cabañas, los paisajes del dique y los detalles de tu próximo descanso.</p>
+    </div>
+
+    <div class="carousel-container" id="experience-carousel">
+      <div class="carousel-track-wrapper" id="carousel-wrapper">
+        <div class="carousel-track" id="carousel-track">
+          <!-- Slide 1 -->
+          <div class="carousel-item">
+            <img src="assets/images/rancho_quilla_main.png" alt="Rancho Quilla atardecer">
+          </div>
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <img src="assets/images/cabin_lake.png" alt="Cabaña de lago amanecer">
+          </div>
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <img src="assets/images/cabin_forest.png" alt="Cabaña del bosque rodeada de flores">
+          </div>
+          <!-- Slide 4 -->
+          <div class="carousel-item">
+            <img src="assets/images/dique_sunset.png" alt="Dique reflejando el atardecer">
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carousel-prev" aria-label="Foto anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <button class="carousel-btn" id="carousel-next" aria-label="Siguiente foto">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Benefits Section -->
+  <section id="beneficios" class="benefits-section">
+    <div class="benefits-container">
+      <div class="section-header">
+        <h2 class="title-underline">Por Qué Elegirnos</h2>
+        <p>Diseñamos cada rincón para garantizar una experiencia de desconexión absoluta y comodidad premium.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <!-- Benefit 1 -->
+        <div class="benefit-card">
+          <div class="benefit-card-icon">
+            <!-- Water/Lake Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          </div>
+          <h3 class="benefit-card-title">Cercanía al Dique</h3>
+          <p class="benefit-card-desc">Acceso inmediato y vistas inigualables del espejo de agua a pasos de tu deck.</p>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="benefit-card">
+          <div class="benefit-card-icon">
+            <!-- Forest/Tranquility Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM13 16h-2v2h2v-2zm0-6h-2v4h2v-4z"/></svg>
+          </div>
+          <h3 class="benefit-card-title">Descanso y Silencio</h3>
+          <p class="benefit-card-desc">Un entorno aislado del ruido urbano que garantiza paz mental y desconexión total.</p>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="benefit-card">
+          <div class="benefit-card-icon">
+            <!-- Sun/Sunset Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1s-1-.45-1-1V3c0-.55.45-1 1-1zm0 16c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1s-1-.45-1-1v-2c0-.55.45-1 1-1zM5 11h2c.55 0 1 .45 1 1s-.45 1-1 1H5c-.55 0-1-.45-1-1s.45-1 1-1zm12 0h2c.55 0 1 .45 1 1s-.45 1-1 1h-2c-.55 0-1-.45-1-1s.45-1 1-1z"/></svg>
+          </div>
+          <h3 class="benefit-card-title">Atardeceres Únicos</h3>
+          <p class="benefit-card-desc">Disfrutá de espectaculares puestas de sol sobre la línea del agua desde el porche de la cabaña.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Guest Reviews Section -->
+  <section id="resenas" class="reviews-section">
+    <div class="reviews-container">
+      <div class="section-header">
+        <h2 class="title-underline">Experiencias de Huéspedes</h2>
+        <p>Descubrí las opiniones y memorias de quienes ya nos visitaron en Rancho Quilla.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <!-- Review 1 -->
+        <div class="review-card">
+          <div class="review-stars">
+            <!-- 5 Star SVG Icons -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="review-comment">"Un lugar realmente mágico. Rancho Quilla tiene todo lo necesario para desconectar de la rutina. La vista al dique al atardecer es impagable. Super recomendada."</p>
+          <div class="review-author">
+            <span class="review-author-name">Sofía Fernández</span>
+            <span class="review-author-date">Hace 1 semana</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card">
+          <div class="review-stars">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="review-comment">"Excelente atención y limpieza impecable. Fuimos en pareja a la Cabaña del Lago y quedamos enamorados de la paz que se respira. Volveremos sin dudas."</p>
+          <div class="review-author">
+            <span class="review-author-name">Martín Gómez</span>
+            <span class="review-author-date">Hace 1 mes</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+          <div class="review-stars">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="review-comment">"Pasamos unas vacaciones familiares hermosas. La cabaña del Bosque es súper espaciosa y los chicos disfrutaron un montón el aire libre. La cercanía al dique nos permitió hacer kayak."</p>
+          <div class="review-author">
+            <span class="review-author-name">Laura Carrizo</span>
+            <span class="review-author-date">Hace 2 meses</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Location Section -->
+  <section id="ubicacion" class="location-section">
+    <div class="location-container">
+      <div class="location-details">
+        <h2 class="location-title">Ubicación Privilegiada</h2>
+        <p class="location-desc">
+          Nuestras cabañas están localizadas estratégicamente en el área recreativa del dique. Con un acceso directo pavimentado y rodeadas de reservas de bosque nativo, te permiten estar en contacto directo con la aventura y a la vez disfrutar de un retiro súper silencioso.
+        </p>
+
+        <div class="location-points">
+          <div class="location-point">
+            <div class="location-point-icon">
+              <!-- Map Pin Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div class="location-point-text">
+              <div class="location-point-title">A metros del espejo de agua</div>
+              <div>Caminá directo desde tu deck a la orilla del dique para realizar actividades acuáticas.</div>
+            </div>
+          </div>
+
+          <div class="location-point">
+            <div class="location-point-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div class="location-point-text">
+              <div class="location-point-title">Entorno seguro y privado</div>
+              <div>Predio cerrado con estacionamiento privado y monitoreo las 24 horas.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map placeholder (A beautiful premium styled iframe of the dike lake) -->
+      <div class="location-map-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13622.753381665405!2d-64.44439063259966!3d-31.408906328328638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942d665a58eefb23%3A0xe5a3c20058b8f2d!2sDique%20San%20Roque!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa del dique"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Contact / CTA Section -->
+  <section id="contacto" class="contact-section">
+    <div class="contact-container">
+      <div class="contact-card">
+        <h2 class="contact-title">¿Listo para Vivir la Experiencia?</h2>
+        <p class="contact-desc">Consultá disponibilidad y vení a disfrutar Rancho Quilla. Escribinos directamente por WhatsApp para reservar tus fechas.</p>
+        <a href="https://wa.me/5491112345678?text=Hola!%20Me%20interesa%20consultar%20disponibilidad%20para%20las%20cabañas" target="_blank" class="btn btn-primary btn-whatsapp" id="btn-reserve-footer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.982L2 22l5.233-1.371a9.936 9.936 0 0 0 4.779 1.21h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.038-5.176-2.925-7.064C17.195 2.903 14.686 2 12.012 2zm5.79 13.882c-.318.893-1.554 1.637-2.146 1.745-.515.093-1.189.171-3.466-.774-2.91-1.21-4.787-4.177-4.933-4.37-.145-.195-1.16-1.542-1.16-2.946 0-1.405.736-2.094 1-2.383.263-.29.57-.362.76-.362h.547c.174 0 .411-.066.643.493.238.572.812 1.986.883 2.13.072.144.12.313.024.506-.096.193-.145.313-.289.482-.144.17-.303.38-.433.51-.145.144-.296.302-.127.59.169.289.75 1.238 1.611 2.004.861.766 1.588 1.002 1.877 1.146.289.145.457.12.625-.072.169-.193.722-.843.915-1.132.193-.29.385-.24.65-.145.264.096 1.685.795 1.974.939.29.144.482.217.554.337.072.12.072.7-.246 1.593z"/></svg>
+          Consultar por WhatsApp
+        </a>
+      </div>
+
+      <footer class="footer-container">
+        <div class="footer-logo"><img src="assets/images/logo.png" alt="Rancho Quilla"></div>
+        <nav class="footer-nav">
+          <a href="#inicio" class="footer-link">Inicio</a>
+          <a href="#rancho-quilla" class="footer-link">Rancho Quilla</a>
+          <a href="#otras-cabanas" class="footer-link">Otras Cabañas</a>
+          <a href="#fotos" class="footer-link">Fotos</a>
+          <a href="#ubicacion" class="footer-link">Ubicación</a>
+        </nav>
+        <div class="footer-copy">
+          &copy; 2026 Rancho Quilla. Todos los derechos reservados.
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/5491112345678?text=Hola!%20Me%20interesa%20consultar%20disponibilidad" target="_blank" class="whatsapp-float" id="whatsapp-floating-btn" aria-label="Contacto por WhatsApp">
+    <div class="whatsapp-float-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.982L2 22l5.233-1.371a9.936 9.936 0 0 0 4.779 1.21h.005c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.038-5.176-2.925-7.064C17.195 2.903 14.686 2 12.012 2zm5.79 13.882c-.318.893-1.554 1.637-2.146 1.745-.515.093-1.189.171-3.466-.774-2.91-1.21-4.787-4.177-4.933-4.37-.145-.195-1.16-1.542-1.16-2.946 0-1.405.736-2.094 1-2.383.263-.29.57-.362.76-.362h.547c.174 0 .411-.066.643.493.238.572.812 1.986.883 2.13.072.144.12.313.024.506-.096.193-.145.313-.289.482-.144.17-.303.38-.433.51-.145.144-.296.302-.127.59.169.289.75 1.238 1.611 2.004.861.766 1.588 1.002 1.877 1.146.289.145.457.12.625-.072.169-.193.722-.843.915-1.132.193-.29.385-.24.65-.145.264.096 1.685.795 1.974.939.29.144.482.217.554.337.072.12.072.7-.246 1.593z"/></svg>
+    </div>
+    <span class="whatsapp-float-text">Reservar por WhatsApp</span>
+  </a>
+
+  <!-- JS Modules -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background-color: var(--color-bg-dark);
+}
+
+/* Diagonal Background composition */
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.hero-panel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--transition-slow);
+}
+
+.hero-panel-left {
+  left: 0;
+  width: 65%;
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+  background-image: linear-gradient(rgba(20, 26, 22, 0.45), rgba(20, 26, 22, 0.45)), url('../../assets/images/dique_sunset.png');
+}
+
+.hero-panel-right {
+  right: 0;
+  width: 50%;
+  z-index: 0;
+  background-image: linear-gradient(rgba(20, 26, 22, 0.4), rgba(20, 26, 22, 0.4)), url('../../assets/images/rancho_quilla_main.png');
+}
+
+/* Content overlays */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: var(--color-text-light);
+  max-width: 800px;
+  padding: 0 24px;
+  margin-top: 100px; /* Space for the big logo */
+}
+
+.hero-subtitle {
+  font-family: var(--font-secondary);
+  font-weight: 300;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards 0.8s ease-out;
+}
+
+/* Floating animated logo */
+#animated-logo {
+  position: fixed; /* Must be fixed to stay relative to screen during scroll */
+  z-index: 1005;
+  transform-origin: top left;
+  pointer-events: none;
+  will-change: transform, left, top;
+  max-width: 380px; /* Starting size in Hero */
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#animated-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 8px 32px rgba(20, 26, 22, 0.4));
+  transition: filter var(--transition-normal);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-light);
+  opacity: 0.8;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.scroll-mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid var(--color-text-light);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 8px;
+  background-color: var(--color-text-light);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheelAnim 1.8s infinite ease-in-out;
+}
+
+@keyframes scrollWheelAnim {
+  0% {
+    top: 6px;
+    opacity: 1;
+  }
+  50% {
+    top: 18px;
+    opacity: 0;
+  }
+  100% {
+    top: 6px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-panel-left {
+    width: 100%;
+    clip-path: none;
+    opacity: 0.85;
+  }
+  .hero-panel-right {
+    display: none;
+  }
+}

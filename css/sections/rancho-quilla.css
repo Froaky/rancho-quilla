@@ -1,0 +1,126 @@
+.main-cabin-section {
+  background-color: var(--color-bg-warm);
+}
+
+.main-cabin-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.main-cabin-tag {
+  display: inline-block;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  background-color: rgba(140, 98, 57, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.main-cabin-title {
+  margin-bottom: 20px;
+}
+
+.main-cabin-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin-bottom: 32px;
+}
+
+.main-cabin-amenities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.amenity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-bg-sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.amenity-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.amenity-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+}
+
+/* Right Side Image Composition */
+.main-cabin-image-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4 / 3;
+}
+
+.main-cabin-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid rgba(253, 251, 247, 0.3);
+  border-radius: 16px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.main-cabin-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.main-cabin-image-wrapper:hover .main-cabin-img {
+  transform: scale(1.04);
+}
+
+@media (max-width: 992px) {
+  .main-cabin-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .main-cabin-image-wrapper {
+    order: -1; /* Image first on tablet/mobile */
+  }
+}
+
+@media (max-width: 576px) {
+  .main-cabin-amenities {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

@@ -1,0 +1,139 @@
+/* Cabin Card (Used in Other Cabins section) */
+.cabin-card {
+  background-color: var(--color-bg-warm);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(44, 94, 67, 0.05);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cabin-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(44, 94, 67, 0.1);
+}
+
+.cabin-card-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+.cabin-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.cabin-card:hover .cabin-card-img {
+  transform: scale(1.06);
+}
+
+.cabin-card-content {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cabin-card-title {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+}
+
+.cabin-card-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.cabin-card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cabin-card-feature {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-sand);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.cabin-card-feature svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--color-primary);
+}
+
+/* Testimonial Card (Used in Reviews section) */
+.review-card {
+  background-color: var(--color-bg-warm);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(140, 98, 57, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(140, 98, 57, 0.15);
+}
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.review-stars svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-secondary-light);
+}
+
+.review-comment {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.review-author {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-author-name {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-primary-dark);
+}
+
+.review-author-date {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
