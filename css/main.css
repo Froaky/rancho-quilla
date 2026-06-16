@@ -6,6 +6,7 @@
 @import url('base/variables.css');
 @import url('base/reset.css');
 @import url('base/typography.css');
+@import url('base/utilities.css');
 
 /* Component Styles */
 @import url('components/navbar.css');
@@ -18,8 +19,9 @@
 @import url('sections/hero.css');
 @import url('sections/phrase.css');
 @import url('sections/rancho-quilla.css');
-@import url('sections/other-cabins.css');
 @import url('sections/benefits.css');
-@import url('sections/reviews.css');
+@import url('sections/other-cabins.css');
 @import url('sections/location.css');
+@import url('sections/video.css');
+@import url('sections/faq.css');
 @import url('sections/contact.css');

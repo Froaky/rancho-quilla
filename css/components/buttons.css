@@ -3,14 +3,15 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 28px;
+  min-height: 52px;
+  padding: 14px 26px;
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.03em;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.035em;
   text-transform: uppercase;
-  border-radius: 50px;
-  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  border-radius: 999px;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
   white-space: nowrap;
@@ -22,7 +23,8 @@
   border: 1px solid var(--color-primary);
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus-visible {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
   transform: translateY(-2px);
@@ -35,7 +37,8 @@
   border: 1px solid var(--color-secondary);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
   background-color: var(--color-secondary-dark);
   border-color: var(--color-secondary-dark);
   transform: translateY(-2px);
@@ -45,35 +48,61 @@
 .btn-outline {
   background-color: transparent;
   color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  border: 2px solid rgba(44, 94, 67, 0.26);
   box-shadow: none;
 }
 
-.btn-outline:hover {
+.btn-outline:hover,
+.btn-outline:focus-visible {
   background-color: var(--color-primary);
+  border-color: var(--color-primary);
   color: var(--color-text-light);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  color: var(--color-text-light);
+  background-color: rgba(255, 250, 242, 0.10);
+  border: 1px solid rgba(255, 250, 242, 0.32);
+  backdrop-filter: blur(8px);
+  box-shadow: none;
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background-color: rgba(255, 250, 242, 0.18);
   transform: translateY(-2px);
 }
 
 .btn-whatsapp {
   background-color: var(--color-whatsapp);
-  color: var(--color-text-light);
-  border: 1px solid var(--color-whatsapp);
+  color: #ffffff;
+  border-color: var(--color-whatsapp);
 }
 
-.btn-whatsapp:hover {
+.btn-whatsapp:hover,
+.btn-whatsapp:focus-visible {
   background-color: var(--color-whatsapp-dark);
   border-color: var(--color-whatsapp-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.28);
 }
 
-.btn-whatsapp svg {
-  fill: currentColor;
-  width: 20px;
-  height: 20px;
+.wa-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  font-size: 0.95rem;
+  line-height: 1;
 }
 
 .btn:active {
   transform: translateY(0);
+}
+
+@media (max-width: 576px) {
+  .btn {
+    width: 100%;
+    padding-inline: 20px;
+  }
 }

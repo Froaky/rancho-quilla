@@ -9,6 +9,7 @@ export class ScrollAnimator {
     this.logoImg = document.getElementById('logo-img');
     this.target = document.getElementById('logo-target');
     this.header = document.getElementById('main-header');
+    this.navbarLogo = document.getElementById('navbar-logo');
     this.scrollIndicator = document.querySelector('.scroll-indicator');
 
     if (!this.logo || !this.target || !this.header) {
@@ -17,8 +18,9 @@ export class ScrollAnimator {
     }
 
     // Configuration
-    this.animationRange = 450; // Pixels of scroll over which the animation occurs
-    this.endScale = 0.28;      // Target scale factor (tuned for the image logo)
+    this.animationRange = 430; // Pixels of scroll over which the animation occurs
+    this.endScale = 0.31;      // Target scale factor (tuned for the image logo)
+    this.dockThreshold = 0.94;  // When reached, the real navbar logo stays visible
 
     // Bindings
     this.onScroll = this.onScroll.bind(this);
@@ -75,7 +77,7 @@ export class ScrollAnimator {
 
     // Starting position (center of viewport)
     const xStart = viewportWidth / 2;
-    const yStart = viewportHeight * 0.42;
+    const yStart = viewportHeight * 0.33;
 
     // Ending position (center of the navbar target slot)
     const targetRect = this.target.getBoundingClientRect();
@@ -87,7 +89,7 @@ export class ScrollAnimator {
     const currentY = yStart + (yEnd - yStart) * ratio;
 
     // Scale interpolation (starts at 1.0, ends at endScale)
-    const targetEndScale = viewportWidth < 768 ? 0.30 : this.endScale;
+    const targetEndScale = viewportWidth < 768 ? 0.33 : this.endScale;
     const currentScale = 1 + (targetEndScale - 1) * ratio;
 
     // Apply transform using translate3d for GPU acceleration
@@ -96,7 +98,7 @@ export class ScrollAnimator {
     this.logo.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%) scale(${currentScale})`;
 
     // Logo image filter transition: white on hero, natural brown in navbar
-    this.updateLogoAppearance(ratio);
+    this.updateLogoAppearance(ratio, rawRatio);
 
     // Fade out scroll indicator as user scrolls
     this.updateScrollIndicator(rawRatio);
@@ -107,8 +109,12 @@ export class ScrollAnimator {
    * At ratio < 0.7: white inverted logo for dark hero background.
    * At ratio >= 0.7: gradually transitions to natural brown color.
    */
-  updateLogoAppearance(ratio) {
+  updateLogoAppearance(ratio, rawRatio) {
     if (!this.logoImg) return;
+
+    const isDocked = rawRatio >= this.dockThreshold;
+    this.header.classList.toggle('logo-docked', isDocked);
+    this.logo.style.opacity = isDocked ? '0' : '1';
 
     if (ratio >= 0.8) {
       this.header.classList.add('scrolled');

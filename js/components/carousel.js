@@ -9,43 +9,40 @@ export class Carousel {
     this.prevBtn = document.getElementById('carousel-prev');
     this.nextBtn = document.getElementById('carousel-next');
     this.dotsContainer = document.getElementById('carousel-dots');
-    
+
     if (!this.container || !this.track) {
       console.warn('Carousel: Missing elements.');
       return;
     }
 
     this.items = Array.from(this.track.children);
+    if (!this.items.length) return;
+
     this.currentIndex = 0;
     this.autoplayInterval = null;
-    this.autoplaySpeed = 3500; // ms
-    
-    // Touch gesture state
+    this.autoplaySpeed = 4200;
+
     this.startX = 0;
     this.currentTranslate = 0;
     this.prevTranslate = 0;
     this.isDragging = false;
-    
+
     this.init();
   }
 
   init() {
-    // Generate navigation dots
     this.setupDots();
-    
-    // Button triggers
+
     if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.prev());
     if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.next());
-    
-    // Autoplay & Hover pause listeners
+
     this.startAutoplay();
     this.container.addEventListener('mouseenter', () => this.stopAutoplay());
     this.container.addEventListener('mouseleave', () => this.startAutoplay());
-    
-    // Touch gestures for mobile swipe
+    this.container.addEventListener('focusin', () => this.stopAutoplay());
+    this.container.addEventListener('focusout', () => this.startAutoplay());
+
     this.setupTouchGestures();
-    
-    // Responsive update on resize
     window.addEventListener('resize', () => this.updateLayout());
     this.updateLayout();
   }
@@ -54,8 +51,10 @@ export class Carousel {
     if (!this.dotsContainer) return;
     this.dotsContainer.innerHTML = '';
     this.items.forEach((_, index) => {
-      const dot = document.createElement('div');
+      const dot = document.createElement('button');
+      dot.type = 'button';
       dot.classList.add('carousel-dot');
+      dot.setAttribute('aria-label', `Ir a la foto ${index + 1}`);
       if (index === 0) dot.classList.add('active');
       dot.addEventListener('click', () => this.goTo(index));
       this.dotsContainer.appendChild(dot);
@@ -64,7 +63,10 @@ export class Carousel {
   }
 
   updateLayout() {
-    this.slideWidth = this.items[0].getBoundingClientRect().width + 24; // Width + Margin
+    const firstItem = this.items[0];
+    const computed = window.getComputedStyle(firstItem);
+    const marginRight = parseFloat(computed.marginRight) || 0;
+    this.slideWidth = firstItem.getBoundingClientRect().width + marginRight;
     this.goTo(this.currentIndex);
   }
 
@@ -74,24 +76,21 @@ export class Carousel {
   }
 
   stopAutoplay() {
-    if (this.autoplayInterval) {
-      clearInterval(this.autoplayInterval);
-      this.autoplayInterval = null;
-    }
+    if (!this.autoplayInterval) return;
+    clearInterval(this.autoplayInterval);
+    this.autoplayInterval = null;
   }
 
   goTo(index) {
     this.currentIndex = index;
-    
-    // Loop boundary check
     if (this.currentIndex >= this.items.length) this.currentIndex = 0;
     if (this.currentIndex < 0) this.currentIndex = this.items.length - 1;
-    
+
     const translateAmount = -this.currentIndex * this.slideWidth;
     this.track.style.transform = `translateX(${translateAmount}px)`;
     this.prevTranslate = translateAmount;
-    
-    // Update dots active class
+    this.currentTranslate = translateAmount;
+
     if (this.dots) {
       this.dots.forEach((dot, idx) => {
         dot.classList.toggle('active', idx === this.currentIndex);
@@ -111,21 +110,21 @@ export class Carousel {
     const wrapper = document.getElementById('carousel-wrapper');
     if (!wrapper) return;
 
-    wrapper.addEventListener('touchstart', (e) => this.touchStart(e));
-    wrapper.addEventListener('touchmove', (e) => this.touchMove(e));
+    wrapper.addEventListener('touchstart', (event) => this.touchStart(event), { passive: true });
+    wrapper.addEventListener('touchmove', (event) => this.touchMove(event), { passive: true });
     wrapper.addEventListener('touchend', () => this.touchEnd());
   }
 
-  touchStart(e) {
+  touchStart(event) {
     this.isDragging = true;
-    this.startX = e.touches[0].clientX;
+    this.startX = event.touches[0].clientX;
     this.stopAutoplay();
-    this.track.style.transition = 'none'; // Disable smooth anims while dragging
+    this.track.style.transition = 'none';
   }
 
-  touchMove(e) {
+  touchMove(event) {
     if (!this.isDragging) return;
-    const currentX = e.touches[0].clientX;
+    const currentX = event.touches[0].clientX;
     const diffX = currentX - this.startX;
     this.currentTranslate = this.prevTranslate + diffX;
     this.track.style.transform = `translateX(${this.currentTranslate}px)`;
@@ -134,18 +133,16 @@ export class Carousel {
   touchEnd() {
     this.isDragging = false;
     const movedBy = this.currentTranslate - this.prevTranslate;
-    
-    this.track.style.transition = ''; // Restore smooth CSS animations
-    
-    // Swipe threshold to change slide (50px)
-    if (movedBy < -50 && this.currentIndex < this.items.length - 1) {
+    this.track.style.transition = '';
+
+    if (movedBy < -50) {
       this.next();
-    } else if (movedBy > 50 && this.currentIndex > 0) {
+    } else if (movedBy > 50) {
       this.prev();
     } else {
       this.goTo(this.currentIndex);
     }
-    
+
     this.startAutoplay();
   }
 }

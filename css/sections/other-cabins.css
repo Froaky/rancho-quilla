@@ -1,35 +1,100 @@
-.other-cabins-section {
-  background-color: var(--color-bg-sand);
+.experience-section {
+  background:
+    linear-gradient(rgba(17, 22, 18, 0.86), rgba(17, 22, 18, 0.86)),
+    url('../../assets/images/rancho/patio-rustico-familiar.webp') center/cover fixed;
+  color: var(--color-text-light);
+  overflow: hidden;
 }
 
-.other-cabins-container {
-  max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: 0 24px;
+.experience-section .section-header h2,
+.experience-section .section-header p {
+  color: var(--color-text-light);
 }
 
-.section-header {
-  text-align: center;
-  max-width: 650px;
-  margin: 0 auto 50px;
+.experience-section .section-header p {
+  color: rgba(255, 250, 242, 0.78);
 }
 
-.section-header p {
-  font-size: 1rem;
-  margin-top: 12px;
-}
-
-.cabins-grid {
+.experience-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  max-width: 960px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-@media (max-width: 768px) {
-  .cabins-grid {
+.experience-card {
+  position: relative;
+  min-height: 440px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-strong);
+  isolation: isolate;
+  border: 1px solid rgba(255, 250, 242, 0.16);
+}
+
+.experience-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  transition: transform var(--transition-slow);
+}
+
+.experience-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(17, 22, 18, 0.08) 0%, rgba(17, 22, 18, 0.88) 100%);
+}
+
+.experience-card:hover img {
+  transform: scale(1.06);
+}
+
+.experience-card-content {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 28px;
+}
+
+.experience-card-content span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: rgba(196, 154, 108, 0.92);
+  color: #1d150d;
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.experience-card-content h3 {
+  color: var(--color-text-light);
+  margin-bottom: 10px;
+}
+
+.experience-card-content p {
+  color: rgba(255, 250, 242, 0.78);
+  line-height: 1.6;
+  font-size: 0.96rem;
+}
+
+@media (max-width: 992px) {
+  .experience-section {
+    background-attachment: scroll;
+  }
+
+  .experience-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+  }
+
+  .experience-card {
+    min-height: 360px;
   }
 }

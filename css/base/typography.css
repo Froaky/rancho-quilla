@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 body {
   font-family: var(--font-secondary);
@@ -6,27 +6,28 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
-  font-weight: 700;
-  line-height: 1.25;
+  font-weight: 800;
+  line-height: 1.08;
   color: var(--color-primary-dark);
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  letter-spacing: -0.02em;
+  font-size: clamp(2.35rem, 6vw, 5.2rem);
+  letter-spacing: -0.055em;
 }
 
 h2 {
-  font-size: clamp(2rem, 4.5vw, 3rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(2rem, 4.5vw, 3.35rem);
+  letter-spacing: -0.035em;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+  letter-spacing: -0.02em;
 }
 
 h4 {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
 }
 
 p {
@@ -51,10 +52,16 @@ p {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -10px;
+  bottom: -12px;
   transform: translateX(-50%);
-  width: 60px;
+  width: 74px;
   height: 3px;
-  background-color: var(--color-secondary-light);
-  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-light));
+  border-radius: 999px;
+}
+
+.align-left .title-underline::after,
+.section-header.align-left .title-underline::after {
+  left: 0;
+  transform: none;
 }
