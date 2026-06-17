@@ -63,10 +63,11 @@
 .experience-card-content span {
   display: inline-flex;
   margin-bottom: 10px;
-  padding: 6px 12px;
-  border-radius: 999px;
+  padding: 7px 11px;
+  border-radius: 7px;
   background-color: rgba(196, 154, 108, 0.92);
   color: #1d150d;
+  border-left: 3px solid rgba(29, 21, 13, 0.45);
   font-family: var(--font-primary);
   font-weight: 800;
   font-size: 0.75rem;

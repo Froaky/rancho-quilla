@@ -30,7 +30,7 @@ Atraer búsquedas locales y convertir visitas en consultas por WhatsApp. Keyword
 
 ## Pendientes importantes
 
-- Reemplazar `5491112345678` por el WhatsApp real de reservas.
+- WhatsApp de reservas configurado: `5493874830580` (+54 9 3874 83-0580).
 - Cuando exista dominio definitivo, agregar canonical, og:url, imágenes absolutas para Open Graph, sitemap.xml y alta en Google Search Console.
 - Sumar reseñas reales cuando estén disponibles.
 

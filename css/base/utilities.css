@@ -45,7 +45,6 @@
   content: '';
   width: 30px;
   height: 2px;
-  border-radius: 999px;
   background-color: currentColor;
 }
 
@@ -55,7 +54,7 @@
   top: 16px;
   z-index: 9999;
   padding: 10px 14px;
-  border-radius: 999px;
+  border-radius: 8px;
   color: var(--color-text-light);
   background-color: var(--color-primary-dark);
   transform: translateY(-160%);

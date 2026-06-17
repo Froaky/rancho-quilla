@@ -10,7 +10,7 @@
   font-size: 0.9rem;
   letter-spacing: 0.035em;
   text-transform: uppercase;
-  border-radius: 999px;
+  border-radius: 12px;
   transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
@@ -78,6 +78,7 @@
   background-color: var(--color-whatsapp);
   color: #ffffff;
   border-color: var(--color-whatsapp);
+  box-shadow: 0 14px 32px rgba(37, 211, 102, 0.24);
 }
 
 .btn-whatsapp:hover,

@@ -2,7 +2,7 @@
 
 ## Antes de publicar
 
-1. Reemplazar en `index.html` todos los enlaces `https://wa.me/5491112345678` por el WhatsApp real de reservas.
+1. Verificar en `index.html` que los enlaces `https://wa.me/5493874830580` sigan usando el WhatsApp real de reservas.
 2. Cuando exista dominio, agregar en `<head>`:
    - `<link rel="canonical" href="https://tudominio.com/">`
    - `<meta property="og:url" content="https://tudominio.com/">`

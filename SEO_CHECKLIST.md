@@ -2,7 +2,7 @@
 
 ## Pendientes antes de publicar
 
-1. Reemplazar en `index.html` el número `5491112345678` por el WhatsApp real de reservas.
+1. Verificar que el WhatsApp de reservas siga apuntando a `5493874830580` (+54 9 3874 83-0580).
 2. Cuando exista dominio definitivo, agregar:
    - `<link rel="canonical" href="https://TU-DOMINIO/">`
    - `og:url` con la URL real.
