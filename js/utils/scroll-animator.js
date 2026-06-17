@@ -20,7 +20,7 @@ export class ScrollAnimator {
     // Configuration
     this.animationRange = 430; // Pixels of scroll over which the animation occurs
     this.endScale = 0.31;      // Target scale factor (tuned for the image logo)
-    this.dockThreshold = 0.94;  // When reached, the real navbar logo stays visible
+    this.dockThreshold = 0.995; // When reached, the real navbar logo stays visible
 
     // Bindings
     this.onScroll = this.onScroll.bind(this);
@@ -75,27 +75,35 @@ export class ScrollAnimator {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    // Starting position (center of viewport)
-    const xStart = viewportWidth / 2;
-    const yStart = viewportHeight * 0.33;
+    const logoWidth = this.logo.offsetWidth || 380;
+    const logoHeight = this.logo.offsetHeight || logoWidth / 2;
 
-    // Ending position (center of the navbar target slot)
+    // Starting position (top-left of centered hero logo)
+    const xStart = (viewportWidth - logoWidth) / 2;
+    const yStart = viewportHeight * 0.33 - logoHeight / 2;
+
+    // Ending position (top-left of scaled logo centered in the navbar target slot)
     const targetRect = this.target.getBoundingClientRect();
-    const xEnd = targetRect.left + targetRect.width / 2;
-    const yEnd = targetRect.top + targetRect.height / 2;
+    const desiredEndScale = viewportWidth < 768 ? 0.33 : this.endScale;
+    const targetEndScale = Math.min(
+      desiredEndScale,
+      targetRect.width / logoWidth,
+      targetRect.height / logoHeight
+    );
+    const xEnd = targetRect.left + (targetRect.width - logoWidth * targetEndScale) / 2;
+    const yEnd = targetRect.top + (targetRect.height - logoHeight * targetEndScale) / 2;
+
+    // Scale interpolation (starts at 1.0, ends at endScale)
+    const currentScale = 1 + (targetEndScale - 1) * ratio;
 
     // Interpolate positions
     const currentX = xStart + (xEnd - xStart) * ratio;
     const currentY = yStart + (yEnd - yStart) * ratio;
 
-    // Scale interpolation (starts at 1.0, ends at endScale)
-    const targetEndScale = viewportWidth < 768 ? 0.33 : this.endScale;
-    const currentScale = 1 + (targetEndScale - 1) * ratio;
-
     // Apply transform using translate3d for GPU acceleration
     this.logo.style.left = '0px';
     this.logo.style.top = '0px';
-    this.logo.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%) scale(${currentScale})`;
+    this.logo.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(${currentScale})`;
 
     // Logo image filter transition: white on hero, natural brown in navbar
     this.updateLogoAppearance(ratio, rawRatio);
