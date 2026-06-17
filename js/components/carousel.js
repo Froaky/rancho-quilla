@@ -18,9 +18,12 @@ export class Carousel {
     this.items = Array.from(this.track.children);
     if (!this.items.length) return;
 
+    this.originalItems = this.items;
+    this.originalCount = this.originalItems.length;
     this.currentIndex = 0;
     this.autoplayInterval = null;
     this.autoplaySpeed = 4200;
+    this.resetTimer = null;
 
     this.startX = 0;
     this.currentTranslate = 0;
@@ -31,26 +34,39 @@ export class Carousel {
   }
 
   init() {
+    this.setupLoop();
     this.setupDots();
 
     if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.prev());
     if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.next());
 
     this.startAutoplay();
-    this.container.addEventListener('mouseenter', () => this.stopAutoplay());
-    this.container.addEventListener('mouseleave', () => this.startAutoplay());
-    this.container.addEventListener('focusin', () => this.stopAutoplay());
-    this.container.addEventListener('focusout', () => this.startAutoplay());
+    this.container.addEventListener('mouseenter', () => this.pauseAutoplay());
+    this.container.addEventListener('mouseleave', () => this.resumeAutoplay());
+    this.container.addEventListener('focusin', () => this.pauseAutoplay());
+    this.container.addEventListener('focusout', (event) => {
+      if (!this.container.contains(event.relatedTarget)) this.resumeAutoplay();
+    });
 
     this.setupTouchGestures();
     window.addEventListener('resize', () => this.updateLayout());
     this.updateLayout();
   }
 
+  setupLoop() {
+    this.originalItems.forEach((item) => {
+      const clone = item.cloneNode(true);
+      clone.classList.add('carousel-item-clone');
+      clone.setAttribute('aria-hidden', 'true');
+      this.track.appendChild(clone);
+    });
+    this.items = Array.from(this.track.children);
+  }
+
   setupDots() {
     if (!this.dotsContainer) return;
     this.dotsContainer.innerHTML = '';
-    this.items.forEach((_, index) => {
+    this.originalItems.forEach((_, index) => {
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.classList.add('carousel-dot');
@@ -67,7 +83,7 @@ export class Carousel {
     const computed = window.getComputedStyle(firstItem);
     const marginRight = parseFloat(computed.marginRight) || 0;
     this.slideWidth = firstItem.getBoundingClientRect().width + marginRight;
-    this.goTo(this.currentIndex);
+    this.goTo(this.currentIndex, { animate: false });
   }
 
   startAutoplay() {
@@ -81,19 +97,44 @@ export class Carousel {
     this.autoplayInterval = null;
   }
 
-  goTo(index) {
-    this.currentIndex = index;
-    if (this.currentIndex >= this.items.length) this.currentIndex = 0;
-    if (this.currentIndex < 0) this.currentIndex = this.items.length - 1;
+  pauseAutoplay() {
+    this.container.classList.add('is-paused');
+    this.stopAutoplay();
+  }
 
+  resumeAutoplay() {
+    this.container.classList.remove('is-paused');
+    this.startAutoplay();
+  }
+
+  goTo(index, options = {}) {
+    const { animate = true } = options;
+    clearTimeout(this.resetTimer);
+    this.currentIndex = index;
+    if (this.currentIndex < 0) this.currentIndex = this.originalCount - 1;
+
+    this.track.style.transition = animate ? '' : 'none';
     const translateAmount = -this.currentIndex * this.slideWidth;
     this.track.style.transform = `translateX(${translateAmount}px)`;
     this.prevTranslate = translateAmount;
     this.currentTranslate = translateAmount;
 
     if (this.dots) {
+      const activeIndex = this.currentIndex % this.originalCount;
       this.dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === this.currentIndex);
+        dot.classList.toggle('active', idx === activeIndex);
+      });
+    }
+
+    if (this.currentIndex >= this.originalCount) {
+      this.resetTimer = setTimeout(() => {
+        this.goTo(0, { animate: false });
+      }, 660);
+    }
+
+    if (!animate) {
+      requestAnimationFrame(() => {
+        this.track.style.transition = '';
       });
     }
   }
@@ -118,7 +159,7 @@ export class Carousel {
   touchStart(event) {
     this.isDragging = true;
     this.startX = event.touches[0].clientX;
-    this.stopAutoplay();
+    this.pauseAutoplay();
     this.track.style.transition = 'none';
   }
 
@@ -143,6 +184,6 @@ export class Carousel {
       this.goTo(this.currentIndex);
     }
 
-    this.startAutoplay();
+    this.resumeAutoplay();
   }
 }
