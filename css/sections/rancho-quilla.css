@@ -85,6 +85,11 @@
   box-shadow: var(--shadow-sm);
 }
 
+.amenity-icon .icon-svg {
+  width: 20px;
+  height: 20px;
+}
+
 .amenity-text {
   font-size: 0.95rem;
   font-weight: 700;

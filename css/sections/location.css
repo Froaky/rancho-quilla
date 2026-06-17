@@ -49,6 +49,11 @@
   font-size: 1.25rem;
 }
 
+.location-point-icon .icon-svg {
+  width: 22px;
+  height: 22px;
+}
+
 .location-point-title {
   font-family: var(--font-primary);
   font-weight: 800;

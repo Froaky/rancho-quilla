@@ -39,6 +39,11 @@
   transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
 }
 
+.benefit-card-icon .icon-svg {
+  width: 28px;
+  height: 28px;
+}
+
 .benefit-card:hover .benefit-card-icon {
   background-color: var(--color-primary);
   color: var(--color-text-light);
