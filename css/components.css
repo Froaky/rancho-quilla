@@ -1,0 +1,825 @@
+/* =============================================================
+   RANCHO QUILLA · Componentes
+   -------------------------------------------------------------
+   Regla de oro de esta dirección: NINGÚN bloque de contenido se
+   convierte en tarjeta. El contenido apoya sobre filetes.
+   Los únicos elementos con borde son los que representan algo
+   físicamente enmarcado: las fotos (paspartú) y el visor.
+   ============================================================= */
+
+/* =============================================================
+   ÍNDICE / NAVEGACIÓN
+   Un cuaderno se navega por su índice numerado, no por pestañas.
+   ============================================================= */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 900;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border-bottom: var(--rule) solid transparent;
+  transition: background-color var(--normal) var(--ease),
+              border-color var(--normal) var(--ease);
+}
+
+/* Al salir de la portada el índice se apoya en papel opaco.
+   Sin blur, sin transparencia: el papel no es translúcido. */
+.nav.is-docked {
+  background-color: var(--paper);
+  border-bottom-color: var(--ink-20);
+}
+
+.nav__inner {
+  width: min(100% - (var(--gut) * 2), var(--page));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav__index {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(0.9rem, 1.8vw, 1.9rem);
+}
+
+/* Cada entrada del índice lleva su número. Es el mismo número que
+   abre la sección: el índice y el cuerpo hablan el mismo idioma. */
+.nav__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding-block: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  border-bottom: var(--rule-bold) solid transparent;
+  transition: color var(--fast) var(--ease),
+              border-color var(--fast) var(--ease);
+}
+
+.nav__link > span {
+  font-size: 0.86em;
+  color: currentColor;
+  opacity: 0.62;
+  font-variant-numeric: tabular-nums;
+}
+
+.nav.is-docked .nav__link { color: var(--ink-70); }
+
+.nav__link:hover,
+.nav__link:focus-visible { color: var(--verde); }
+
+.nav.is-docked .nav__link:hover,
+.nav.is-docked .nav__link:focus-visible { color: var(--verde); }
+
+/* Estado activo: se marca con filete Y con opacidad plena del
+   número. Nunca sólo con color. */
+.nav__link[aria-current='true'] {
+  border-bottom-color: currentColor;
+  color: var(--paper);
+}
+
+.nav__link[aria-current='true'] > span { opacity: 1; }
+
+.nav.is-docked .nav__link[aria-current='true'] { color: var(--ink); }
+
+/* Ranura donde aterriza el logo (ver logo-dock.js) */
+.nav__slot {
+  width: clamp(110px, 13vw, 150px);
+  height: 44px;
+  flex: none;
+}
+
+.nav__logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--normal) var(--ease), visibility var(--normal);
+}
+
+.nav__logo img { width: 100%; height: 100%; object-fit: contain; }
+
+.nav.is-landed .nav__logo { opacity: 1; visibility: visible; }
+
+/* --- Botón de menú (mobile) ------------------------------------
+   Tres filetes del mismo grosor que los del cuaderno.            */
+.nav__burger {
+  display: none;
+  /* 44×44 es el mínimo de área táctil. Los filetes ocupan menos, pero
+     la zona que responde al dedo es el botón entero. */
+  width: 44px;
+  height: 44px;
+  position: relative;
+  flex: none;
+  /* Tiene que quedar por encima del cajón (z-index 950), que es su
+     hermano dentro de .nav: si no, el cajón abierto lo tapa y la X
+     de cerrar no se ve ni se puede tocar. */
+  z-index: 960;
+}
+
+.nav__burger span {
+  position: absolute;
+  left: 7px;
+  width: 30px;
+  height: var(--rule-bold);
+  background-color: var(--paper);
+  transition: transform var(--fast) var(--ease),
+              opacity var(--fast) var(--ease),
+              background-color var(--normal) var(--ease);
+}
+
+.nav__burger span:nth-child(1) { top: 13px; }
+.nav__burger span:nth-child(2) { top: 21px; }
+.nav__burger span:nth-child(3) { top: 29px; }
+
+.nav.is-docked .nav__burger span { background-color: var(--ink); }
+
+.nav__burger[aria-expanded='true'] span { background-color: var(--ink); }
+.nav__burger[aria-expanded='true'] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav__burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+.nav__burger[aria-expanded='true'] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media (max-width: 60rem) {
+  .nav__burger { display: block; }
+
+  .nav__inner { flex-direction: row-reverse; }
+
+  /* El menú móvil es el índice del cuaderno a página completa:
+     un número y un renglón por sección. No es el desktop apilado. */
+  .nav__index {
+    position: fixed;
+    inset: 0;
+    z-index: 950;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+    padding: var(--gut);
+    background-color: var(--paper);
+    transform: translateX(100%);
+    transition: transform var(--normal) var(--ease);
+    overflow-y: auto;
+  }
+
+  .nav__index.is-open { transform: none; }
+
+  .nav__index .nav__link {
+    justify-content: flex-start;
+    gap: 1rem;
+    min-height: 56px;          /* área táctil cómoda */
+    padding-block: 0.9rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+    border-bottom: var(--rule) solid var(--ink-20);
+  }
+
+  .nav__index .nav__link > span {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--ladrillo);
+    opacity: 1;
+  }
+
+  .nav__index .nav__link[aria-current='true'] {
+    border-bottom-color: var(--ink);
+    border-bottom-width: var(--rule-bold);
+  }
+}
+
+/* =============================================================
+   ACCIONES
+   Rectangulares. El papel no tiene esquinas redondeadas y una
+   píldora no significa nada acá.
+   Verde = se toca. Es la única regla de color de la interfaz.
+   ============================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 52px;                /* área táctil */
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  border: var(--rule-bold) solid var(--verde);
+  border-radius: var(--radius);
+  background-color: var(--verde);
+  color: #fff;                     /* 6.5:1 */
+  transition: background-color var(--fast) var(--ease),
+              border-color var(--fast) var(--ease),
+              color var(--fast) var(--ease);
+}
+
+.btn .icon { width: 1.15em; height: 1.15em; stroke-width: 1.7; }
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--verde-dark);
+  border-color: var(--verde-dark);
+}
+
+.btn:active { transform: translateY(1px); }
+
+/* Acción secundaria: mismo rectángulo, sin relleno.
+   No compite, pero pesa lo mismo en la grilla. */
+.btn--line {
+  background-color: transparent;
+  color: var(--verde);
+}
+
+.btn--line:hover,
+.btn--line:focus-visible {
+  background-color: var(--verde);
+  color: #fff;
+}
+
+/* Sobre fondo oscuro el verde no se lee: sobre --night da 2.7:1.
+   La portada tiene que estar en esta lista aunque no use
+   .band--night, o su botón secundario queda ilegible. */
+.band--night .btn--line,
+.portada .btn--line,
+.footer .btn--line {
+  border-color: var(--paper-3);
+  color: var(--paper);          /* 12.4:1 sobre --night */
+}
+
+.band--night .btn--line:hover,
+.band--night .btn--line:focus-visible,
+.portada .btn--line:hover,
+.portada .btn--line:focus-visible,
+.footer .btn--line:hover,
+.footer .btn--line:focus-visible {
+  background-color: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+/* Enlace de texto: subrayado con filete, se engrosa al tocar.
+   No cambia de color: el movimiento del filete ya explica el estado. */
+.link {
+  display: inline;
+  color: var(--verde);
+  border-bottom: var(--rule) solid currentColor;
+  transition: border-bottom-width var(--fast) var(--ease);
+}
+
+.link:hover,
+.link:focus-visible { border-bottom-width: var(--rule-bold); }
+
+/* =============================================================
+   RENGLÓN · el sistema que reemplaza a la tarjeta
+   -------------------------------------------------------------
+   Etiqueta a la izquierda, cosa a la derecha, filete abajo.
+   Es un asiento de cuaderno. No tiene sombra, ni fondo, ni radio.
+   ============================================================= */
+
+.ledger { display: grid; }
+
+.ledger__row {
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: 0.35rem 1.5rem;
+  align-items: baseline;
+  padding-block: calc(var(--row) * 0.62);
+  border-bottom: var(--rule) solid var(--ink-20);
+}
+
+/* El primer renglón de un grupo lleva filete arriba también:
+   cierra el bloque como una cuenta cerrada. */
+.ledger__row:first-child { border-top: var(--rule) solid var(--ink-20); }
+
+.ledger__key {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+  line-height: 1.5;
+}
+
+.ledger__val { font-size: var(--t-body); line-height: 1.5; }
+
+.ledger__val strong { font-weight: 600; }
+
+/* Sub-lista dentro de un renglón: para los grupos largos
+   (juegos, cocina). Fluye en línea separada por puntos medios,
+   que es como se enumera en una lista escrita a mano. */
+.ledger__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.7rem;
+  font-size: var(--t-body);
+}
+
+.ledger__items li { display: flex; align-items: baseline; gap: 0.7rem; }
+
+.ledger__items li + li::before {
+  content: '·';
+  color: var(--ink-45);
+}
+
+/* Grupo del inventario. El título de grupo es un renglón más
+   fuerte: filete de 2px y letra display. */
+.ledger__group {
+  margin-top: calc(var(--row) * 1.6);
+  padding-top: 0.55rem;
+  border-top: var(--rule-bold) solid var(--ink);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ledger__group:first-child { margin-top: 0; }
+
+.ledger__group h3 { font-size: var(--t-h3); }
+
+.ledger__group + .ledger .ledger__row:first-child { border-top: 0; }
+
+@media (max-width: 40rem) {
+  /* En mobile la etiqueta pasa arriba del valor. Sigue siendo un
+     renglón de cuaderno, no una tarjeta apilada. */
+  .ledger__row { grid-template-columns: 1fr; gap: 0.2rem; }
+}
+
+/* =============================================================
+   TARIFAS · la lista de precios
+   -------------------------------------------------------------
+   Es una tabla de verdad porque es información tabular: tres
+   unidades × capacidad × precio. Los precios van en monoespaciada
+   para que los dígitos alineen en columna, como en un presupuesto.
+   ============================================================= */
+
+.tarifas {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tarifas caption {
+  text-align: left;
+  padding-bottom: calc(var(--row) * 0.6);
+}
+
+.tarifas th,
+.tarifas td {
+  padding-block: calc(var(--row) * 0.8);
+  padding-right: 1rem;
+  border-bottom: var(--rule) solid var(--ink-20);
+  vertical-align: baseline;
+}
+
+.tarifas thead th {
+  padding-bottom: 0.5rem;
+  border-bottom: var(--rule-bold) solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+}
+
+.tarifas td:last-child,
+.tarifas th:last-child { padding-right: 0; text-align: right; }
+
+/* Nombre de la unidad: en display, porque cada casa es una cosa
+   con nombre propio, no una fila de planilla. */
+.tarifas__unit {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.4vw + 0.9rem, 1.55rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.tarifas__cap {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-70);
+}
+
+.tarifas__price {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-price);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tarifas__per {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+}
+
+/* Renglón de excedentes: es una regla, no una unidad. Va con
+   filete superior fuerte y sin nombre en display. */
+.tarifas__extra td {
+  border-bottom: 0;
+  padding-top: calc(var(--row) * 0.8);
+}
+
+.tarifas__extra .tarifas__unit {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--alerta);
+}
+
+.tarifas__extra .tarifas__price { font-size: clamp(1.1rem, 1.6vw, 1.35rem); }
+
+/* Sello de vigencia. Un precio sin fecha es un precio que miente
+   dentro de tres semanas. */
+.vigencia {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: var(--row);
+  padding: 0.5rem 0 0.5rem 0.8rem;
+  border-left: var(--rule-bold) solid var(--ladrillo);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-70);
+}
+
+@media (max-width: 44rem) {
+  /* La tabla se convierte en tres bloques de renglones. Se oculta
+     el thead y cada celda lleva su propia etiqueta, para que no
+     haya que hacer scroll horizontal. */
+  .tarifas thead { display: none; }
+
+  .tarifas, .tarifas tbody, .tarifas tr, .tarifas th, .tarifas td { display: block; }
+
+  .tarifas tr {
+    padding-block: calc(var(--row) * 0.9);
+    border-bottom: var(--rule) solid var(--ink-20);
+  }
+
+  .tarifas tr:first-child { border-top: var(--rule-bold) solid var(--ink); }
+
+  .tarifas th, .tarifas td { padding: 0; border-bottom: 0; }
+
+  .tarifas td:last-child { text-align: left; margin-top: 0.7rem; }
+
+  .tarifas__extra { border-bottom: 0 !important; }
+}
+
+/* =============================================================
+   LÁMINA · el tratamiento de imagen (firma visual nº 2)
+   -------------------------------------------------------------
+   Paspartú + ficha. Injertado de la dirección «La Pared del
+   Quincho» porque resuelve un problema real: las fotos son de
+   teléfono, a pleno sol. Un marco las vuelve intencionales.
+   Es lo contrario del overlay negro al 86% que había antes.
+   ============================================================= */
+
+.plate { display: block; }
+
+.plate__mat {
+  display: block;
+  padding: clamp(0.5rem, 1.1vw, 0.9rem);
+  background-color: var(--paper-3);
+  border: var(--rule) solid var(--ink-20);
+  transition: transform var(--normal) var(--ease),
+              box-shadow var(--normal) var(--ease),
+              border-color var(--normal) var(--ease);
+}
+
+.plate__mat img { width: 100%; }
+
+/* Ficha de museo. Numerada: el mismo idioma que el índice. */
+.plate__ficha {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding-top: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.055em;
+  color: var(--ink-70);
+}
+
+.plate__n {
+  color: var(--ladrillo);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+
+/* Al tocar, la lámina se despega del papel 2px y aparece la
+   sombra dura de algo que efectivamente está colgado.
+   No es un blur difuso: es un desplazamiento sólido. */
+.plate--zoom { cursor: zoom-in; width: 100%; text-align: left; display: block; }
+
+.plate--zoom:hover .plate__mat,
+.plate--zoom:focus-visible .plate__mat {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink-20);
+  border-color: var(--ink-45);
+}
+
+.plate--zoom:focus-visible { outline: none; }
+
+.plate--zoom:focus-visible .plate__mat {
+  outline: var(--rule-bold) solid var(--verde);
+  outline-offset: 3px;
+}
+
+/* Relaciones de aspecto: deliberadamente distintas entre sí.
+   En una pared real no hay dos cuadros del mismo tamaño, y una
+   grilla de recortes idénticos es la marca de la plantilla. */
+.plate--wide  img { aspect-ratio: 16 / 9;  object-fit: cover; }
+.plate--tall  img { aspect-ratio: 4 / 5;   object-fit: cover; }
+.plate--square img { aspect-ratio: 1 / 1;  object-fit: cover; }
+.plate--land  img { aspect-ratio: 3 / 2;   object-fit: cover; }
+
+/* =============================================================
+   ASIENTO ABIERTO · las preguntas (details/summary nativo)
+   El renglón se abre como se da vuelta una hoja.
+   ============================================================= */
+
+.entry { border-bottom: var(--rule) solid var(--ink-20); }
+
+.entry:first-of-type { border-top: var(--rule-bold) solid var(--ink); }
+
+.entry__q {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding-block: calc(var(--row) * 0.72);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 0.7vw + 0.9rem, 1.28rem);
+  font-weight: 500;
+  letter-spacing: -0.008em;
+  list-style: none;
+  transition: color var(--fast) var(--ease);
+}
+
+.entry__q::-webkit-details-marker { display: none; }
+
+.entry__q:hover { color: var(--verde); }
+
+.entry__n {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ladrillo);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Marca de estado: un filete que rota 90°. Sin círculo, sin +/-
+   dentro de una bolita de color. */
+.entry__mark {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  flex: none;
+  align-self: center;
+}
+
+.entry__mark::before,
+.entry__mark::after {
+  content: '';
+  position: absolute;
+  background-color: currentColor;
+  transition: transform var(--normal) var(--ease), opacity var(--normal) var(--ease);
+}
+
+.entry__mark::before { inset: 6px 0 auto 0; height: var(--rule-bold); }
+.entry__mark::after  { inset: 0 6px auto 6px; width: var(--rule-bold); height: 100%; }
+
+.entry[open] .entry__mark::after { transform: rotate(90deg); opacity: 0; }
+
+.entry__a {
+  padding: 0 0 calc(var(--row) * 0.85) 0;
+  max-width: var(--measure);
+  color: var(--ink-70);
+}
+
+/* Sangría de la respuesta alineada con el texto de la pregunta,
+   para que se lea como el mismo asiento continuado. */
+@media (min-width: 34rem) {
+  .entry__a { padding-left: calc(0.72rem + 2ch); }
+}
+
+/* =============================================================
+   VISOR DE FOTOS
+   Se abre al hacer click, no al pasar el mouse: el hover-preview
+   anterior se disparaba sin intención y era inutilizable con
+   teclado o en táctil.
+   ============================================================= */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.75rem, 3vw, 2.5rem);
+  background-color: rgba(42, 22, 7, 0.94);
+  opacity: 0;
+  transition: opacity var(--normal) var(--ease);
+}
+
+.lightbox.is-open { opacity: 1; }
+
+/* `display: grid` de la regla de arriba le gana al atributo [hidden]
+   del UA stylesheet, así que hay que declararlo explícitamente o el
+   visor queda ocupando la pantalla desde que carga la página.
+   Este [hidden] es además lo que saca el visor del árbol de
+   accesibilidad cuando está cerrado.
+   Ojo: acá NO se usa `visibility: hidden` para el estado cerrado.
+   Un elemento con visibility:hidden no puede recibir foco, así que
+   el focus() de apertura quedaba en no-op y el teclado se perdía en
+   la página de fondo. */
+.lightbox[hidden] { display: none; }
+
+.lightbox__frame {
+  position: relative;
+  max-width: min(100%, 68rem);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lightbox__img {
+  width: auto;
+  max-width: 100%;
+  max-height: min(74vh, 44rem);
+  object-fit: contain;
+  border-radius: var(--radius-lens);
+  background-color: var(--night);
+}
+
+.lightbox__ficha {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.055em;
+  color: var(--paper-3);
+}
+
+.lightbox__ficha b { color: var(--paper); font-weight: 500; }
+
+.lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.lightbox__nav { display: flex; gap: 0.5rem; }
+
+.lightbox__btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: var(--rule) solid rgba(244, 238, 226, 0.4);
+  color: var(--paper);
+  transition: background-color var(--fast) var(--ease),
+              border-color var(--fast) var(--ease);
+}
+
+.lightbox__btn:hover,
+.lightbox__btn:focus-visible {
+  background-color: rgba(244, 238, 226, 0.14);
+  border-color: var(--paper);
+}
+
+.lightbox__btn .icon { width: 20px; height: 20px; }
+
+.lightbox__count {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--paper-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* =============================================================
+   LOGO EN VUELO
+   Se conserva del sitio original: es lo único propio que tenía.
+   Corregido: ya no reserva 210px de espacio muerto en la portada.
+   ============================================================= */
+
+.logo-flight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 940;
+  width: min(70vw, 330px);
+  transform-origin: top left;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.logo-flight img { width: 100%; }
+
+/* En la portada el logo va en papel sobre fondo oscuro. */
+.logo-flight--invert img {
+  filter: brightness(0) saturate(0) invert(1);
+}
+
+/* Sin JS el logo se comporta como un logo normal, arriba a la
+   izquierda, en su color de tinta. */
+.no-js .logo-flight {
+  position: static;
+  width: 240px;
+  margin-bottom: var(--row);
+}
+
+.no-js .logo-flight--invert img { filter: brightness(0) saturate(0) invert(1); }
+
+/* =============================================================
+   WHATSAPP FIJO
+   Rectangular, con la tinta de la marca y el verde del sulky.
+   Sin halo pulsante: la animación infinita del original era
+   decoración permanente y no explicaba nada.
+   Aparece recién al salir de la portada, para no tapar la
+   primera pantalla.
+   ============================================================= */
+
+.wa-float {
+  position: fixed;
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  bottom: clamp(0.75rem, 2vw, 1.5rem);
+  z-index: 880;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0.8rem 1.1rem;
+  background-color: var(--verde);
+  border: var(--rule-bold) solid var(--ink);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity var(--normal) var(--ease),
+              visibility var(--normal),
+              transform var(--normal) var(--ease),
+              background-color var(--fast) var(--ease);
+}
+
+.wa-float.is-shown { opacity: 1; visibility: visible; transform: none; }
+
+.wa-float:hover,
+.wa-float:focus-visible { background-color: var(--verde-dark); }
+
+.wa-float:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+
+.wa-float .icon { width: 20px; height: 20px; flex: none; }
+
+/* En pantallas chicas queda sólo el ícono, para no tapar contenido. */
+@media (max-width: 30rem) {
+  .wa-float__text { display: none; }
+  .wa-float { padding: 0.85rem; }
+  .wa-float .icon { width: 24px; height: 24px; }
+}

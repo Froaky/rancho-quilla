@@ -1,15 +1,26 @@
 /**
- * Rancho Quilla - Main JavaScript Entrypoint
+ * Rancho Quilla · punto de entrada
+ *
+ * Cuatro módulos, ninguna dependencia externa. Cada uno se degrada
+ * solo: si el navegador no soporta algo, el contenido sigue accesible.
  */
 
-import { ScrollAnimator } from './utils/scroll-animator.js';
-import { RevealOnScroll } from './utils/reveal-on-scroll.js';
-import { Navbar } from './components/navbar.js';
-import { Carousel } from './components/carousel.js';
+import { initNav } from './modules/nav.js';
+import { initLogoDock } from './modules/logo-dock.js';
+import { initLightbox } from './modules/lightbox.js';
+import { initReveal } from './modules/reveal.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  new Navbar();
-  new ScrollAnimator();
-  new Carousel();
-  new RevealOnScroll();
-});
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const boot = () => {
+  initNav();
+  initLogoDock({ reduced });
+  initLightbox();
+  initReveal({ reduced });
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot, { once: true });
+} else {
+  boot();
+}

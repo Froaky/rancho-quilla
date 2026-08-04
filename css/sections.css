@@ -1,0 +1,447 @@
+/* =============================================================
+   RANCHO QUILLA · Secciones
+   -------------------------------------------------------------
+   Cada sección tiene una maqueta distinta a propósito. La página
+   anterior repetía la misma estructura ocho veces (todas entre
+   725 y 975px de alto) y por eso ninguna pesaba más que otra.
+   ============================================================= */
+
+/* =============================================================
+   00 · PORTADA
+   -------------------------------------------------------------
+   No es un hero. Es la tapa de un cuaderno: tinta oscura, el
+   nombre grabado, y los cuatro datos que decide la consulta
+   (dónde, cuántos, cuánto, mascotas) maquetados como asiento.
+   Por qué no es un hero: no hay etiqueta-píldora, ni título
+   centrado, ni subtítulo, ni dos botones flotando en el medio.
+   Y sobre todo: responde las preguntas en la primera pantalla
+   en lugar de prometer una experiencia.
+   ============================================================= */
+
+.portada {
+  background-color: var(--night);
+  color: var(--paper);
+  /* La primera pantalla tiene que cerrar arriba del pliegue en un
+     portátil (800px de alto): si el CTA cae abajo, la portada vuelve
+     a tener el problema del hero anterior. */
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 4vw, 3.5rem));
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  /* Textura de tapa: filetes diagonales de papel, muy tenues.
+     Cuesta 0 bytes de imagen.
+     Va como única capa de background-image, encima del
+     background-color: si se pone un linear-gradient opaco delante,
+     tapa la textura y no se ve nada. */
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(244, 238, 226, 0.035) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+.portada__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+}
+
+/* Hueco que reserva el logo en vuelo. Su alto es el del logo y
+   nada más: reemplaza al `margin-top: 210px` del original, que
+   dejaba el 40% de la primera pantalla vacío y empujaba el
+   título y el CTA fuera de la vista. */
+.portada__logo-slot {
+  width: min(64vw, 272px);
+  aspect-ratio: 5317 / 2853;   /* proporción real de logo.png */
+  margin-bottom: var(--row);
+}
+
+/* El enunciado entra en dos renglones en la columna de la portada.
+   A 3.35rem entraba en tres y empujaba el CTA abajo del pliegue. */
+.portada__statement {
+  font-size: clamp(1.75rem, 3.3vw, 2.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  max-width: 26ch;
+  margin-bottom: calc(var(--row) * 1.15);
+}
+
+/* La palabra que carga el concepto va en cursiva del display:
+   es la única cursiva de la página, así que significa algo. */
+.portada__statement em {
+  font-style: italic;
+  color: var(--paper-3);
+}
+
+/* --- El asiento de la portada --------------------------------
+   Cuatro datos, mono, con filete. Es la tabla que reemplaza a la
+   fila de "métricas" de cuatro cajas iguales del original.       */
+.portada__facts { margin-bottom: calc(var(--row) * 1.25); }
+
+.portada__facts .ledger__row {
+  grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+  padding-block: 0.5rem;
+  border-bottom-color: rgba(244, 238, 226, 0.22);
+}
+
+.portada__facts .ledger__row:first-child {
+  border-top-color: rgba(244, 238, 226, 0.45);
+  border-top-width: var(--rule-bold);
+}
+
+.portada__facts .ledger__key { color: #c3ac93; }
+.portada__facts .ledger__val { color: var(--paper); }
+
+/* El precio de entrada, destacado sin gritar: mono, tamaño de
+   precio, tinta papel. */
+.portada__facts .ledger__val b {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1.08em;
+  letter-spacing: -0.01em;
+}
+
+.portada__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* La foto pegada en la tapa. Una sola, y con paspartú: se lee
+   como una foto pegada al cuaderno, no como un fondo. */
+.portada__plate .plate__mat {
+  background-color: rgba(244, 238, 226, 0.14);
+  border-color: rgba(244, 238, 226, 0.3);
+}
+
+.portada__plate .plate__ficha { color: #c3ac93; }
+.portada__plate .plate__n { color: var(--paper-3); }
+
+@media (max-width: 56rem) {
+  .portada__inner { grid-template-columns: 1fr; gap: var(--row); }
+  /* En mobile la foto va al final: primero los datos que deciden. */
+  .portada__plate { order: 2; }
+  .portada__main  { order: 1; }
+}
+
+/* =============================================================
+   01 · LA CASA
+   Maqueta asimétrica: texto angosto a la izquierda, dos láminas
+   de proporciones distintas a la derecha. Sin tarjetas.
+   ============================================================= */
+
+.casa__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.casa__plates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.75rem, 2vw, 1.35rem);
+  align-items: start;
+}
+
+/* La segunda lámina cuelga más abajo: medio ladrillo de desfase.
+   Es el mismo principio que ordena la pared de fotos. */
+.casa__plates > *:nth-child(2) { margin-top: clamp(1.5rem, 5vw, 3.5rem); }
+
+@media (max-width: 56rem) {
+  .casa__inner { grid-template-columns: 1fr; }
+}
+
+/* =============================================================
+   02 · LAS CASAS Y SUS PRECIOS
+   La sección más importante de la página: es el dato que nadie
+   publica y el que decide la consulta.
+   Va sobre papel alterno para que pese distinto que sus vecinas.
+   ============================================================= */
+
+.precios__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.precios__aside { position: sticky; top: calc(var(--header-h) + var(--row)); }
+
+/* Nota de excedentes: se queda en medida de lectura para que la regla
+   se entienda de un saque. */
+.precios__note {
+  margin-top: var(--row);
+  max-width: 42rem;
+}
+
+.precios__cta { margin-top: calc(var(--row) * 1.25); }
+
+@media (max-width: 56rem) {
+  .precios__inner { grid-template-columns: 1fr; }
+  .precios__aside { position: static; }
+}
+
+/* =============================================================
+   03 · EL INVENTARIO
+   Renglones agrupados. Es la sección más densa de la página, y
+   reemplaza las seis tarjetas con ícono en círculo del original.
+   ============================================================= */
+
+.inventario__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+@media (max-width: 56rem) {
+  .inventario__inner { grid-template-columns: 1fr; }
+}
+
+/* =============================================================
+   04 · LA PARED DE FOTOS
+   -------------------------------------------------------------
+   Aparejo de ladrillo: la columna del medio baja medio módulo.
+   Las proporciones de las láminas son distintas entre sí a
+   propósito — una grilla de recortes idénticos es la firma de
+   la plantilla.
+   Reemplaza al carrusel con autoplay infinito (animación
+   permanente) y preview-al-hover (inusable con teclado y en
+   táctil) del original.
+   ============================================================= */
+
+.fotos__intro { margin-bottom: calc(var(--row) * 2); }
+
+.wall {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 2rem);
+  align-items: start;
+}
+
+.wall > *:nth-child(3n + 2) { margin-top: clamp(1.75rem, 4.5vw, 4rem); }
+
+@media (max-width: 56rem) {
+  .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wall > *:nth-child(3n + 2) { margin-top: 0; }
+  .wall > *:nth-child(2n) { margin-top: clamp(1.5rem, 5vw, 3rem); }
+}
+
+@media (max-width: 34rem) {
+  .wall { grid-template-columns: 1fr; }
+  .wall > *:nth-child(3n + 2) { margin-top: 0; }
+  /* En una columna el desfase se conserva como sangría alternada:
+     la identidad no se pierde al colapsar. */
+  .wall > *:nth-child(2n) {
+    margin-top: 0;
+    margin-left: clamp(1.25rem, 9vw, 3rem);
+  }
+}
+
+/* =============================================================
+   05 · EL RECORRIDO (video)
+   Dos entradas numeradas. El video va con paspartú, igual que
+   las fotos: el mismo tratamiento para el mismo tipo de cosa.
+   ============================================================= */
+
+/* El recorrido cierra la banda de fotos: se separa con tres renglones
+   para que se lea como un apartado, no como otra sección. */
+.recorrido { margin-top: calc(var(--row) * 3); }
+
+.recorrido__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+  margin-top: calc(var(--row) * 1.2);
+}
+
+.recorrido__grid > *:nth-child(2) { margin-top: clamp(1.5rem, 4vw, 3rem); }
+
+.recorrido video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--night);
+}
+
+@media (max-width: 46rem) {
+  .recorrido__grid { grid-template-columns: 1fr; }
+  .recorrido__grid > *:nth-child(2) { margin-top: 0; }
+}
+
+/* =============================================================
+   06 · DÓNDE QUEDA
+   ============================================================= */
+
+.ubicacion__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.ubicacion__inner .ledger { margin-top: calc(var(--row) * 1.5); }
+
+.mapa {
+  padding: clamp(0.5rem, 1.1vw, 0.9rem);
+  background-color: var(--paper-3);
+  border: var(--rule) solid var(--ink-20);
+}
+
+.mapa iframe {
+  width: 100%;
+  height: clamp(20rem, 42vh, 27rem);
+  border: 0;
+  /* Se desatura el mapa para que el verde de Google no compita
+     con el verde del sulky, que es el único verde que significa
+     "se puede tocar". */
+  filter: saturate(0.55) contrast(1.03);
+}
+
+@media (max-width: 56rem) {
+  .ubicacion__inner { grid-template-columns: 1fr; }
+}
+
+/* =============================================================
+   07 · ANTES DE VENIR
+   ============================================================= */
+
+.antes__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+@media (max-width: 56rem) {
+  .antes__inner { grid-template-columns: 1fr; }
+}
+
+/* Aviso de lo que hay que traer. No es una tarjeta: es un
+   renglón con filete lateral, como una nota al margen escrita
+   después. Y no depende del color: lleva la palabra "Importante". */
+.margen {
+  margin-top: calc(var(--row) * 1.25);
+  padding: 0.15rem 0 0.15rem 1rem;
+  border-left: var(--rule-bold) solid var(--alerta);
+  max-width: var(--measure);
+}
+
+.margen .label { color: var(--alerta); margin-bottom: 0.3rem; }
+
+/* =============================================================
+   08 · CONSULTAR
+   -------------------------------------------------------------
+   El momento tranquilo, injertado de la dirección «La Orilla»:
+   una banda ancha y vacía antes del pedido, para que el cuaderno
+   respire una vez y la consulta no llegue al final de una planilla.
+   ============================================================= */
+
+.consultar { text-align: left; }
+
+.consultar__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: end;
+}
+
+.consultar__title {
+  font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+  max-width: 20ch;
+  margin-bottom: var(--row);
+}
+
+.consultar__lead {
+  color: #c3ac93;              /* 5.6:1 sobre --night */
+  max-width: 34rem;
+}
+
+/* La tabla de datos prácticos de esta sección hereda el estilo de la
+   portada (filetes claros sobre tinta) pero cierra la banda, así que
+   no lleva separación abajo. */
+.consultar__facts { margin-bottom: 0; }
+
+.consultar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: calc(var(--row) * 1.2);
+}
+
+/* El teléfono escrito, para quien prefiere marcarlo a mano.
+   Va en mono grande porque es un dato, no un adorno. */
+.consultar__tel {
+  display: inline-block;
+  margin-top: var(--row);
+  font-family: var(--font-mono);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  border-bottom: var(--rule) solid rgba(244, 238, 226, 0.45);
+  font-variant-numeric: tabular-nums;
+}
+
+.consultar__tel:hover,
+.consultar__tel:focus-visible { border-bottom-color: var(--paper); }
+
+@media (max-width: 56rem) {
+  .consultar__inner { grid-template-columns: 1fr; }
+}
+
+/* =============================================================
+   PIE
+   ============================================================= */
+
+.footer {
+  background-color: var(--night);
+  color: #c3ac93;
+  padding-block: var(--band-dense);
+  border-top: var(--rule) solid rgba(244, 238, 226, 0.18);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--row);
+}
+
+.footer__logo { width: clamp(130px, 18vw, 168px); }
+
+.footer__logo img { filter: brightness(0) saturate(0) invert(1); opacity: 0.9; }
+
+.footer__index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+}
+
+.footer__link {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #c3ac93;
+  border-bottom: var(--rule) solid transparent;
+  transition: color var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+
+.footer__link:hover,
+.footer__link:focus-visible { color: var(--paper); border-bottom-color: var(--paper); }
+
+.footer__copy {
+  width: 100%;
+  padding-top: var(--row);
+  border-top: var(--rule) solid rgba(244, 238, 226, 0.18);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: #a08a72;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  justify-content: space-between;
+}

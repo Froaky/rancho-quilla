@@ -1,0 +1,118 @@
+/* =============================================================
+   RANCHO QUILLA · Tokens
+   -------------------------------------------------------------
+   Dirección: «El Cuaderno del Rancho».
+   Cada token de color tiene una función asignada y única.
+   Si un color no tiene función, no está acá.
+   ============================================================= */
+
+:root {
+  /* -----------------------------------------------------------
+     TINTA
+     #47240b es el único color que existe dentro de logo.png
+     (medido sobre el archivo: 3.4M px de una sola tinta).
+     Es el negro de esta marca. No hay otro negro en la página.
+     ----------------------------------------------------------- */
+  --ink:        #47240b;   /* títulos, cuerpo, filetes fuertes         */
+  --ink-70:     #6b4a32;   /* texto secundario · 6.9:1 sobre papel     */
+  --ink-45:     #8f7460;   /* SÓLO texto grande y marcas · 3.8:1       */
+  --ink-20:     #c9b9a4;   /* filete de renglón                        */
+  --ink-10:     #e0d5c2;   /* filete suave, separaciones internas      */
+
+  /* -----------------------------------------------------------
+     PAPEL
+     Papel de cuaderno con tinte ladrillo. Nunca blanco:
+     el blanco puro es lo que vuelve "editorial genérico"
+     a cualquier maqueta de filetes.
+     ----------------------------------------------------------- */
+  --paper:      #f4eee2;   /* fondo por defecto                        */
+  --paper-2:    #ebe1cf;   /* bandas alternas (ritmo)                  */
+  --paper-3:    #ded1b8;   /* paspartú de las fotos                    */
+  --night:      #2a1607;   /* SÓLO pie de página y visor de fotos      */
+
+  /* -----------------------------------------------------------
+     ACENTOS · uno por función, sin excepción
+     ----------------------------------------------------------- */
+
+  /* Verde del sulky, la bomba de agua y el arado del jardín.
+     Es la pintura real de la propiedad, no una elección de moda.
+     REGLA: si algo es verde, se puede tocar. Nada más es verde. */
+  --verde:      #1b6b45;   /* 6.5:1 con blanco                         */
+  --verde-dark: #12492f;   /* hover / active                           */
+
+  /* Ladrillo del quincho. SÓLO la banda de la casa y los números
+     de sección. Nunca en un botón: no se toca. */
+  --ladrillo:   #9c4a2a;   /* 6.2:1 con blanco                         */
+
+  /* El agua del dique. SÓLO datos referidos al agua
+     (pileta, kayaks, bote, muelle, orilla). */
+  --agua:       #4d6c7b;   /* 5.6:1 con blanco                         */
+
+  /* Estados. No dependen sólo del color: siempre acompañados
+     de texto o de un cambio de peso de filete. */
+  --alerta:     #8a3a1e;   /* "traer toallas", excedentes, avisos      */
+
+  /* -----------------------------------------------------------
+     TIPOGRAFÍA
+     Display: Playfair Display. Elegida porque descansa en la
+     misma familia histórica que el wordmark del logo (scotch
+     roman: contraste alto de trazo + terminales de gota).
+     Datos:  IBM Plex Mono. Un libro de cuentas se escribe a
+     máquina; los dígitos alinean en columna.
+     Cuerpo: IBM Plex Serif. Mismo esqueleto que la mono.
+     ----------------------------------------------------------- */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --font-text:    'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+
+  /* Escala. Deliberadamente corta: la jerarquía de un cuaderno
+     la marcan el filete y la sangría, no doce tamaños de letra. */
+  --t-display: clamp(2.5rem, 6.4vw, 5.25rem);
+  --t-h2:      clamp(1.8rem, 3.5vw, 2.85rem);
+  --t-h3:      clamp(1.1rem, 1.1vw + 0.85rem, 1.4rem);
+  --t-body:    clamp(1rem, 0.35vw + 0.94rem, 1.1rem);
+  --t-small:   0.9rem;
+  --t-label:   0.715rem;   /* mono, versalitas, tracking abierto       */
+  --t-price:   clamp(1.45rem, 2.4vw, 2rem);   /* mono: alinea en columna */
+
+  /* -----------------------------------------------------------
+     ESPACIO
+     --row es la unidad del renglón: todo el ritmo vertical de la
+     página es múltiplo de ella.
+     ----------------------------------------------------------- */
+  --row:   1.5rem;
+  --gut:   clamp(1.25rem, 3vw, 2.75rem);   /* canaleta / padding lateral */
+  --measure: 34rem;                         /* medida de lectura         */
+  --page:  76rem;                           /* ancho máximo de página    */
+  --page-narrow: 52rem;                     /* para bloques de lectura   */
+
+  /* Ritmo desigual entre secciones. Tres valores, no uno:
+     el original tenía 100px en las diez secciones y por eso
+     ninguna pesaba más que otra. */
+  --band-dense: clamp(3.5rem, 6vw, 5.5rem);
+  --band-open:  clamp(5rem, 9vw, 8.5rem);
+  --band-quiet: clamp(7rem, 14vw, 13rem);
+
+  /* -----------------------------------------------------------
+     TRAZO
+     Un solo grosor de filete y un solo radio.
+     El original tenía 13 valores de radio distintos.
+     ----------------------------------------------------------- */
+  --rule:       1px;
+  --rule-bold:  2px;
+  --radius:     0;      /* el papel no tiene esquinas redondeadas */
+  --radius-lens: 2px;   /* única excepción: el visor de fotos     */
+
+  /* -----------------------------------------------------------
+     MOVIMIENTO
+     Sólo explica estado, causa o relación. Nada se mueve solo.
+     ----------------------------------------------------------- */
+  --ease:      cubic-bezier(0.22, 0.61, 0.36, 1);
+  --fast:      140ms;
+  --normal:    260ms;
+
+  /* El alto del índice manda sobre el tamaño final del logo: el logo
+     tiene proporción 1.86:1, así que su altura es el lado que limita.
+     64px de barra dejan 44px de ranura y un logo de ~82×44. */
+  --header-h:  64px;
+}

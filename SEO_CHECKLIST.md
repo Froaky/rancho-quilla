@@ -1,31 +1,58 @@
-# Rancho Quilla - Checklist SEO y conversión
+# Rancho Quilla — Checklist SEO y conversión
 
 ## Pendientes antes de publicar
 
-1. Verificar que el WhatsApp de reservas siga apuntando a `5493874830580` (+54 9 3874 83-0580).
-2. Cuando exista dominio definitivo, agregar:
+1. Verificar que el WhatsApp siga apuntando a `5493874830580` (+54 9 3874 83-0580).
+   Está en **4** enlaces de `index.html`.
+2. **Revisar la vigencia de los precios.** Hoy dicen "hasta el 31 de agosto de
+   2026" en tres lugares del HTML y en `priceValidUntil` del JSON-LD. Un precio
+   sin fecha, o con fecha vencida, es peor que no publicar precio.
+3. Cuando exista dominio definitivo, agregar:
    - `<link rel="canonical" href="https://TU-DOMINIO/">`
    - `og:url` con la URL real.
    - `og:image` y `twitter:image` con URL absoluta.
    - `sitemap.xml` y `robots.txt` apuntando al dominio real.
-3. Cargar el sitio en Google Search Console.
-4. Crear o completar Google Business Profile con la ubicación/zona de Dique Cabra Corral.
-5. Pedir reseñas reales a huéspedes y sumarlas luego en una sección específica.
-6. Comprimir nuevas fotos en WebP antes de subirlas.
-7. Mantener la palabra clave principal en lugares importantes:
-   - Title: Alquiler de casa en Dique Cabra Corral.
-   - H1: Alquiler de casa rústica privada en Dique Cabra Corral.
-   - Textos: alquiler de cabañas en Salta, casa/cabaña en Cabra Corral, casa con pileta en Salta.
+4. Cargar el sitio en Google Search Console.
+5. Crear o completar Google Business Profile para la zona del Dique Cabra Corral.
+6. Pedir reseñas reales a huéspedes. **No inventar ninguna.**
+7. Comprimir nuevas fotos en WebP antes de subirlas, con nombre descriptivo.
+8. Mantener la keyword principal en:
+   - Title: *Alquiler de casa en Dique Cabra Corral*.
+   - H1: *Tres casas de campo a la orilla del Dique Cabra Corral*.
+   - Textos: alquiler de cabañas en Salta, casa/cabaña en Cabra Corral, casa con
+     pileta en Salta.
 
 ## Qué se optimizó en esta versión
 
-- H1 real orientado a búsqueda local.
-- Meta title y meta description con intención comercial.
-- Open Graph y Twitter Card para compartir por WhatsApp/redes.
-- JSON-LD de alojamiento y FAQ.
-- Fotos reales renombradas con keywords descriptivas.
-- Imágenes convertidas a WebP.
-- Galería, videos y CTAs directos a WhatsApp.
-- FAQ con contenido útil para usuarios y SEO.
-- Mapa de Dique Cabra Corral.
-- Textos sin precio publicado.
+- **Precios publicados.** Es el dato que la competencia no publica y el que más
+  se busca. Están en el HTML, en el FAQ y en `makesOffer` del JSON-LD con
+  `priceValidUntil`.
+- Las tres unidades declaradas en `containsPlace` con su `occupancy`, más
+  `priceRange` y `currenciesAccepted` en el `LodgingBusiness`.
+- `FAQPage` ampliado: la primera pregunta ahora es "¿Cuánto sale?".
+- H1 orientado a búsqueda local, con la ubicación en la primera línea.
+- Meta description con los tres tamaños de casa y el precio de entrada.
+- Open Graph con `og:site_name` y `og:image:alt`.
+- Fotos reales, WebP, nombres con keywords, `width`/`height` explícitos y
+  `loading="lazy"` fuera de la primera pantalla.
+
+## Rendimiento y accesibilidad corregidos en el rebranding
+
+Todos estos números están medidos en el navegador, antes y después:
+
+| | Antes | Ahora |
+| --- | --- | --- |
+| Contraste del CTA principal | **1.98:1** (falla AA) | **6.49:1** |
+| Peticiones de CSS en serie antes de la 1.ª letra | 3 saltos (`@import` anidado) | 1, en paralelo |
+| Valores distintos de `border-radius` | 13 | 1 |
+| `backdrop-filter` | 8 | 0 |
+| Gradientes | 15 | 1 (textura de la portada) |
+| `box-shadow` | 37 | 1 |
+| CTA visible en la primera pantalla | No (hero de 975px en viewport de 720) | Sí |
+| Animaciones infinitas | 2 (halo del WhatsApp, carrusel) | 0 |
+| Galería usable con teclado | No (se abría en `mouseenter`) | Sí (click, flechas, Escape, foco atrapado) |
+| Área táctil del menú móvil | 34×34 | 44×44 |
+| CSS muerto enviado al cliente | ~150 líneas (`cards.css`, `reviews.css` huérfano) | 0 |
+
+Contraste verificado en los 22 pares de texto/fondo del sitio, y revalidado en
+escala de grises para confirmar que la jerarquía no depende del color.
