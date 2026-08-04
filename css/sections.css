@@ -353,6 +353,21 @@
   margin-bottom: var(--row);
 }
 
+/* La foto del atardecer: ancha, sola, centrada y sin nada al lado.
+   Es la única pausa de la página. */
+.consultar__plate {
+  max-width: 40rem;
+  margin: 0 auto calc(var(--row) * 2.5);
+}
+
+.consultar__plate .plate__mat {
+  background-color: rgba(244, 238, 226, 0.14);
+  border-color: rgba(244, 238, 226, 0.3);
+}
+
+.consultar__plate .plate__ficha { color: #c3ac93; }
+.consultar__plate .plate__n     { color: var(--paper-3); }
+
 .consultar__lead {
   color: #c3ac93;              /* 5.6:1 sobre --night */
   max-width: 34rem;

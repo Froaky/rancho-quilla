@@ -12,10 +12,14 @@
  */
 
 export function initLightbox() {
-  const wall = document.getElementById('wall');
-  if (!wall) return;
+  /* La galería está dividida en grupos (una casa por grupo), cada uno
+     con su propia pared. El visor recorre las tres como un solo
+     conjunto, y por eso la numeración de las fichas es continua:
+     así el número de la ficha y el contador del visor coinciden. */
+  const galeria = document.getElementById('galeria');
+  if (!galeria) return;
 
-  const figures = Array.from(wall.querySelectorAll('.plate'));
+  const figures = Array.from(galeria.querySelectorAll('.plate'));
   const items = figures
     .map((fig) => {
       const img = fig.querySelector('img');

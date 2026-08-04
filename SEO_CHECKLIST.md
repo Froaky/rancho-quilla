@@ -3,7 +3,7 @@
 ## Pendientes antes de publicar
 
 1. Verificar que el WhatsApp siga apuntando a `5493874830580` (+54 9 3874 83-0580).
-   Está en **4** enlaces de `index.html`.
+   Está en **5** enlaces de `index.html`.
 2. **Revisar la vigencia de los precios.** Hoy dicen "hasta el 31 de agosto de
    2026" en tres lugares del HTML y en `priceValidUntil` del JSON-LD. Un precio
    sin fecha, o con fecha vencida, es peor que no publicar precio.
@@ -35,6 +35,13 @@
 - Open Graph con `og:site_name` y `og:image:alt`.
 - Fotos reales, WebP, nombres con keywords, `width`/`height` explícitos y
   `loading="lazy"` fuera de la primera pantalla.
+- **28 fotos separadas por casa** en la galería (16 Casa Grande, 8 Cabaña chica,
+  4 del dique), cada una con `alt` que nombra la unidad. La Cabaña de 6 personas
+  no tiene fotos y la página lo dice, en lugar de rellenar con las otras.
+- Referencia geográfica real en el texto y en el JSON-LD: *a minutos de Los
+  Mayuatos, antes de Coronel Moldes*. Ayuda a quien busca por esa zona.
+- `containsPlace` con `amenityFeature` y `bed` por unidad, no sólo la capacidad.
+- Todas las imágenes a máximo 1400px y WebP q80: 894 KB menos que antes.
 
 ## Rendimiento y accesibilidad corregidos en el rebranding
 
