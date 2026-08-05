@@ -48,7 +48,9 @@
   Mayuatos, antes de Coronel Moldes*. Ayuda a quien busca por esa zona.
 - `containsPlace` con `amenityFeature` y `bed` por unidad, no sólo la capacidad.
 - `FAQPage` con 10 preguntas, una por casa ("¿Qué incluye Mate Luna...?").
-- Todas las imágenes a máximo 1400px y WebP q80: 894 KB menos que antes.
+- Todas las imágenes a máximo 1200px y WebP q80 **en un solo encode**, rehechas
+  desde la fuente pristina. Antes tenían dos pasadas de compresión encima (y las
+  de los PDF, tres), que es lo que producía el ruido visible en los cielos.
 
 ## Rendimiento y accesibilidad corregidos en el rebranding
 

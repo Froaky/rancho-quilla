@@ -472,10 +472,16 @@
   margin-bottom: var(--row);
 }
 
-/* La foto del atardecer: ancha, sola, centrada y sin nada al lado.
-   Es la única pausa de la página. */
+/* La foto del atardecer: sola, centrada y sin nada al lado. Es la única
+   pausa de la página.
+   El ancho está atado a los pixeles que tiene la foto, no al gusto: su
+   original es de 1280px y hay que recortarle la botella de marca de la
+   derecha, así que quedan 768px de ancho útil. Mostrándola a 40rem
+   (640px) el navegador la escala 1.2× y se ve blanda; a 32rem (512px)
+   la escala es 1.5× y se ve nítida. Si algún día aparece una versión
+   más grande de esta foto, se puede volver a agrandar. */
 .consultar__plate {
-  max-width: 40rem;
+  max-width: 32rem;
   margin: 0 auto calc(var(--row) * 2.5);
 }
 

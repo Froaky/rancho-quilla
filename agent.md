@@ -151,8 +151,26 @@ Los nombres de archivo son la atribución. No mezclar:
 - `ranchito-*` → **Ranchito**, la de 2 (8 fotos).
 - `muelle-*`, `bote-*`, `kayak-*`, `atardecer-pesca-*` → **el dique**, común a las
   tres (4 fotos).
-- Todas a máximo 1400px de ancho y WebP q80. El visor las muestra a ~1000px como
-  máximo, así que subir de 1400 sólo agrega peso.
+- Todas a máximo **1200px** de ancho y **WebP q80, en un solo encode**. El visor
+  las muestra a ~1000px como máximo y la pared a ~450, así que subir de 1200
+  sólo agrega peso.
+
+⚠️ **Nunca reprocesar un WebP que ya está en el repo.** Cada encode con pérdida
+apila artefactos sobre los anteriores: la galería estuvo un rato comprimida dos
+veces (q80 y después q78) y las del PDF tres, y eso se veía como ruido en el
+cielo del atardecer. Si hay que cambiar tamaño o calidad, se rehace **desde la
+fuente pristina**: el blob de git en `b1c97a1` para las fotos que ya estaban en
+el repo, o el PDF del dueño para las de Mate Luna y Ranchito. El script que lo
+hace quedó documentado en el commit correspondiente.
+
+Excepción de calidad: los dos atardeceres van a **q90**, no q80. Un cielo con
+degradado necesita más bits que una pared de ladrillo, y son justo las fotos
+donde el ruido se notaba.
+
+El ancho de `.consultar__plate` (32rem) está atado a los pixeles reales de
+`atardecer-pesca-dique-cabra-corral.webp`: su fuente es de 1280px y hay que
+recortarle una botella de marca, así que quedan 768px útiles. A 40rem el
+navegador la escalaba 1.2× y se veía blanda; a 32rem la escala es 1.6×.
 Dos fotos están recortadas a propósito:
 
 - `atardecer-pesca-dique-cabra-corral.webp`: se quitó una botella de marca que
