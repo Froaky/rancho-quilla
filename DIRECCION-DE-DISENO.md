@@ -35,7 +35,8 @@ material real del proyecto.
 | Terracota `#9c4a2a` | El ladrillo a la vista del quincho. |
 | Papel `#f4eee2` (nunca blanco) | Evita que la maqueta de filetes caiga en "editorial genérico blanco y negro". |
 | Numeración `01–05`, con `02.1/02.2/02.3` | La página es un inventario; un inventario se numera. Las tres casas son sub-entradas de la misma cuenta. |
-| El numeral de capacidad (`12`, `6`, `2`) en grande | Es el dato que realmente distingue una casa de otra. No hay que inventar un ícono: el número ya lo dice. |
+| El numeral de capacidad (`12`, `6`, `2`) en grande | Es lo que distingue una casa de otra de un vistazo. No hay que inventar un ícono: el número ya lo dice. |
+| Nombre propio por casa | Rancho Quilla, Mate Luna, Ranchito. Son los nombres reales que usa el dueño, y un nombre se recuerda y se recomienda; un tamaño no. |
 | Paspartú + ficha en las fotos | La pared del quincho está cubierta de cuadros. Y resuelve un problema real: las fotos son de teléfono a pleno sol, y un marco las vuelve intencionales. |
 | Desfase de medio módulo | Aparejo de ladrillo del quincho. |
 | Radio de borde `0` | El papel no tiene esquinas redondeadas. |
@@ -119,6 +120,11 @@ Tres, y las tres se reconocen sin logo y sin color:
    en Playfair a 144px. `.casa-head__cap`. Es lo que distingue una casa de otra
    de un vistazo, y sale del único dato que de verdad las diferencia.
 
+   Al lado va el **nombre propio** (Rancho Quilla, Mate Luna, Ranchito) y un
+   subtítulo de una línea que dice cuál es cuál. Ese subtítulo no es decorativo:
+   «Rancho Quilla» es a la vez el predio y la casa grande, y sin esa línea el
+   visitante no sabe si está mirando el lugar o una de las tres casas.
+
 Al tocar una lámina, se despega 2px del papel y aparece una sombra **dura**
 (`4px 4px 0`), como algo que efectivamente está colgado. No es un blur difuso.
 
@@ -159,9 +165,10 @@ piletín, piedra bola, caseros, predio, sulky.
 
 ## Cómo se extiende
 
-- **Página interna** (una casa): la ficha `02.1` se convierte en página propia sin
-  cambiar nada de su anatomía — numeral de capacidad, nombre, precio, inventario,
-  pared de fotos. Ya está diseñada como una unidad autónoma.
+- **Página interna** (una casa): la ficha de Mate Luna o Ranchito se convierte en
+  página propia sin
+  cambiar nada de su anatomía — numeral de capacidad, nombre propio, subtítulo,
+  precio, inventario, pared de fotos. Ya está diseñada como unidad autónoma.
 - **Una casa nueva:** se agrega como `02.4` con su numeral y su pared. El sistema
   no necesita nada más.
 - **Placa para redes:** tinta `#47240b` sobre papel, el filete de 2px con el

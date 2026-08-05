@@ -3,6 +3,23 @@
 Landing de **Rancho Quilla**: tres casas de campo independientes, de alquiler
 temporario, a la orilla del **Dique Cabra Corral, Salta**.
 
+## Las tres casas y sus nombres
+
+| Nombre | Capacidad | Por día | Ancla | Prefijo de sus fotos |
+| --- | --- | --- | --- | --- |
+| **Rancho Quilla** | 12 personas | $250.000 | `#rancho-quilla-casa` | *(sin prefijo)* |
+| **Mate Luna** | 6 personas | $120.000 | `#mate-luna` | `mate-luna-` |
+| **Ranchito** | 2 personas | $50.000 | `#ranchito` | `ranchito-` |
+
+⚠️ **«Rancho Quilla» es a la vez el predio entero y la casa grande.** No es un
+error: la casa grande le da el nombre al lugar. Pero la página tiene que
+desambiguarlo siempre, y lo hace en tres lugares: el texto de la sección 01 lo
+dice con nombre y apellido, la ficha lleva el subtítulo *"la casa grande, la que
+le da el nombre al predio"* (`.casa-head__sub`), y el ancla es
+`#rancho-quilla-casa`, no `#rancho-quilla`.
+
+Si se toca alguno de esos tres, la ambigüedad vuelve.
+
 ## Objetivo
 
 Atraer búsquedas locales y convertir visitas en consultas por WhatsApp.
@@ -36,9 +53,9 @@ porque tiene reglas que no son obvias:
 
 | Casa              | Máximo      | Por día  |
 | ----------------- | ----------- | -------- |
-| La Casa Grande    | 12 personas | $250.000 |
-| La Cabaña         | 6 personas  | $120.000 |
-| La Cabaña chica   | 2 personas  | $50.000  |
+| Rancho Quilla     | 12 personas | $250.000 |
+| Mate Luna         | 6 personas  | $120.000 |
+| Ranchito          | 2 personas  | $50.000  |
 | Persona excedente | —           | $20.000  |
 
 - El excedente se cobra **por persona y por día**, por encima del máximo de cada casa.
@@ -56,7 +73,8 @@ Cuando cambien los precios hay que tocar **seis lugares**:
 
 ### Qué incluye
 
-- Tres casas independientes entre sí. Se alquila la casa entera, nunca una habitación.
+- Tres casas independientes entre sí (Rancho Quilla, Mate Luna, Ranchito). Se
+  alquila la casa entera, nunca una habitación.
 - Quincho grande con mesa larga.
 - Pileta y piletín para chicos.
 - Cocina equipada, heladera, freezer y utensilios.
@@ -68,7 +86,7 @@ Cuando cambien los precios hay que tocar **seis lugares**:
 - Mascotas bienvenidas (avisando al consultar).
 - Caseros viviendo en el predio todo el año.
 
-### La Cabaña (6 personas) — ficha propia
+### Mate Luna (6 personas) — ficha propia
 
 Datos de la ficha del dueño (`Mate Luna.pdf`, agosto 2026):
 
@@ -87,7 +105,7 @@ Datos de la ficha del dueño (`Mate Luna.pdf`, agosto 2026):
 - Aclaración de horarios: **pasado el horario de salida empieza a contarse un
   día adicional.**
 
-### La Cabaña chica (2 personas) — ficha propia
+### Ranchito (2 personas) — ficha propia
 
 Datos tomados de la ficha del dueño (`Ranchito.pdf`, agosto 2026):
 
@@ -104,8 +122,8 @@ Datos tomados de la ficha del dueño (`Ranchito.pdf`, agosto 2026):
 
 ⚠️ El depósito de garantía de $20.000 y el adicional de $20.000 por persona
 excedente son **dos cosas distintas** que coinciden en el monto. No unificarlas.
-El depósito está documentado para **las dos cabañas** (6 y 2 personas). Falta
-confirmar si aplica también a La Casa Grande.
+El depósito está documentado para **Mate Luna y Ranchito**. Falta confirmar si
+aplica también a Rancho Quilla, la casa grande.
 
 ### Condiciones (de la ficha del dueño)
 
@@ -128,9 +146,9 @@ al confirmar la reserva.
 
 Los nombres de archivo son la atribución. No mezclar:
 
-- `assets/images/rancho/*` sin prefijo → **La Casa Grande** (17 fotos).
-- `cabania-6-*` → **La Cabaña**, la de 6 personas (12 fotos).
-- `cabania-chica-*` → **La Cabaña chica**, la de 2 (8 fotos).
+- `assets/images/rancho/*` sin prefijo → **Rancho Quilla**, la casa grande (17 fotos).
+- `mate-luna-*` → **Mate Luna**, la de 6 personas (12 fotos).
+- `ranchito-*` → **Ranchito**, la de 2 (8 fotos).
 - `muelle-*`, `bote-*`, `kayak-*`, `atardecer-pesca-*` → **el dique**, común a las
   tres (4 fotos).
 - Todas a máximo 1400px de ancho y WebP q80. El visor las muestra a ~1000px como
@@ -139,7 +157,7 @@ Dos fotos están recortadas a propósito:
 
 - `atardecer-pesca-dique-cabra-corral.webp`: se quitó una botella de marca que
   aparecía en el cuadro original.
-- `cabania-6-atardecer-desde-la-galeria.webp`: se quitó una banda de texto
+- `mate-luna-atardecer-desde-la-galeria.webp`: se quitó una banda de texto
   sobreimpreso que además tenía una errata («Atardecer **en en** Dique»).
 
 ⚠️ Los dos PDF del dueño traen imágenes que **no son del lugar** y no se usaron:
@@ -155,14 +173,10 @@ altavoz. La página sólo lleva fotos reales del predio.
   `sitemap.xml` y alta en Google Search Console.
 - Sumar reseñas **reales** cuando existan. No inventar ninguna: hoy la página no
   tiene sección de testimonios y eso es deliberado.
-- Confirmar si el depósito de garantía de $20.000 aplica también a **La Casa
-  Grande**. Está documentado para las dos cabañas.
-- **¿Las casas tienen nombre propio?** Los PDF del dueño se llaman `Ranchito.pdf`
-  (la de 2) y `Mate Luna.pdf` (la de 6), pero ninguna ficha se nombra a sí misma
-  adentro. La página usa por ahora los nombres descriptivos que usó el dueño por
-  WhatsApp: La Casa Grande, La Cabaña, La Cabaña chica. Si «Ranchito» y «Mate
-  Luna» son los nombres reales, conviene usarlos: son mejores para la marca y
-  más fáciles de recordar que un tamaño.
+- Confirmar si el depósito de garantía de $20.000 aplica también a **Rancho
+  Quilla**, la casa grande. Está documentado para Mate Luna y Ranchito.
+- Los nombres propios están **confirmados por el dueño**: Rancho Quilla (12),
+  Mate Luna (6) y Ranchito (2).
 
 ## Arquitectura de la página
 
@@ -174,9 +188,9 @@ que armar el rompecabezas para poder decidir.
 00  Portada
 01  El predio          <- lo que vale para las tres, dicho una sola vez
 02  Las tres casas     <- tabla de decisión: capacidad, precio y enlace a cada ficha
-02.1  La Casa Grande   <- ficha: numeral 12 + precio + inventario + 17 fotos + 2 videos
-02.2  La Cabaña        <- ficha: numeral 6  + precio + inventario + 12 fotos
-02.3  La Cabaña chica  <- ficha: numeral 2  + precio + inventario + 8 fotos
+02.1  Rancho Quilla    <- ficha: numeral 12 + precio + inventario + 17 fotos + 2 videos
+02.2  Mate Luna        <- ficha: numeral 6  + precio + inventario + 12 fotos
+02.3  Ranchito         <- ficha: numeral 2  + precio + inventario + 8 fotos
 03  Dónde queda
 04  Antes de venir
 05  Consultar
@@ -237,9 +251,9 @@ Cosas que ya se rompieron una vez y no conviene volver a romper:
 - La galería no tiene autoplay. Las fotos se muestran todas, en aparejo de
   ladrillo, y se amplían al **hacer click**, no al pasar el mouse.
 - El visor está **acotado por casa**: cada `.wall` es un grupo y las flechas
-  recorren sólo las fotos de esa casa. Si alguien está mirando La Cabaña, no
-  tiene que terminar en la Casa Grande sin haberlo pedido. El contador dice de
-  qué casa es: «La Cabaña · 3 / 12».
+  recorren sólo las fotos de esa casa. Si alguien está mirando Mate Luna, no
+  tiene que terminar en Rancho Quilla sin haberlo pedido. El contador dice de
+  qué casa es: «Mate Luna · 3 / 12».
 - El enlace del nombre de casa en la tabla de tarifas agranda su área táctil con
   un `::after` absoluto, no con padding: con padding el subrayado se separa de la
   palabra. Su alto natural es 27px y el mínimo táctil es 44.
