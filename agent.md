@@ -68,6 +68,25 @@ Cuando cambien los precios hay que tocar **seis lugares**:
 - Mascotas bienvenidas (avisando al consultar).
 - Caseros viviendo en el predio todo el año.
 
+### La Cabaña (6 personas) — ficha propia
+
+Datos de la ficha del dueño (`Mate Luna.pdf`, agosto 2026):
+
+- Camas para seis, con ropa de cama incluida.
+- Agua caliente con **termotanque a leña**.
+- Heladerita, freezer, **anafe de dos hornallas**, microondas y pava eléctrica.
+- Utensilios de cocina completos para 6 personas.
+- Quincho con horno de barro y asador. **Conviene traer leña.**
+- Comedor vidriado con ventanales al dique. Tiene planta alta.
+- **Juego de sapo.**
+- Televisor con DirecTV, **recarga a cargo del huésped**.
+- Kayak doble o **bote a remo para 2 personas**, sin cargo.
+- Estacionamiento junto a la cabaña. Espacio totalmente privado.
+- **Depósito de garantía $20.000**, se devuelve 48 h después de la estadía.
+- Se aceptan dólares a la mejor cotización.
+- Aclaración de horarios: **pasado el horario de salida empieza a contarse un
+  día adicional.**
+
 ### La Cabaña chica (2 personas) — ficha propia
 
 Datos tomados de la ficha del dueño (`Ranchito.pdf`, agosto 2026):
@@ -85,8 +104,8 @@ Datos tomados de la ficha del dueño (`Ranchito.pdf`, agosto 2026):
 
 ⚠️ El depósito de garantía de $20.000 y el adicional de $20.000 por persona
 excedente son **dos cosas distintas** que coinciden en el monto. No unificarlas.
-El depósito está documentado sólo para La Cabaña chica; falta confirmar si
-aplica a las otras dos.
+El depósito está documentado para **las dos cabañas** (6 y 2 personas). Falta
+confirmar si aplica también a La Casa Grande.
 
 ### Condiciones (de la ficha del dueño)
 
@@ -107,18 +126,26 @@ al confirmar la reserva.
 
 ## Fotos
 
-- `assets/images/rancho/*` sin prefijo → **La Casa Grande** (16 en la galería).
-- `assets/images/rancho/cabania-chica-*` → **La Cabaña chica** (8 en la galería).
-- `muelle-*`, `bote-*`, `kayak-*`, `atardecer-*` → **el dique**, comunes a las tres.
-- **La Cabaña (6 personas) no tiene fotos.** La galería lo dice explícitamente en
-  lugar de rellenar con fotos de las otras.
+Los nombres de archivo son la atribución. No mezclar:
+
+- `assets/images/rancho/*` sin prefijo → **La Casa Grande** (17 fotos).
+- `cabania-6-*` → **La Cabaña**, la de 6 personas (12 fotos).
+- `cabania-chica-*` → **La Cabaña chica**, la de 2 (8 fotos).
+- `muelle-*`, `bote-*`, `kayak-*`, `atardecer-pesca-*` → **el dique**, común a las
+  tres (4 fotos).
 - Todas a máximo 1400px de ancho y WebP q80. El visor las muestra a ~1000px como
   máximo, así que subir de 1400 sólo agrega peso.
-- `atardecer-pesca-dique-cabra-corral.webp` está recortada a propósito para
-  quitar una botella de marca que había en el cuadro original.
+Dos fotos están recortadas a propósito:
 
-⚠️ El PDF del dueño traía además un meme de un pug y una foto de comida bajada de
-internet. **No se usaron**: la página sólo lleva fotos reales del lugar.
+- `atardecer-pesca-dique-cabra-corral.webp`: se quitó una botella de marca que
+  aparecía en el cuadro original.
+- `cabania-6-atardecer-desde-la-galeria.webp`: se quitó una banda de texto
+  sobreimpreso que además tenía una errata («Atardecer **en en** Dique»).
+
+⚠️ Los dos PDF del dueño traen imágenes que **no son del lugar** y no se usaron:
+un meme de un pug con «SI ME ACEPTAN!!», una foto de comida bajada de internet
+(tiene el overlay de Google Lens encima) y capturas de video con el ícono de
+altavoz. La página sólo lleva fotos reales del predio.
 
 ## Pendientes
 
@@ -128,12 +155,39 @@ internet. **No se usaron**: la página sólo lleva fotos reales del lugar.
   `sitemap.xml` y alta en Google Search Console.
 - Sumar reseñas **reales** cuando existan. No inventar ninguna: hoy la página no
   tiene sección de testimonios y eso es deliberado.
-- Confirmar si el depósito de garantía de $20.000 aplica también a La Casa
-  Grande y a La Cabaña, o sólo a La Cabaña chica.
-- Conseguir fotos y ficha de **La Cabaña (6 personas)**: es la única de las tres
-  que no tiene nada publicado.
-- Confirmar si la referencia "a minutos de Los Mayuatos, antes de Coronel Moldes"
-  vale para el predio entero o sólo para La Cabaña chica.
+- Confirmar si el depósito de garantía de $20.000 aplica también a **La Casa
+  Grande**. Está documentado para las dos cabañas.
+- **¿Las casas tienen nombre propio?** Los PDF del dueño se llaman `Ranchito.pdf`
+  (la de 2) y `Mate Luna.pdf` (la de 6), pero ninguna ficha se nombra a sí misma
+  adentro. La página usa por ahora los nombres descriptivos que usó el dueño por
+  WhatsApp: La Casa Grande, La Cabaña, La Cabaña chica. Si «Ranchito» y «Mate
+  Luna» son los nombres reales, conviene usarlos: son mejores para la marca y
+  más fáciles de recordar que un tamaño.
+
+## Arquitectura de la página
+
+Una **ficha por casa**, continua. Antes cada casa estaba repartida en tres
+secciones distintas (precio en una, inventario en otra, fotos en otra) y había
+que armar el rompecabezas para poder decidir.
+
+```
+00  Portada
+01  El predio          <- lo que vale para las tres, dicho una sola vez
+02  Las tres casas     <- tabla de decisión: capacidad, precio y enlace a cada ficha
+02.1  La Casa Grande   <- ficha: numeral 12 + precio + inventario + 17 fotos + 2 videos
+02.2  La Cabaña        <- ficha: numeral 6  + precio + inventario + 12 fotos
+02.3  La Cabaña chica  <- ficha: numeral 2  + precio + inventario + 8 fotos
+03  Dónde queda
+04  Antes de venir
+05  Consultar
+```
+
+La sub-numeración `02.1` / `02.2` / `02.3` es deliberada: dice que las tres son
+lo mismo en distinto tamaño, y es un recurso de libro de cuentas.
+
+**La marca de cada ficha es el numeral de capacidad** (`12`, `6`, `2`) en
+Playfair a 144px. Es el dato que realmente distingue una casa de otra, así que es
+lo que se ve primero y desde lejos. Funciona en monocromo y en una miniatura.
 
 ## Estructura técnica
 
@@ -180,5 +234,12 @@ Cosas que ya se rompieron una vez y no conviene volver a romper:
   le gana al `hidden` del navegador.
 - `is-docked` / `is-landed` tienen **un solo dueño**: `logo-dock.js`. Si otro
   módulo los toca, el logo blanco puede quedar sobre fondo blanco.
-- La galería no tiene autoplay. Las 12 fotos se muestran todas, en aparejo de
+- La galería no tiene autoplay. Las fotos se muestran todas, en aparejo de
   ladrillo, y se amplían al **hacer click**, no al pasar el mouse.
+- El visor está **acotado por casa**: cada `.wall` es un grupo y las flechas
+  recorren sólo las fotos de esa casa. Si alguien está mirando La Cabaña, no
+  tiene que terminar en la Casa Grande sin haberlo pedido. El contador dice de
+  qué casa es: «La Cabaña · 3 / 12».
+- El enlace del nombre de casa en la tabla de tarifas agranda su área táctil con
+  un `::after` absoluto, no con padding: con padding el subrayado se separa de la
+  palabra. Su alto natural es 27px y el mínimo táctil es 44.

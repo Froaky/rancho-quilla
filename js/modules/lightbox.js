@@ -6,37 +6,54 @@
  * intención, era imposible de usar con teclado y en táctil no había
  * forma de dispararlo ni de cerrarlo.
  *
+ * Las fotos están agrupadas por casa (una pared por casa). El visor
+ * respeta ese agrupamiento: las flechas recorren las fotos de LA
+ * MISMA casa y no se van a la de al lado. Si estoy mirando La Cabaña,
+ * quiero ver La Cabaña.
+ *
  * - Flechas ← → para recorrer, Escape para cerrar.
  * - Foco atrapado mientras está abierto y devuelto al cerrar.
- * - El visor se arma una sola vez y se reutiliza.
+ * - El visor se arma una sola vez y se reutiliza para todos los grupos.
  */
 
 export function initLightbox() {
-  /* La galería está dividida en grupos (una casa por grupo), cada uno
-     con su propia pared. El visor recorre las tres como un solo
-     conjunto, y por eso la numeración de las fichas es continua:
-     así el número de la ficha y el contador del visor coinciden. */
-  const galeria = document.getElementById('galeria');
-  if (!galeria) return;
+  const walls = Array.from(document.querySelectorAll('.wall'));
+  if (!walls.length) return;
 
-  const figures = Array.from(galeria.querySelectorAll('.plate'));
-  const items = figures
-    .map((fig) => {
-      const img = fig.querySelector('img');
-      const trigger = fig.querySelector('[data-zoom]');
-      const ficha = fig.querySelector('.plate__ficha');
-      if (!img || !trigger) return null;
-      return {
-        trigger,
-        src: img.currentSrc || img.src,
-        alt: img.alt || '',
-        n: ficha?.querySelector('.plate__n')?.textContent?.trim() || '',
-        text: ficha?.querySelector('span:last-child')?.textContent?.trim() || ''
-      };
+  /* Nombre del grupo: se toma del encabezado que precede a la pared,
+     así el visor puede decir de qué casa es la foto que se está
+     mirando sin que haya que repetirlo en cada figura. */
+  const nombreDeGrupo = (wall) => {
+    const seccion = wall.closest('section');
+    const propio = wall.previousElementSibling?.querySelector('h3');
+    if (propio) return propio.textContent.trim();
+    const h2 = seccion?.querySelector('h2');
+    return h2 ? h2.textContent.trim() : '';
+  };
+
+  const grupos = walls
+    .map((wall) => {
+      const nombre = nombreDeGrupo(wall);
+      const fotos = Array.from(wall.querySelectorAll('.plate'))
+        .map((fig) => {
+          const img = fig.querySelector('img');
+          const trigger = fig.querySelector('[data-zoom]');
+          const ficha = fig.querySelector('.plate__ficha');
+          if (!img || !trigger) return null;
+          return {
+            trigger,
+            src: img.currentSrc || img.src,
+            alt: img.alt || '',
+            n: ficha?.querySelector('.plate__n')?.textContent?.trim() || '',
+            texto: ficha?.querySelector('span:last-child')?.textContent?.trim() || ''
+          };
+        })
+        .filter(Boolean);
+      return { nombre, fotos };
     })
-    .filter(Boolean);
+    .filter((g) => g.fotos.length);
 
-  if (!items.length) return;
+  if (!grupos.length) return;
 
   /* --- Se arma el visor una sola vez ----------------------------- */
 
@@ -76,24 +93,34 @@ export function initLightbox() {
   const elText = box.querySelector('.lightbox__text');
   const elCount = box.querySelector('.lightbox__count');
   const btnClose = box.querySelector('[data-act="close"]');
-  const buttons = Array.from(box.querySelectorAll('.lightbox__btn'));
+  const botones = Array.from(box.querySelectorAll('.lightbox__btn'));
 
-  let current = 0;
+  let grupo = grupos[0];
+  let i = 0;
   let opener = null;
 
-  const show = (i) => {
-    current = (i + items.length) % items.length;
-    const it = items[current];
-    elImg.src = it.src;
-    elImg.alt = it.alt;
-    elN.textContent = it.n;
-    elText.textContent = it.text;
-    elCount.textContent = `${current + 1} / ${items.length}`;
+  const mostrar = (idx) => {
+    const fotos = grupo.fotos;
+    i = (idx + fotos.length) % fotos.length;
+    const f = fotos[i];
+    elImg.src = f.src;
+    elImg.alt = f.alt;
+    elN.textContent = f.n;
+    elText.textContent = f.texto;
+    // El contador dice de qué casa es y en qué foto de esa casa estamos.
+    elCount.textContent = grupo.nombre
+      ? `${grupo.nombre} · ${i + 1} / ${fotos.length}`
+      : `${i + 1} / ${fotos.length}`;
+    // Con una sola foto en el grupo, las flechas no tienen sentido.
+    botones
+      .filter((b) => b.dataset.act === 'prev' || b.dataset.act === 'next')
+      .forEach((b) => { b.hidden = fotos.length < 2; });
   };
 
-  const open = (i, trigger) => {
+  const abrir = (g, idx, trigger) => {
+    grupo = g;
     opener = trigger;
-    show(i);
+    mostrar(idx);
     box.hidden = false;
     /* Primer reflow: fija el estado de partida (opacity 0) para que la
        transición tenga de dónde salir. Con requestAnimationFrame no
@@ -111,52 +138,55 @@ export function initLightbox() {
     btnClose.focus();
   };
 
-  const close = () => {
+  const cerrar = () => {
     box.classList.remove('is-open');
     document.body.style.overflow = '';
-    const done = () => {
+    const listo = () => {
       box.hidden = true;
-      box.removeEventListener('transitionend', done);
+      box.removeEventListener('transitionend', listo);
     };
-    box.addEventListener('transitionend', done);
+    box.addEventListener('transitionend', listo);
     // Red de seguridad si no hay transición (reduced motion).
-    setTimeout(done, 400);
+    setTimeout(listo, 400);
     if (opener instanceof HTMLElement) opener.focus();
   };
 
   /* --- Disparadores ---------------------------------------------- */
 
-  items.forEach((it, i) => {
-    it.trigger.addEventListener('click', () => open(i, it.trigger));
+  grupos.forEach((g) => {
+    g.fotos.forEach((f, idx) => {
+      f.trigger.addEventListener('click', () => abrir(g, idx, f.trigger));
+    });
   });
 
   box.addEventListener('click', (e) => {
     const act = e.target.closest('[data-act]')?.dataset.act;
-    if (act === 'next') return show(current + 1);
-    if (act === 'prev') return show(current - 1);
-    if (act === 'close') return close();
+    if (act === 'next') return mostrar(i + 1);
+    if (act === 'prev') return mostrar(i - 1);
+    if (act === 'close') return cerrar();
     // Click en el fondo cierra; click en la foto o la barra, no.
-    if (!e.target.closest('.lightbox__frame')) close();
+    if (!e.target.closest('.lightbox__frame')) cerrar();
   });
 
   document.addEventListener('keydown', (e) => {
     if (box.hidden) return;
 
-    if (e.key === 'Escape') return close();
-    if (e.key === 'ArrowRight') return show(current + 1);
-    if (e.key === 'ArrowLeft') return show(current - 1);
+    if (e.key === 'Escape') return cerrar();
+    if (e.key === 'ArrowRight') return mostrar(i + 1);
+    if (e.key === 'ArrowLeft') return mostrar(i - 1);
 
     // Foco atrapado: mientras el visor está abierto el tabulador no
     // se escapa al fondo de la página.
     if (e.key === 'Tab') {
-      const first = buttons[0];
-      const last = buttons[buttons.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
+      const visibles = botones.filter((b) => !b.hidden);
+      const primero = visibles[0];
+      const ultimo = visibles[visibles.length - 1];
+      if (e.shiftKey && document.activeElement === primero) {
         e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
+        ultimo.focus();
+      } else if (!e.shiftKey && document.activeElement === ultimo) {
         e.preventDefault();
-        first.focus();
+        primero.focus();
       }
     }
   });

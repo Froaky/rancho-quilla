@@ -125,84 +125,195 @@
 }
 
 /* =============================================================
-   01 · LA CASA
-   Maqueta asimétrica: texto angosto a la izquierda, dos láminas
-   de proporciones distintas a la derecha. Sin tarjetas.
+   01 · EL PREDIO
+   Lo compartido se dice una sola vez acá, para que cada ficha de
+   casa lleve nada más que lo suyo.
    ============================================================= */
 
-.casa__inner {
+.predio__inner {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
 }
 
-.casa__plates {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(0.75rem, 2vw, 1.35rem);
-  align-items: start;
-}
-
-/* La segunda lámina cuelga más abajo: medio ladrillo de desfase.
-   Es el mismo principio que ordena la pared de fotos. */
-.casa__plates > *:nth-child(2) { margin-top: clamp(1.5rem, 5vw, 3.5rem); }
-
 @media (max-width: 56rem) {
-  .casa__inner { grid-template-columns: 1fr; }
+  .predio__inner { grid-template-columns: 1fr; }
 }
 
 /* =============================================================
-   02 · LAS CASAS Y SUS PRECIOS
-   La sección más importante de la página: es el dato que nadie
-   publica y el que decide la consulta.
-   Va sobre papel alterno para que pese distinto que sus vecinas.
+   02 · LAS TRES CASAS
+   La vista de decisión. Va sobre papel alterno para que pese
+   distinto que sus vecinas.
    ============================================================= */
 
-.precios__inner {
+.casas__inner {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
 }
 
-.precios__aside { position: sticky; top: calc(var(--header-h) + var(--row)); }
+.casas__aside { position: sticky; top: calc(var(--header-h) + var(--row)); }
 
-/* Nota de excedentes: se queda en medida de lectura para que la regla
-   se entienda de un saque. */
+/* El nombre de la casa en la tabla es el enlace a su ficha. Como es
+   texto (no botón), su alto natural es de 27px: por debajo del mínimo
+   táctil de 44. Se agranda el área con un pseudo-elemento en lugar de
+   con padding, para no separar el subrayado de la palabra. */
+.tarifas .link { position: relative; }
+
+.tarifas .link::after {
+  content: '';
+  position: absolute;
+  inset: -9px -4px;
+}
+
+@media (max-width: 56rem) {
+  .casas__inner { grid-template-columns: 1fr; }
+  .casas__aside { position: static; }
+}
+
+/* =============================================================
+   02.1 – 02.3 · FICHA DE CASA
+   -------------------------------------------------------------
+   Cada casa tiene UNA entrada continua: nombre, capacidad, precio,
+   qué incluye y sus fotos, todo junto. Antes estaba repartido en
+   tres secciones distintas (precio en una, inventario en otra,
+   fotos en otra) y había que armar el rompecabezas para decidir.
+   ============================================================= */
+
+/* --- La marca de la ficha: la capacidad, en grande ---------------
+   Es el dato que realmente distingue una casa de otra, así que es
+   lo que se ve primero y desde lejos. Funciona en monocromo y en
+   una miniatura: 12, 6, 2.                                         */
+.casa-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding-bottom: calc(var(--row) * 0.9);
+  margin-bottom: calc(var(--row) * 1.5);
+  border-bottom: var(--rule) solid var(--ink-20);
+}
+
+.casa-head__cap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.casa-head__cap b {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 13vw, 9rem);
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  font-variant-numeric: lining-nums;
+}
+
+.casa-head__cap span {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.155em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+}
+
+.casa-head__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.casa-head__meta h2 { font-size: clamp(1.7rem, 3.4vw, 2.75rem); }
+
+.casa-head__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.casa-head__price b {
+  font-family: var(--font-mono);
+  font-size: var(--t-price);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.casa-head__price span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+}
+
+/* --- Cuerpo de la ficha: texto angosto, fotos anchas ------------- */
+.casa-ficha__body {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+.casa-ficha__texto .ledger { margin-top: calc(var(--row) * 1.2); }
+
+.casa-ficha__cta {
+  margin-top: calc(var(--row) * 1.4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+/* Dentro de la ficha la pared va a dos columnas: la columna de fotos
+   es más angosta que la página entera. */
+.casa-ficha__fotos .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.casa-ficha__fotos .wall > *:nth-child(3n + 2) { margin-top: 0; }
+
+.casa-ficha__fotos .wall > *:nth-child(2n) {
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+}
+
+@media (max-width: 56rem) {
+  .casa-ficha__body { grid-template-columns: 1fr; }
+  /* En mobile las fotos van antes del inventario: primero se mira,
+     después se lee la letra chica. */
+  .casa-ficha__fotos { order: -1; }
+}
+
+@media (max-width: 34rem) {
+  .casa-ficha__fotos .wall { grid-template-columns: 1fr; }
+  .casa-ficha__fotos .wall > *:nth-child(2n) {
+    margin-top: 0;
+    margin-left: clamp(1.25rem, 9vw, 3rem);
+  }
+  /* El numeral de capacidad y el nombre se apilan en pantalla chica,
+     pero el numeral sigue mandando. */
+  .casa-head { grid-template-columns: 1fr; align-items: start; gap: 0.75rem; }
+}
+
+/* Nota de excedentes y depósito, en la tabla de la sección 02.
+   Se queda en medida de lectura para que la regla se entienda de un
+   saque. */
 .precios__note {
   margin-top: var(--row);
   max-width: 42rem;
 }
 
-.precios__cta { margin-top: calc(var(--row) * 1.25); }
-
-@media (max-width: 56rem) {
-  .precios__inner { grid-template-columns: 1fr; }
-  .precios__aside { position: static; }
-}
-
 /* =============================================================
-   03 · EL INVENTARIO
-   Renglones agrupados. Es la sección más densa de la página, y
-   reemplaza las seis tarjetas con ícono en círculo del original.
-   ============================================================= */
-
-.inventario__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: start;
-}
-
-@media (max-width: 56rem) {
-  .inventario__inner { grid-template-columns: 1fr; }
-}
-
-/* =============================================================
-   04 · LA PARED DE FOTOS
+   LA PARED DE FOTOS
    -------------------------------------------------------------
-   Aparejo de ladrillo: la columna del medio baja medio módulo.
+   Vive dentro de cada ficha de casa (y en la del dique, en la
+   sección 01). Aparejo de ladrillo: la columna del medio baja
+   medio módulo.
    Las proporciones de las láminas son distintas entre sí a
    propósito — una grilla de recortes idénticos es la firma de
    la plantilla.
@@ -210,8 +321,6 @@
    permanente) y preview-al-hover (inusable con teclado y en
    táctil) del original.
    ============================================================= */
-
-.fotos__intro { margin-bottom: calc(var(--row) * 2); }
 
 .wall {
   display: grid;
@@ -240,14 +349,11 @@
 }
 
 /* =============================================================
-   05 · EL RECORRIDO (video)
-   Dos entradas numeradas. El video va con paspartú, igual que
-   las fotos: el mismo tratamiento para el mismo tipo de cosa.
+   EL RECORRIDO (video)
+   Va dentro de la ficha de La Casa Grande, porque los dos videos
+   son de esa casa. El video lleva paspartú igual que las fotos:
+   el mismo tratamiento para el mismo tipo de cosa.
    ============================================================= */
-
-/* El recorrido cierra la banda de fotos: se separa con tres renglones
-   para que se lea como un apartado, no como otra sección. */
-.recorrido { margin-top: calc(var(--row) * 3); }
 
 .recorrido__grid {
   display: grid;
@@ -259,19 +365,19 @@
 
 .recorrido__grid > *:nth-child(2) { margin-top: clamp(1.5rem, 4vw, 3rem); }
 
-.recorrido video {
+.recorrido__grid video {
   width: 100%;
   aspect-ratio: 16 / 9;
   background-color: var(--night);
 }
 
-@media (max-width: 46rem) {
+@media (max-width: 62rem) {
   .recorrido__grid { grid-template-columns: 1fr; }
   .recorrido__grid > *:nth-child(2) { margin-top: 0; }
 }
 
 /* =============================================================
-   06 · DÓNDE QUEDA
+   03 · DÓNDE QUEDA
    ============================================================= */
 
 .ubicacion__inner {
@@ -304,7 +410,7 @@
 }
 
 /* =============================================================
-   07 · ANTES DE VENIR
+   04 · ANTES DE VENIR
    ============================================================= */
 
 .antes__inner {
@@ -331,7 +437,7 @@
 .margen .label { color: var(--alerta); margin-bottom: 0.3rem; }
 
 /* =============================================================
-   08 · CONSULTAR
+   05 · CONSULTAR
    -------------------------------------------------------------
    El momento tranquilo, injertado de la dirección «La Orilla»:
    una banda ancha y vacía antes del pedido, para que el cuaderno

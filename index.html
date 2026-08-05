@@ -91,7 +91,18 @@
       {
         "@type": "Accommodation",
         "name": "La Cabaña",
-        "occupancy": {"@type": "QuantitativeValue", "maxValue": 6, "unitText": "personas"}
+        "occupancy": {"@type": "QuantitativeValue", "maxValue": 6, "unitText": "personas"},
+        "amenityFeature": [
+          {"@type": "LocationFeatureSpecification", "name": "Ropa de cama incluida", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Agua caliente con termotanque a leña", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Heladerita, freezer, anafe de dos hornallas, microondas y pava eléctrica", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Utensilios de cocina completos para 6 personas", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Quincho con horno de barro y asador", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Comedor vidriado con vista al dique", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Juego de sapo", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Televisor con DirecTV", "value": true},
+          {"@type": "LocationFeatureSpecification", "name": "Estacionamiento junto a la cabaña", "value": true}
+        ]
       },
       {
         "@type": "Accommodation",
@@ -176,12 +187,17 @@
       {
         "@type": "Question",
         "name": "¿Cuáles son los horarios de ingreso y salida?",
-        "acceptedAnswer": {"@type": "Answer", "text": "El ingreso es a las 12:00 del mediodía y la salida a las 11:00 del día siguiente. Eso cuenta como un día."}
+        "acceptedAnswer": {"@type": "Answer", "text": "El ingreso es a las 12:00 del mediodía y la salida a las 11:00 del día siguiente. Eso cuenta como un día. Pasado ese horario comienza a contarse un día adicional."}
       },
       {
         "@type": "Question",
         "name": "¿Cómo se paga? ¿Aceptan dólares?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Se aceptan dólares a la mejor cotización. En La Cabaña chica se pide además un depósito de garantía de $20.000, que se devuelve 48 horas después de finalizar la estadía."}
+        "acceptedAnswer": {"@type": "Answer", "text": "Se aceptan dólares a la mejor cotización. En las dos cabañas se pide además un depósito de garantía de $20.000, que se devuelve 48 horas después de finalizar la estadía."}
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué incluye La Cabaña para seis personas?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Camas para seis con ropa de cama incluida, agua caliente con termotanque a leña, heladerita, freezer, anafe de dos hornallas, microondas y pava eléctrica, utensilios completos para seis, quincho con horno de barro y asador (conviene traer leña), comedor vidriado con vista al dique, juego de sapo, televisor con DirecTV con recarga a cargo del huésped, kayak doble o bote a remo para dos sin cargo y estacionamiento junto a la cabaña."}
       },
       {
         "@type": "Question",
@@ -207,7 +223,7 @@
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   </svg>
 
-  <a class="skip-link" href="#la-casa">Saltar al contenido</a>
+  <a class="skip-link" href="#predio">Saltar al contenido</a>
 
   <!--
     ============================================================
@@ -230,13 +246,11 @@
       </button>
 
       <nav class="nav__index" id="nav-index" aria-label="Índice de la página">
-        <a class="nav__link" href="#la-casa"><span>01</span>La casa</a>
-        <a class="nav__link" href="#precios"><span>02</span>Precios</a>
-        <a class="nav__link" href="#inventario"><span>03</span>Qué hay</a>
-        <a class="nav__link" href="#fotos"><span>04</span>Fotos</a>
-        <a class="nav__link" href="#ubicacion"><span>05</span>Dónde queda</a>
-        <a class="nav__link" href="#antes"><span>06</span>Antes de venir</a>
-        <a class="nav__link" href="#consultar"><span>07</span>Consultar</a>
+        <a class="nav__link" href="#predio"><span>01</span>El predio</a>
+        <a class="nav__link" href="#casas"><span>02</span>Las casas</a>
+        <a class="nav__link" href="#ubicacion"><span>03</span>Dónde queda</a>
+        <a class="nav__link" href="#antes"><span>04</span>Antes de venir</a>
+        <a class="nav__link" href="#consultar"><span>05</span>Consultar</a>
       </nav>
 
       <div class="nav__slot">
@@ -272,7 +286,7 @@
             </div>
             <div class="ledger__row">
               <dt class="ledger__key">Capacidad</dt>
-              <dd class="ledger__val">2, 6 o 12 personas según la casa</dd>
+              <dd class="ledger__val">Tres casas: para 2, 6 o 12 personas</dd>
             </div>
             <div class="ledger__row">
               <dt class="ledger__key">Desde</dt>
@@ -290,7 +304,7 @@
               <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
               Consultar disponibilidad
             </a>
-            <a class="btn btn--line" href="#precios">Ver las tres casas</a>
+            <a class="btn btn--line" href="#casas">Ver las tres casas</a>
           </div>
         </div>
 
@@ -298,7 +312,7 @@
           <div class="plate__mat">
             <img src="assets/images/rancho/casa-rustica-frente-rancho-quilla.webp"
                  alt="Frente de La Casa Grande de Rancho Quilla, con el sulky verde en el jardín"
-                 width="1400" height="631" fetchpriority="high" decoding="async">
+                 width="1200" height="541" fetchpriority="high" decoding="async">
           </div>
           <figcaption class="plate__ficha">
             <span class="plate__n">00</span>
@@ -310,89 +324,125 @@
     </section>
 
     <!-- ==========================================================
-         01 · LA CASA
+         01 · EL PREDIO
+         Lo que vale para las tres casas. Se dice una vez acá para
+         que las fichas de abajo sólo lleven lo propio de cada una.
          ========================================================== -->
-    <section class="band band--open casa" id="la-casa" aria-labelledby="casa-h2">
-      <div class="page casa__inner">
+    <section class="band band--open predio" id="predio" aria-labelledby="predio-h2">
+      <div class="page predio__inner">
 
         <div>
           <div class="rule">
             <span class="rule__n">01</span>
-            <span class="rule__label">La casa</span>
+            <span class="rule__label">El predio</span>
           </div>
 
-          <h2 class="band__title" id="casa-h2">Ladrillo, piedra y una mesa larga</h2>
+          <h2 class="band__title" id="predio-h2">Tres casas, un mismo pedazo de campo</h2>
 
           <div class="prose">
             <p class="lead">
               Rancho Quilla son tres casas independientes en un predio a la orilla
               del dique: una para doce, una para seis y una para dos. Alquilás la
-              casa entera: nunca una habitación, nunca un espacio compartido con
+              casa entera, nunca una habitación ni un espacio compartido con
               desconocidos.
             </p>
             <p>
               La construcción es bien de campo, sin decorado: ladrillo a la vista,
-              muros de piedra bola, madera de algarrobo, hogar a leña. El quincho
-              tiene una mesa larga con sillas de respaldo alto a los dos lados, y
-              las paredes están cubiertas de lo que se fue juntando en años —
-              cuadros, ruedas de carro, canastos, un sombrero colgado de un clavo.
-            </p>
-            <p>
-              Afuera hay pasto, senderos de laja, quinchos de paja y un sulky
-              pintado de verde. La pileta da al agua. El muelle está atado a un
-              tronco. En el predio viven caseros todo el año.
+              muros de piedra bola, madera de algarrobo, hogar a leña. Afuera hay
+              pasto, senderos de laja, quinchos de paja y un sulky pintado de
+              verde. El muelle está atado a un tronco.
             </p>
           </div>
+
+          <div class="ledger__group">
+            <h3>Vale para las tres</h3>
+            <span class="label label--agua">En el predio</span>
+          </div>
+          <dl class="ledger">
+            <div class="ledger__row">
+              <dt class="ledger__key">Dique</dt>
+              <dd class="ledger__val">Acceso al agua, independiente para cada casa</dd>
+            </div>
+            <div class="ledger__row">
+              <dt class="ledger__key">Navegar</dt>
+              <dd class="ledger__val">
+                <strong>Kayak doble o bote, sin cargo</strong>, para pesca o navegación.
+                Sujeto a las condiciones del dique y a uso responsable.
+              </dd>
+            </div>
+            <div class="ledger__row">
+              <dt class="ledger__key">Mascotas</dt>
+              <dd class="ledger__val">Bienvenidas. Avisá al consultar para coordinar</dd>
+            </div>
+            <div class="ledger__row">
+              <dt class="ledger__key">Cuidado</dt>
+              <dd class="ledger__val">Viven caseros en el predio todo el año</dd>
+            </div>
+            <div class="ledger__row">
+              <dt class="ledger__key">Estacionar</dt>
+              <dd class="ledger__val">Estacionamiento junto a cada casa</dd>
+            </div>
+          </dl>
         </div>
 
-        <div class="casa__plates" data-reveal>
+        <div class="predio__fotos" data-reveal>
+          <div class="ledger__group">
+            <h3>El dique</h3>
+            <span class="label label--agua">Común a las tres</span>
+          </div>
+        <div class="wall">
           <figure class="plate">
-            <div class="plate__mat">
-              <img src="assets/images/rancho/quincho-comedor-rustico.webp"
-                   alt="Quincho comedor de Rancho Quilla: ladrillo a la vista, muro de piedra y mesa larga de algarrobo"
-                   width="1400" height="631" loading="lazy" decoding="async">
-            </div>
-            <figcaption class="plate__ficha">
-              <span class="plate__n">01</span>
-              <span>El quincho y la mesa larga</span>
-            </figcaption>
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto D1: el muelle flotante">
+              <span class="plate__mat"><img src="assets/images/rancho/muelle-rancho-quilla-dique-cabra-corral.webp" alt="Muelle flotante de Rancho Quilla sobre tambores, en el Dique Cabra Corral" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">D1</span><span>El muelle flotante</span></figcaption>
           </figure>
           <figure class="plate">
-            <div class="plate__mat">
-              <img src="assets/images/rancho/cabania-chica-frente-ladrillo.webp"
-                   alt="Frente de ladrillo a la vista de La Cabaña chica, con techo de tejas"
-                   width="1280" height="960" loading="lazy" decoding="async">
-            </div>
-            <figcaption class="plate__ficha">
-              <span class="plate__n">02</span>
-              <span>La Cabaña chica, la más nueva</span>
-            </figcaption>
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto D2: la orilla">
+              <span class="plate__mat"><img src="assets/images/rancho/muelle-orilla-dique-cabra-corral.webp" alt="Orilla y acceso al Dique Cabra Corral desde el predio" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">D2</span><span>La orilla</span></figcaption>
           </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto D3: el bote, en la orilla">
+              <span class="plate__mat"><img src="assets/images/rancho/bote-pesca-dique-cabra-corral.webp" alt="Bote de pesca en la orilla del Dique Cabra Corral" width="1200" height="541" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">D3</span><span>El bote, en la orilla</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto D4: el kayak doble, en el agua">
+              <span class="plate__mat"><img src="assets/images/rancho/kayak-doble-dique-cabra-corral.webp" alt="Kayak doble navegando en el Dique Cabra Corral" width="1200" height="899" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">D4</span><span>El kayak doble, en el agua</span></figcaption>
+          </figure>
+        </div>
         </div>
 
       </div>
     </section>
 
     <!-- ==========================================================
-         02 · LAS TRES CASAS Y SUS PRECIOS
-         El dato que nadie publica. Es una tabla porque es
-         información tabular de verdad.
+         02 · LAS TRES CASAS
+         La vista de decisión: capacidad y precio de las tres, una al
+         lado de la otra, con enlace a la ficha de cada una. Después
+         viene una ficha por casa (02.1, 02.2, 02.3).
          ========================================================== -->
-    <section class="band band--open band--paper2 precios" id="precios" aria-labelledby="precios-h2">
-      <div class="page precios__inner">
+    <section class="band band--open band--paper2 casas" id="casas" aria-labelledby="casas-h2">
+      <div class="page casas__inner">
 
-        <div class="precios__aside">
+        <div class="casas__aside">
           <div class="rule">
             <span class="rule__n">02</span>
             <span class="rule__label">Las tres casas</span>
           </div>
 
-          <h2 class="band__title" id="precios-h2">Qué se alquila y cuánto sale</h2>
+          <h2 class="band__title" id="casas-h2">Cuál te conviene</h2>
 
           <div class="prose">
             <p>
-              Tres casas de tamaños distintos, cada una independiente de las otras.
-              El precio es por día y por casa completa, no por persona.
+              Se diferencian por cuánta gente entra. El precio es por día y por
+              casa completa, no por persona. Cada una tiene su ficha abajo, con
+              sus fotos y lo que incluye.
             </p>
           </div>
 
@@ -411,8 +461,8 @@
             <tbody>
               <tr>
                 <th scope="row">
-                  <span class="tarifas__unit">La Casa Grande</span>
-                  <span class="tarifas__cap">Máximo 12 personas</span>
+                  <a class="tarifas__unit link" href="#casa-grande">La Casa Grande</a>
+                  <span class="tarifas__cap">Máximo 12 personas · 16 fotos</span>
                 </th>
                 <td>
                   <span class="tarifas__price">$250.000</span>
@@ -421,8 +471,8 @@
               </tr>
               <tr>
                 <th scope="row">
-                  <span class="tarifas__unit">La Cabaña</span>
-                  <span class="tarifas__cap">Máximo 6 personas</span>
+                  <a class="tarifas__unit link" href="#cabania">La Cabaña</a>
+                  <span class="tarifas__cap">Máximo 6 personas · 12 fotos</span>
                 </th>
                 <td>
                   <span class="tarifas__price">$120.000</span>
@@ -431,8 +481,8 @@
               </tr>
               <tr>
                 <th scope="row">
-                  <span class="tarifas__unit">La Cabaña chica</span>
-                  <span class="tarifas__cap">Para 2 personas</span>
+                  <a class="tarifas__unit link" href="#cabania-chica">La Cabaña chica</a>
+                  <span class="tarifas__cap">Para 2 personas · 8 fotos</span>
                 </th>
                 <td>
                   <span class="tarifas__price">$50.000</span>
@@ -454,225 +504,105 @@
 
           <p class="note precios__note">
             Los máximos son máximos. <strong>Si son más personas que el máximo de
-            la casa</strong>, cada una suma $20.000 por día. Consultá antes de
-            reservar para que te confirmemos disponibilidad y el total.
+            la casa</strong>, cada una suma $20.000 por día. En las dos cabañas se
+            pide además un <strong>depósito de garantía de $20.000</strong>, que se
+            devuelve 48&nbsp;horas después de terminar la estadía.
           </p>
-
-          <div class="portada__actions precios__cta">
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://wa.me/5493874830580?text=Hola!%20Quiero%20consultar%20precio%20y%20disponibilidad%20en%20Rancho%20Quilla.%20Nos%20interesa%20la%20casa%20para%20___%20personas%2C%20fechas%20___.">
-              <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
-              Consultar por una casa
-            </a>
-          </div>
         </div>
 
       </div>
     </section>
 
     <!-- ==========================================================
-         03 · EL INVENTARIO
-         Reemplaza las seis tarjetas con ícono en círculo del
-         original. Mismo contenido, forma de asiento.
+         02.1 · LA CASA GRANDE
          ========================================================== -->
-    <section class="band band--open inventario" id="inventario" aria-labelledby="inventario-h2">
-      <div class="page inventario__inner">
-
-        <div>
-          <div class="rule">
-            <span class="rule__n">03</span>
-            <span class="rule__label">El inventario</span>
-          </div>
-
-          <h2 class="band__title" id="inventario-h2">Qué hay, anotado</h2>
-
-          <div class="prose">
-            <p>
-              Cada casa tiene lo suyo, así que está anotado por separado.
-              Si algo no figura acá, no está.
-            </p>
-          </div>
-        </div>
-
-        <div data-reveal>
-
-          <!-- Lo que vale para las tres, primero: así no se repite
-               tres veces en las fichas de abajo. -->
-          <div class="ledger__group">
-            <h3>En el predio</h3>
-            <span class="label label--agua">Para las tres casas</span>
-          </div>
-          <dl class="ledger">
-            <div class="ledger__row">
-              <dt class="ledger__key">Dique</dt>
-              <dd class="ledger__val">Acceso directo al agua, independiente para cada casa</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Navegar</dt>
-              <dd class="ledger__val">
-                <strong>Kayak doble o bote sin cargo</strong>, para pesca o navegación.
-                Sujeto a las condiciones del dique y a uso responsable.
-              </dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Mascotas</dt>
-              <dd class="ledger__val">Bienvenidas. Avisá al consultar para coordinar</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Cuidado</dt>
-              <dd class="ledger__val">Viven caseros en el predio todo el año</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Estacionar</dt>
-              <dd class="ledger__val">Estacionamiento al lado de cada casa</dd>
-            </div>
-          </dl>
-
-          <div class="ledger__group">
-            <h3>La Casa Grande</h3>
-            <span class="label label--ladrillo">Hasta 12 personas</span>
-          </div>
-          <dl class="ledger">
-            <div class="ledger__row">
-              <dt class="ledger__key">Dormir</dt>
-              <dd class="ledger__val">Dormitorios equipados con <strong>ropa de cama incluida</strong></dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Cocina</dt>
-              <dd class="ledger__val">Cocina equipada, heladera, freezer y utensilios</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Estar</dt>
-              <dd class="ledger__val">Hogar a leña y quincho grande con mesa larga</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Fuego</dt>
-              <dd class="ledger__val">Horno de barro, asadores y patio de cancana para costillar a la estaca</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Pileta</dt>
-              <dd class="ledger__val">Pileta y piletín para los chicos</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Orilla</dt>
-              <dd class="ledger__val">Muelle propio sobre el dique</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Juegos</dt>
-              <dd class="ledger__val">
-                <ul class="ledger__items">
-                  <li>Pool</li><li>Metegol</li><li>Ping pong</li>
-                </ul>
-              </dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">TV</dt>
-              <dd class="ledger__val">TV de 50 pulgadas con DIRECTV</dd>
-            </div>
-          </dl>
-
-          <div class="ledger__group">
-            <h3>La Cabaña chica</h3>
-            <span class="label label--ladrillo">Para 2 personas</span>
-          </div>
-          <dl class="ledger">
-            <div class="ledger__row">
-              <dt class="ledger__key">Dormir</dt>
-              <dd class="ledger__val">Cama matrimonial con <strong>ropa de cama incluida</strong></dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Cocina</dt>
-              <dd class="ledger__val">Heladera, microondas y pava eléctrica</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Agua caliente</dt>
-              <dd class="ledger__val">Termotanque a leña</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Fuego</dt>
-              <dd class="ledger__val">Horno de barro y asador. <strong>Conviene traer leña.</strong></dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Pileta</dt>
-              <dd class="ledger__val">Piletón propio, al lado de la cabaña</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">TV</dt>
-              <dd class="ledger__val">DirecTV. La recarga corre por cuenta del huésped</dd>
-            </div>
-            <div class="ledger__row">
-              <dt class="ledger__key">Privacidad</dt>
-              <dd class="ledger__val">Espacio independiente: nada para compartir</dd>
-            </div>
-          </dl>
-
-          <!-- No hay ficha de esta casa todavía. Se dice, no se rellena
-               con lo de las otras dos. -->
-          <div class="ledger__group">
-            <h3>La Cabaña</h3>
-            <span class="label">Hasta 6 personas</span>
-          </div>
-          <dl class="ledger">
-            <div class="ledger__row">
-              <dt class="ledger__key">Ficha</dt>
-              <dd class="ledger__val">
-                Todavía no tenemos el detalle publicado.
-                <a class="link" target="_blank" rel="noopener"
-                   href="https://wa.me/5493874830580?text=Hola!%20Quiero%20el%20detalle%20de%20La%20Caba%C3%B1a%20de%20Rancho%20Quilla%2C%20la%20de%20hasta%206%20personas.">Consultá
-                y te lo pasamos</a>.
-              </dd>
-            </div>
-          </dl>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================
-         04 · LA PARED DE FOTOS Y EL RECORRIDO
-         Aparejo de ladrillo. Sin autoplay: doce fotos, todas
-         visibles, sin animación permanente.
-         ========================================================== -->
-    <section class="band band--open band--paper2" id="fotos" aria-labelledby="fotos-h2">
+    <section class="band band--open casa-ficha" id="casa-grande" aria-labelledby="casa-grande-h2">
       <div class="page">
 
         <div class="rule">
-          <span class="rule__n">04</span>
-          <span class="rule__label">Fotos y recorrido</span>
+          <span class="rule__n">02.1</span>
+          <span class="rule__label">La Casa Grande</span>
         </div>
 
-        <h2 class="band__title" id="fotos-h2">28 fotos, sin retoque</h2>
+        <!-- La capacidad va en grande: es el dato que distingue una
+             casa de la otra, así que hace de marca de la ficha. -->
+        <header class="casa-head">
+          <p class="casa-head__cap"><b>12</b><span>personas</span></p>
+          <div class="casa-head__meta">
+            <h2 id="casa-grande-h2">La Casa Grande</h2>
+            <p class="casa-head__price"><b>$250.000</b><span>por día</span></p>
+          </div>
+        </header>
 
-        <div class="prose fotos__intro">
-          <p>
-            Fotos del lugar tal como está, tomadas con el teléfono. Están
-            separadas por casa, así sabés qué estás mirando. Tocá cualquiera
-            para verla grande.
-          </p>
+        <div class="casa-ficha__body">
+          <div class="casa-ficha__texto">
+            <div class="prose">
+              <p>La más grande de las tres. Es la casa de dos plantas, con el quincho de la mesa larga, la pileta y el muelle propio. La que se elige cuando viaja el grupo entero.</p>
+            </div>
+        <dl class="ledger">
+          <div class="ledger__row">
+            <dt class="ledger__key">Dormir</dt>
+            <dd class="ledger__val">Dormitorios equipados, con <strong>ropa de cama incluida</strong></dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Cocina</dt>
+            <dd class="ledger__val">Cocina equipada, heladera, freezer y utensilios</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Estar</dt>
+            <dd class="ledger__val">Hogar a leña y quincho grande con mesa larga</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Fuego</dt>
+            <dd class="ledger__val">Horno de barro, asadores y patio de cancana para costillar a la estaca</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Pileta</dt>
+            <dd class="ledger__val">Pileta y piletín para los chicos</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Orilla</dt>
+            <dd class="ledger__val">Muelle propio sobre el dique</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Navegar</dt>
+            <dd class="ledger__val">Dos kayaks o un bote doble, sin cargo</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Juegos</dt>
+            <dd class="ledger__val"><ul class="ledger__items"><li>Pool</li><li>Metegol</li><li>Ping pong</li></ul></dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">TV</dt>
+            <dd class="ledger__val">TV de 50 pulgadas con DIRECTV</dd>
+          </div>
+        </dl>
+        <div class="casa-ficha__cta">
+          <a class="btn" target="_blank" rel="noopener" href="https://wa.me/5493874830580?text=Hola!%20Quiero%20consultar%20disponibilidad%20de%20La%20Casa%20Grande%20en%20Rancho%20Quilla.%20Somos%20___%20personas%20y%20las%20fechas%20que%20miramos%20son%20___.">
+            <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
+            Consultar por esta casa
+          </a>
+          <p class="note">Entran hasta doce. Decinos qué fechas miran.</p>
         </div>
+          </div>
 
-      <div id="galeria">
-        <div class="ledger__group">
-          <h3>La Casa Grande</h3>
-          <span class="label label--ladrillo">Hasta 12 personas</span>
-        </div>
-
+          <div class="casa-ficha__fotos" data-reveal>
         <div class="wall">
           <figure class="plate">
             <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 01: la pileta, con el dique detrás">
-              <span class="plate__mat"><img src="assets/images/rancho/pileta-privada-dique-cabra-corral.webp" alt="Pileta de La Casa Grande con el Dique Cabra Corral detrás" width="1280" height="577" loading="lazy" decoding="async"></span>
+              <span class="plate__mat"><img src="assets/images/rancho/pileta-privada-dique-cabra-corral.webp" alt="Pileta de La Casa Grande con el Dique Cabra Corral detrás" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
             <figcaption class="plate__ficha"><span class="plate__n">01</span><span>La pileta, con el dique detrás</span></figcaption>
           </figure>
           <figure class="plate">
             <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 02: el quincho y la mesa larga">
-              <span class="plate__mat"><img src="assets/images/rancho/quincho-comedor-rustico.webp" alt="Quincho comedor de ladrillo y piedra con la mesa larga de algarrobo" width="1400" height="631" loading="lazy" decoding="async"></span>
+              <span class="plate__mat"><img src="assets/images/rancho/quincho-comedor-rustico.webp" alt="Quincho comedor de ladrillo y piedra con la mesa larga de algarrobo" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
             <figcaption class="plate__ficha"><span class="plate__n">02</span><span>El quincho y la mesa larga</span></figcaption>
           </figure>
           <figure class="plate">
             <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 03: el asado en la parrilla">
-              <span class="plate__mat"><img src="assets/images/rancho/asado-parrilla-quincho.webp" alt="Asado en la parrilla del quincho de La Casa Grande" width="1400" height="631" loading="lazy" decoding="async"></span>
+              <span class="plate__mat"><img src="assets/images/rancho/asado-parrilla-quincho.webp" alt="Asado en la parrilla del quincho de La Casa Grande" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
             <figcaption class="plate__ficha"><span class="plate__n">03</span><span>El asado en la parrilla</span></figcaption>
           </figure>
@@ -696,13 +626,13 @@
           </figure>
           <figure class="plate">
             <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 07: el hogar a leña">
-              <span class="plate__mat"><img src="assets/images/rancho/interior-hogar-rustico.webp" alt="Interior de La Casa Grande con el hogar a leña" width="1400" height="631" loading="lazy" decoding="async"></span>
+              <span class="plate__mat"><img src="assets/images/rancho/interior-hogar-rustico.webp" alt="Interior de La Casa Grande con el hogar a leña" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
             <figcaption class="plate__ficha"><span class="plate__n">07</span><span>El hogar a leña</span></figcaption>
           </figure>
           <figure class="plate">
             <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 08: el pool, con vista al dique">
-              <span class="plate__mat"><img src="assets/images/rancho/sala-juegos-pool-vista-dique.webp" alt="Mesa de pool con vista al Dique Cabra Corral en La Casa Grande" width="1400" height="631" loading="lazy" decoding="async"></span>
+              <span class="plate__mat"><img src="assets/images/rancho/sala-juegos-pool-vista-dique.webp" alt="Mesa de pool con vista al Dique Cabra Corral en La Casa Grande" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
             <figcaption class="plate__ficha"><span class="plate__n">08</span><span>El pool, con vista al dique</span></figcaption>
           </figure>
@@ -719,169 +649,74 @@
             <figcaption class="plate__ficha"><span class="plate__n">10</span><span>Otro dormitorio</span></figcaption>
           </figure>
           <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 11: la pileta y el patio">
-              <span class="plate__mat"><img src="assets/images/rancho/pileta-patio-rancho-quilla.webp" alt="Pileta y patio de La Casa Grande" width="1280" height="577" loading="lazy" decoding="async"></span>
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 11: un dormitorio más">
+              <span class="plate__mat"><img src="assets/images/rancho/dormitorio-casa-cabra-corral.webp" alt="Dormitorio de La Casa Grande con dos camas" width="720" height="361" loading="lazy" decoding="async"></span>
             </button>
-            <figcaption class="plate__ficha"><span class="plate__n">11</span><span>La pileta y el patio</span></figcaption>
+            <figcaption class="plate__ficha"><span class="plate__n">11</span><span>Un dormitorio más</span></figcaption>
           </figure>
           <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 12: el patio">
-              <span class="plate__mat"><img src="assets/images/rancho/patio-privado-campo.webp" alt="Patio arbolado de La Casa Grande" width="1400" height="631" loading="lazy" decoding="async"></span>
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 12: la pileta y el patio">
+              <span class="plate__mat"><img src="assets/images/rancho/pileta-patio-rancho-quilla.webp" alt="Pileta y patio de La Casa Grande" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
-            <figcaption class="plate__ficha"><span class="plate__n">12</span><span>El patio</span></figcaption>
+            <figcaption class="plate__ficha"><span class="plate__n">12</span><span>La pileta y el patio</span></figcaption>
           </figure>
           <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 13: el patio, para el grupo">
-              <span class="plate__mat"><img src="assets/images/rancho/patio-rustico-familiar.webp" alt="Patio rústico de La Casa Grande preparado para grupos" width="1280" height="577" loading="lazy" decoding="async"></span>
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 13: el patio">
+              <span class="plate__mat"><img src="assets/images/rancho/patio-privado-campo.webp" alt="Patio arbolado de La Casa Grande" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
-            <figcaption class="plate__ficha"><span class="plate__n">13</span><span>El patio, para el grupo</span></figcaption>
+            <figcaption class="plate__ficha"><span class="plate__n">13</span><span>El patio</span></figcaption>
           </figure>
           <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 14: el jardín">
-              <span class="plate__mat"><img src="assets/images/rancho/jardin-rancho-quilla.webp" alt="Jardín y espacios verdes del predio" width="1280" height="577" loading="lazy" decoding="async"></span>
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 14: el patio, para el grupo">
+              <span class="plate__mat"><img src="assets/images/rancho/patio-rustico-familiar.webp" alt="Patio rústico de La Casa Grande preparado para grupos" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
-            <figcaption class="plate__ficha"><span class="plate__n">14</span><span>El jardín</span></figcaption>
+            <figcaption class="plate__ficha"><span class="plate__n">14</span><span>El patio, para el grupo</span></figcaption>
           </figure>
           <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 15: el quincho, contra el agua">
-              <span class="plate__mat"><img src="assets/images/rancho/quincho-orilla-dique-cabra-corral.webp" alt="Quincho de La Casa Grande a la orilla del Dique Cabra Corral" width="1400" height="631" loading="lazy" decoding="async"></span>
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 15: el jardín">
+              <span class="plate__mat"><img src="assets/images/rancho/jardin-rancho-quilla.webp" alt="Jardín y espacios verdes del predio" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
-            <figcaption class="plate__ficha"><span class="plate__n">15</span><span>El quincho, contra el agua</span></figcaption>
+            <figcaption class="plate__ficha"><span class="plate__n">15</span><span>El jardín</span></figcaption>
           </figure>
           <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 16: la casa, desde la orilla">
-              <span class="plate__mat"><img src="assets/images/rancho/casa-orilla-dique-cabra-corral.webp" alt="La Casa Grande vista desde la orilla del dique" width="1280" height="577" loading="lazy" decoding="async"></span>
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 16: el quincho, contra el agua">
+              <span class="plate__mat"><img src="assets/images/rancho/quincho-orilla-dique-cabra-corral.webp" alt="Quincho de La Casa Grande a la orilla del Dique Cabra Corral" width="1200" height="541" loading="lazy" decoding="async"></span>
             </button>
-            <figcaption class="plate__ficha"><span class="plate__n">16</span><span>La casa, desde la orilla</span></figcaption>
+            <figcaption class="plate__ficha"><span class="plate__n">16</span><span>El quincho, contra el agua</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 17: la casa, desde la orilla">
+              <span class="plate__mat"><img src="assets/images/rancho/casa-orilla-dique-cabra-corral.webp" alt="La Casa Grande vista desde la orilla del dique" width="1200" height="541" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">17</span><span>La casa, desde la orilla</span></figcaption>
           </figure>
         </div>
 
-        <div class="ledger__group">
-          <h3>La Cabaña chica</h3>
-          <span class="label label--ladrillo">Para 2 personas</span>
-        </div>
-
-        <div class="wall">
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 17: todo el interior, de un vistazo">
-              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-interior-cama-cocina.webp" alt="Interior de La Cabaña chica: cama matrimonial, cocina y piso de baldosa calcárea" width="1280" height="960" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">17</span><span>Todo el interior, de un vistazo</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 18: el frente, de ladrillo y teja">
-              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-frente-ladrillo.webp" alt="Frente de ladrillo a la vista de La Cabaña chica con techo de tejas" width="1280" height="960" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">18</span><span>El frente, de ladrillo y teja</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 19: la galería y la vista">
-              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-galeria-vista-monte.webp" alt="Galería de La Cabaña chica con vista al monte" width="1400" height="1053" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">19</span><span>La galería y la vista</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 20: el horno de barro y el asador">
-              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-horno-barro-asador.webp" alt="Horno de barro y asador de ladrillo de La Cabaña chica" width="1280" height="960" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">20</span><span>El horno de barro y el asador</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 21: el piletón, al lado de la cabaña">
-              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-pileton-y-horno.webp" alt="Piletón y horno de barro junto a La Cabaña chica" width="1284" height="960" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">21</span><span>El piletón, al lado de la cabaña</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 22: la cocina y el baño">
-              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-cocina-y-bano.webp" alt="Cocina y baño de La Cabaña chica, con puerta de tablones de madera" width="1280" height="960" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">22</span><span>La cocina y el baño</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 23: la bacha, sobre un tronco">
-              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-bano-bacha-tronco.webp" alt="Baño de La Cabaña chica con bacha montada sobre un tronco" width="960" height="1280" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">23</span><span>La bacha, sobre un tronco</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 24: la ventana al monte">
-              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-interior-ventana-vista.webp" alt="Interior de La Cabaña chica con la ventana al monte" width="1400" height="758" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">24</span><span>La ventana al monte</span></figcaption>
-          </figure>
-        </div>
-
-        <div class="ledger__group">
-          <h3>El dique y la orilla</h3>
-          <span class="label label--agua">Para las tres casas</span>
-        </div>
-
-        <div class="wall">
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 25: el muelle flotante">
-              <span class="plate__mat"><img src="assets/images/rancho/muelle-rancho-quilla-dique-cabra-corral.webp" alt="Muelle flotante de Rancho Quilla sobre tambores, en el Dique Cabra Corral" width="1400" height="1050" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">25</span><span>El muelle flotante</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 26: la orilla">
-              <span class="plate__mat"><img src="assets/images/rancho/muelle-orilla-dique-cabra-corral.webp" alt="Orilla y acceso al Dique Cabra Corral desde el predio" width="1400" height="1050" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">26</span><span>La orilla</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 27: el bote, en la orilla">
-              <span class="plate__mat"><img src="assets/images/rancho/bote-pesca-dique-cabra-corral.webp" alt="Bote de pesca en la orilla del Dique Cabra Corral" width="1280" height="577" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">27</span><span>El bote, en la orilla</span></figcaption>
-          </figure>
-          <figure class="plate">
-            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 28: el kayak doble, en el agua">
-              <span class="plate__mat"><img src="assets/images/rancho/kayak-doble-dique-cabra-corral.webp" alt="Kayak doble navegando en el Dique Cabra Corral" width="1400" height="1049" loading="lazy" decoding="async"></span>
-            </button>
-            <figcaption class="plate__ficha"><span class="plate__n">28</span><span>El kayak doble, en el agua</span></figcaption>
-          </figure>
-        </div>
-
-      </div>
-
-        <!-- El recorrido en video, mismo tratamiento de lámina -->
-        <div class="recorrido">
+          <!-- Los dos recorridos en video son de esta casa. -->
           <div class="ledger__group">
             <h3>El recorrido en video</h3>
             <span class="label">2 videos</span>
           </div>
-
           <div class="recorrido__grid">
-            <figure class="plate" data-reveal>
+            <figure class="plate">
               <div class="plate__mat">
-                <video controls preload="metadata"
-                       poster="assets/images/rancho/poster-recorrido-patio.webp"
-                       width="848" height="480">
+                <video controls preload="metadata" poster="assets/images/rancho/poster-recorrido-patio.webp" width="848" height="480">
                   <source src="assets/videos/recorrido-patio-dique-cabra-corral.mp4" type="video/mp4">
                   Tu navegador no puede reproducir este video.
                 </video>
               </div>
-              <figcaption class="plate__ficha">
-                <span class="plate__n">V1</span>
-                <span>El patio, el quincho y el entorno</span>
-              </figcaption>
+              <figcaption class="plate__ficha"><span class="plate__n">V1</span><span>El patio, el quincho y el entorno</span></figcaption>
             </figure>
-            <figure class="plate" data-reveal>
+            <figure class="plate">
               <div class="plate__mat">
-                <video controls preload="metadata"
-                       poster="assets/images/rancho/poster-recorrido-casa.webp"
-                       width="848" height="480">
+                <video controls preload="metadata" poster="assets/images/rancho/poster-recorrido-casa.webp" width="848" height="480">
                   <source src="assets/videos/recorrido-casa-rancho-quilla.mp4" type="video/mp4">
                   Tu navegador no puede reproducir este video.
                 </video>
               </div>
-              <figcaption class="plate__ficha">
-                <span class="plate__n">V2</span>
-                <span>Recorrido por la casa</span>
-              </figcaption>
+              <figcaption class="plate__ficha"><span class="plate__n">V2</span><span>Recorrido por la casa</span></figcaption>
             </figure>
+          </div>
           </div>
         </div>
 
@@ -889,14 +724,294 @@
     </section>
 
     <!-- ==========================================================
-         05 · DÓNDE QUEDA
+         02.2 · LA CABAÑA
+         ========================================================== -->
+    <section class="band band--open casa-ficha band--paper2" id="cabania" aria-labelledby="cabania-h2">
+      <div class="page">
+
+        <div class="rule">
+          <span class="rule__n">02.2</span>
+          <span class="rule__label">La Cabaña</span>
+        </div>
+
+        <!-- La capacidad va en grande: es el dato que distingue una
+             casa de la otra, así que hace de marca de la ficha. -->
+        <header class="casa-head">
+          <p class="casa-head__cap"><b>6</b><span>personas</span></p>
+          <div class="casa-head__meta">
+            <h2 id="cabania-h2">La Cabaña</h2>
+            <p class="casa-head__price"><b>$120.000</b><span>por día</span></p>
+          </div>
+        </header>
+
+        <div class="casa-ficha__body">
+          <div class="casa-ficha__texto">
+            <div class="prose">
+              <p>La del comedor vidriado que mira al dique, y la galería donde se ve el atardecer. Tiene planta alta. Para una familia o un grupo chico.</p>
+            </div>
+        <dl class="ledger">
+          <div class="ledger__row">
+            <dt class="ledger__key">Dormir</dt>
+            <dd class="ledger__val">Camas para seis, con <strong>ropa de cama incluida</strong></dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Cocina</dt>
+            <dd class="ledger__val">Heladerita, freezer, anafe de dos hornallas, microondas y pava eléctrica</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Utensilios</dt>
+            <dd class="ledger__val">Completos para seis personas</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Agua caliente</dt>
+            <dd class="ledger__val">Termotanque a leña</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Quincho</dt>
+            <dd class="ledger__val">Con horno de barro y asador. <strong>Conviene traer leña.</strong></dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Navegar</dt>
+            <dd class="ledger__val">Kayak doble o bote a remo para dos, sin cargo</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Juegos</dt>
+            <dd class="ledger__val">Juego de sapo</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">TV</dt>
+            <dd class="ledger__val">Televisor con DirecTV. La recarga corre por cuenta del huésped</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Privacidad</dt>
+            <dd class="ledger__val">Espacio totalmente privado: nada para compartir</dd>
+          </div>
+        </dl>
+        <div class="casa-ficha__cta">
+          <a class="btn" target="_blank" rel="noopener" href="https://wa.me/5493874830580?text=Hola!%20Quiero%20consultar%20disponibilidad%20de%20La%20Caba%C3%B1a%20en%20Rancho%20Quilla.%20Somos%20___%20personas%20y%20las%20fechas%20que%20miramos%20son%20___.">
+            <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
+            Consultar por esta casa
+          </a>
+          <p class="note">Entran hasta seis. Decinos qué fechas miran.</p>
+        </div>
+          </div>
+
+          <div class="casa-ficha__fotos" data-reveal>
+        <div class="wall">
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 18: el atardecer, desde la galería">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-atardecer-desde-la-galeria.webp" alt="Atardecer sobre el Dique Cabra Corral visto desde la galería de La Cabaña" width="1200" height="755" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">18</span><span>El atardecer, desde la galería</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 19: el comedor vidriado">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-comedor-vidriado-vista-dique.webp" alt="Comedor vidriado de La Cabaña con ventanales al Dique Cabra Corral" width="1200" height="674" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">19</span><span>El comedor vidriado</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 20: el frente y la rueda de carro">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-frente-rueda-carro.webp" alt="Frente de La Cabaña con muro de piedra y una rueda de carro" width="1200" height="563" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">20</span><span>El frente y la rueda de carro</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 21: la galería">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-galeria-larga.webp" alt="Galería larga de La Cabaña, con estructura de troncos" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">21</span><span>La galería</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 22: las sillas y la vista">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-galeria-sillas-vista.webp" alt="Galería de La Cabaña con sillas de madera y vista al monte" width="1200" height="1193" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">22</span><span>Las sillas y la vista</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 23: el quincho de paja">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-quincho-paja-vista-dique.webp" alt="Quincho de paja de La Cabaña con vista al Dique Cabra Corral" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">23</span><span>El quincho de paja</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 24: el interior y la escalera">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-interior-cama-escalera.webp" alt="Interior de La Cabaña con cama y la escalera a la planta alta" width="1200" height="544" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">24</span><span>El interior y la escalera</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 25: el dormitorio de arriba">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-dormitorio-alto-madera.webp" alt="Dormitorio en la planta alta de La Cabaña, con techo de madera" width="1200" height="543" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">25</span><span>El dormitorio de arriba</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 26: otro dormitorio">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-dormitorio-cama.webp" alt="Dormitorio de La Cabaña con cama tendida" width="1200" height="544" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">26</span><span>Otro dormitorio</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 27: la estufa a leña">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-interior-estufa-lena.webp" alt="Interior de La Cabaña con estufa a leña y una columna de tronco" width="1200" height="1596" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">27</span><span>La estufa a leña</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 28: la cocina">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-cocina-anafe-microondas.webp" alt="Cocina de La Cabaña con anafe de dos hornallas, microondas y heladera" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">28</span><span>La cocina</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 29: la bacha, sobre un tronco">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-6-bano-bacha-tronco.webp" alt="Baño de La Cabaña con la bacha montada sobre un tronco" width="720" height="1596" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">29</span><span>La bacha, sobre un tronco</span></figcaption>
+          </figure>
+        </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         02.3 · LA CABAÑA CHICA
+         ========================================================== -->
+    <section class="band band--open casa-ficha" id="cabania-chica" aria-labelledby="cabania-chica-h2">
+      <div class="page">
+
+        <div class="rule">
+          <span class="rule__n">02.3</span>
+          <span class="rule__label">La Cabaña chica</span>
+        </div>
+
+        <!-- La capacidad va en grande: es el dato que distingue una
+             casa de la otra, así que hace de marca de la ficha. -->
+        <header class="casa-head">
+          <p class="casa-head__cap"><b>2</b><span>personas</span></p>
+          <div class="casa-head__meta">
+            <h2 id="cabania-chica-h2">La Cabaña chica</h2>
+            <p class="casa-head__price"><b>$50.000</b><span>por día</span></p>
+          </div>
+        </header>
+
+        <div class="casa-ficha__body">
+          <div class="casa-ficha__texto">
+            <div class="prose">
+              <p>Un ambiente solo, de ladrillo a la vista, con su piletón y su horno de barro al lado. La más tranquila de las tres.</p>
+            </div>
+        <dl class="ledger">
+          <div class="ledger__row">
+            <dt class="ledger__key">Dormir</dt>
+            <dd class="ledger__val">Cama matrimonial, con <strong>ropa de cama incluida</strong></dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Cocina</dt>
+            <dd class="ledger__val">Heladera, microondas y pava eléctrica</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Agua caliente</dt>
+            <dd class="ledger__val">Termotanque a leña</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Fuego</dt>
+            <dd class="ledger__val">Horno de barro y asador. <strong>Conviene traer leña.</strong></dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Pileta</dt>
+            <dd class="ledger__val">Piletón propio, al lado de la cabaña</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Navegar</dt>
+            <dd class="ledger__val">Kayak doble o bote chico, sin cargo</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">TV</dt>
+            <dd class="ledger__val">DirecTV. La recarga corre por cuenta del huésped</dd>
+          </div>
+          <div class="ledger__row">
+            <dt class="ledger__key">Privacidad</dt>
+            <dd class="ledger__val">Espacio independiente: nada para compartir</dd>
+          </div>
+        </dl>
+        <div class="casa-ficha__cta">
+          <a class="btn" target="_blank" rel="noopener" href="https://wa.me/5493874830580?text=Hola!%20Quiero%20consultar%20disponibilidad%20de%20La%20Caba%C3%B1a%20chica%20en%20Rancho%20Quilla.%20Somos%20___%20personas%20y%20las%20fechas%20que%20miramos%20son%20___.">
+            <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
+            Consultar por esta casa
+          </a>
+          <p class="note">Es para dos. Decinos qué fechas miran.</p>
+        </div>
+          </div>
+
+          <div class="casa-ficha__fotos" data-reveal>
+        <div class="wall">
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 30: todo el interior, de un vistazo">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-interior-cama-cocina.webp" alt="Interior de La Cabaña chica: cama matrimonial, cocina y piso de baldosa calcárea" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">30</span><span>Todo el interior, de un vistazo</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 31: el frente, de ladrillo y teja">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-frente-ladrillo.webp" alt="Frente de ladrillo a la vista de La Cabaña chica con techo de tejas" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">31</span><span>El frente, de ladrillo y teja</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 32: la galería y la vista">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-galeria-vista-monte.webp" alt="Galería de La Cabaña chica con vista al monte" width="1200" height="903" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">32</span><span>La galería y la vista</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 33: el horno de barro y el asador">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-horno-barro-asador.webp" alt="Horno de barro y asador de ladrillo de La Cabaña chica" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">33</span><span>El horno de barro y el asador</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 34: el piletón, al lado de la cabaña">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-pileton-y-horno.webp" alt="Piletón y horno de barro junto a La Cabaña chica" width="1200" height="897" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">34</span><span>El piletón, al lado de la cabaña</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 35: la cocina y el baño">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-cocina-y-bano.webp" alt="Cocina y baño de La Cabaña chica, con puerta de tablones de madera" width="1200" height="900" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">35</span><span>La cocina y el baño</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 36: la bacha, sobre un tronco">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-bano-bacha-tronco.webp" alt="Baño de La Cabaña chica con bacha montada sobre un tronco" width="960" height="1280" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">36</span><span>La bacha, sobre un tronco</span></figcaption>
+          </figure>
+          <figure class="plate">
+            <button class="plate--zoom" type="button" data-zoom aria-label="Ampliar la foto 37: la ventana al monte">
+              <span class="plate__mat"><img src="assets/images/rancho/cabania-chica-interior-ventana-vista.webp" alt="Interior de La Cabaña chica con la ventana al monte" width="1200" height="650" loading="lazy" decoding="async"></span>
+            </button>
+            <figcaption class="plate__ficha"><span class="plate__n">37</span><span>La ventana al monte</span></figcaption>
+          </figure>
+        </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         03 · DÓNDE QUEDA
          ========================================================== -->
     <section class="band band--open" id="ubicacion" aria-labelledby="ubicacion-h2">
       <div class="page ubicacion__inner">
 
         <div>
           <div class="rule">
-            <span class="rule__n">05</span>
+            <span class="rule__n">03</span>
             <span class="rule__label">Dónde queda</span>
           </div>
 
@@ -947,14 +1062,14 @@
     </section>
 
     <!-- ==========================================================
-         06 · ANTES DE VENIR
+         04 · ANTES DE VENIR
          ========================================================== -->
     <section class="band band--open band--paper2 antes" id="antes" aria-labelledby="antes-h2">
       <div class="page antes__inner">
 
         <div>
           <div class="rule">
-            <span class="rule__n">06</span>
+            <span class="rule__n">04</span>
             <span class="rule__label">Antes de venir</span>
           </div>
 
@@ -995,7 +1110,8 @@
             <div class="entry__a">
               <p>
                 Sí. Cada casa es independiente de las otras y se alquila entera:
-                nunca vas a compartir tu casa con desconocidos.
+                nunca vas a compartir tu casa con desconocidos. Cada una tiene su
+                propio acceso al dique y su estacionamiento.
               </p>
             </div>
           </details>
@@ -1008,8 +1124,9 @@
             </summary>
             <div class="entry__a">
               <p>
-                12 en la Casa Grande, 6 en la Cabaña y 2 en la Cabaña chica. Si son
-                más, se puede: cada persona de más abona el adicional por día.
+                12 en La Casa Grande, 6 en La Cabaña y 2 en La Cabaña chica. Cada
+                una tiene su ficha con fotos más arriba. Si son más que el máximo,
+                cada persona de más suma $20.000 por día.
               </p>
             </div>
           </details>
@@ -1022,8 +1139,9 @@
             </summary>
             <div class="entry__a">
               <p>
-                Toallas y papel higiénico. Nada más: la ropa de cama está incluida
-                y la cocina viene equipada con heladera, freezer y utensilios.
+                Toallas y papel higiénico, por higiene. Nada más: la ropa de cama
+                está incluida y las tres casas tienen cocina equipada. En las que
+                tienen horno de barro conviene además <strong>traer leña</strong>.
               </p>
             </div>
           </details>
@@ -1051,7 +1169,8 @@
             <div class="entry__a">
               <p>
                 Se ingresa a las 12:00 del mediodía y se sale a las 11:00 del día
-                siguiente. Eso cuenta como un día.
+                siguiente: eso cuenta como un día. Pasado ese horario empieza a
+                contarse un día adicional.
               </p>
             </div>
           </details>
@@ -1065,8 +1184,8 @@
             <div class="entry__a">
               <p>
                 También aceptamos dólares, a la mejor cotización. En
-                <strong>La Cabaña chica</strong> se pide además un depósito de
-                garantía de $20.000, que se devuelve 48 horas después de que
+                <strong>las dos cabañas</strong> se pide además un depósito de
+                garantía de $20.000, que se devuelve 48&nbsp;horas después de que
                 termina la estadía.
               </p>
             </div>
@@ -1093,7 +1212,7 @@
     </section>
 
     <!-- ==========================================================
-         07 · CONSULTAR
+         05 · CONSULTAR
          El momento tranquilo antes del pedido.
          ========================================================== -->
     <section class="band band--quiet band--night consultar" id="consultar" aria-labelledby="consultar-h2">
@@ -1118,7 +1237,7 @@
 
         <div>
           <div class="rule">
-            <span class="rule__n">07</span>
+            <span class="rule__n">05</span>
             <span class="rule__label">Consultar</span>
           </div>
 
@@ -1137,7 +1256,7 @@
               <svg class="icon" aria-hidden="true"><use href="#i-wa"></use></svg>
               Escribir por WhatsApp
             </a>
-            <a class="btn btn--line" href="#fotos">Volver a las fotos</a>
+            <a class="btn btn--line" href="#casas">Volver a las casas</a>
           </div>
 
           <a class="consultar__tel" href="tel:+5493874830580">+54&nbsp;9&nbsp;3874&nbsp;83-0580</a>
@@ -1174,13 +1293,14 @@
       </div>
 
       <nav class="footer__index" aria-label="Índice del pie">
-        <a class="footer__link" href="#la-casa">01 La casa</a>
-        <a class="footer__link" href="#precios">02 Precios</a>
-        <a class="footer__link" href="#inventario">03 Qué hay</a>
-        <a class="footer__link" href="#fotos">04 Fotos</a>
-        <a class="footer__link" href="#ubicacion">05 Dónde queda</a>
-        <a class="footer__link" href="#antes">06 Antes de venir</a>
-        <a class="footer__link" href="#consultar">07 Consultar</a>
+        <a class="footer__link" href="#predio">01 El predio</a>
+        <a class="footer__link" href="#casas">02 Las casas</a>
+        <a class="footer__link" href="#casa-grande">02.1 La Casa Grande</a>
+        <a class="footer__link" href="#cabania">02.2 La Cabaña</a>
+        <a class="footer__link" href="#cabania-chica">02.3 La Cabaña chica</a>
+        <a class="footer__link" href="#ubicacion">03 Dónde queda</a>
+        <a class="footer__link" href="#antes">04 Antes de venir</a>
+        <a class="footer__link" href="#consultar">05 Consultar</a>
       </nav>
 
       <div class="footer__copy">

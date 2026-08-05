@@ -559,14 +559,6 @@
   outline-offset: 3px;
 }
 
-/* Relaciones de aspecto: deliberadamente distintas entre sí.
-   En una pared real no hay dos cuadros del mismo tamaño, y una
-   grilla de recortes idénticos es la marca de la plantilla. */
-.plate--wide  img { aspect-ratio: 16 / 9;  object-fit: cover; }
-.plate--tall  img { aspect-ratio: 4 / 5;   object-fit: cover; }
-.plate--square img { aspect-ratio: 1 / 1;  object-fit: cover; }
-.plate--land  img { aspect-ratio: 3 / 2;   object-fit: cover; }
-
 /* =============================================================
    ASIENTO ABIERTO · las preguntas (details/summary nativo)
    El renglón se abre como se da vuelta una hoja.

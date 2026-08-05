@@ -88,8 +88,6 @@ p { text-wrap: pretty; }
   color: var(--ink-70);
 }
 
-.muted { color: var(--ink-70); }
-
 /* Etiqueta de dato: la voz del cuaderno.
    Mono, versalitas, tracking abierto. Nunca dentro de una píldora. */
 .label {
@@ -104,7 +102,6 @@ p { text-wrap: pretty; }
 }
 
 .label--agua     { color: var(--agua); }
-.label--ladrillo { color: var(--ladrillo); }
 
 /* Nota al pie de una tabla o un renglón: la letra chica honesta. */
 .note {
@@ -123,11 +120,6 @@ p { text-wrap: pretty; }
 
 .page {
   width: min(100% - (var(--gut) * 2), var(--page));
-  margin-inline: auto;
-}
-
-.page--narrow {
-  width: min(100% - (var(--gut) * 2), var(--page-narrow));
   margin-inline: auto;
 }
 
@@ -225,18 +217,6 @@ p { text-wrap: pretty; }
 }
 
 .skip-link:focus { transform: translateY(0); }
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
 
 .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 

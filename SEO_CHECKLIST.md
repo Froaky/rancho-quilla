@@ -35,12 +35,15 @@
 - Open Graph con `og:site_name` y `og:image:alt`.
 - Fotos reales, WebP, nombres con keywords, `width`/`height` explícitos y
   `loading="lazy"` fuera de la primera pantalla.
-- **28 fotos separadas por casa** en la galería (16 Casa Grande, 8 Cabaña chica,
-  4 del dique), cada una con `alt` que nombra la unidad. La Cabaña de 6 personas
-  no tiene fotos y la página lo dice, en lugar de rellenar con las otras.
+- **Una ficha por casa**, con su propio `id`, `h2`, precio, inventario y pared de
+  fotos: `#casa-grande`, `#cabania`, `#cabania-chica`. Son URLs compartibles, que
+  es lo que hace falta para mandar "mirá esta" por WhatsApp.
+- **41 fotos atribuidas por casa** (17 Casa Grande, 12 Cabaña, 8 Cabaña chica,
+  4 del dique), cada una con `alt` que nombra la unidad a la que pertenece.
 - Referencia geográfica real en el texto y en el JSON-LD: *a minutos de Los
   Mayuatos, antes de Coronel Moldes*. Ayuda a quien busca por esa zona.
 - `containsPlace` con `amenityFeature` y `bed` por unidad, no sólo la capacidad.
+- `FAQPage` con 10 preguntas, una por casa ("¿Qué incluye La Cabaña...?").
 - Todas las imágenes a máximo 1400px y WebP q80: 894 KB menos que antes.
 
 ## Rendimiento y accesibilidad corregidos en el rebranding
