@@ -7,12 +7,15 @@
 2. **Revisar la vigencia de los precios.** Hoy dicen "hasta el 31 de agosto de
    2026" en tres lugares del HTML y en `priceValidUntil` del JSON-LD. Un precio
    sin fecha, o con fecha vencida, es peor que no publicar precio.
-3. Cuando exista dominio definitivo, agregar:
-   - `<link rel="canonical" href="https://TU-DOMINIO/">`
-   - `og:url` con la URL real.
-   - `og:image` y `twitter:image` con URL absoluta.
-   - `sitemap.xml` y `robots.txt` apuntando al dominio real.
-4. Cargar el sitio en Google Search Console.
+3. ~~Cuando exista dominio definitivo~~ — **hecho**. El dominio es
+   `www.ranchoquilla.com.ar` y es la canónica: está en `canonical`, `og:url`,
+   en las URLs absolutas de `og:image` / `twitter:image`, en `url` e `image`
+   del `LodgingBusiness`, en `sitemap.xml` y en `robots.txt`. El apex
+   `ranchoquilla.com.ar` redirige con 301 a `www` desde Cloudflare, así que
+   **no hay que publicar links al apex**: cuestan un salto extra.
+4. Cargar el sitio en Google Search Console. Dar de alta la propiedad como
+   dominio (`ranchoquilla.com.ar`), no como prefijo de URL, para que cubra las
+   dos variantes de una.
 5. Crear o completar Google Business Profile para la zona del Dique Cabra Corral.
 6. Pedir reseñas reales a huéspedes. **No inventar ninguna.**
 7. Comprimir nuevas fotos en WebP antes de subirlas, con nombre descriptivo.

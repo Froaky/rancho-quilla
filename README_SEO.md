@@ -3,11 +3,11 @@
 ## Antes de publicar
 
 1. Verificar en `index.html` que los enlaces `https://wa.me/5493874830580` sigan usando el WhatsApp real de reservas.
-2. Cuando exista dominio, agregar en `<head>`:
-   - `<link rel="canonical" href="https://tudominio.com/">`
-   - `<meta property="og:url" content="https://tudominio.com/">`
-   - Usar URL absoluta para `og:image`.
-3. Renombrar `sitemap.example.xml` a `sitemap.xml`, actualizar el dominio y descomentar la línea Sitemap de `robots.txt`.
+2. ~~Agregar canonical, `og:url` y URLs absolutas~~ — hecho. El dominio es
+   `https://www.ranchoquilla.com.ar/` y es la URL canónica. `ranchoquilla.com.ar`
+   sin `www` redirige ahí con un 301 desde Cloudflare.
+3. ~~Renombrar `sitemap.example.xml`~~ — hecho: existe `sitemap.xml` con el
+   dominio real y `robots.txt` lo referencia.
 4. Configurar Google Search Console y subir el sitemap.
 5. Crear o completar Perfil de Empresa en Google con el mismo nombre: Rancho Quilla.
 
