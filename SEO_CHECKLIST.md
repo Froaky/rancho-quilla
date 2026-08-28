@@ -45,7 +45,7 @@
 - **Una ficha por casa**, con su propio `id`, `h2`, precio, inventario y pared de
   fotos: `#rancho-quilla-casa`, `#mate-luna`, `#ranchito`. Son URLs compartibles,
   que es lo que hace falta para mandar "mirá esta" por WhatsApp.
-- **41 fotos atribuidas por casa** (17 Rancho Quilla, 12 Mate Luna, 8 Ranchito,
+- **44 fotos atribuidas por casa** (20 Rancho Quilla, 12 Mate Luna, 8 Ranchito,
   4 del dique), cada una con `alt` y nombre de archivo que nombran la casa.
 - Referencia geográfica real en el texto y en el JSON-LD: *a minutos de Los
   Mayuatos, antes de Coronel Moldes*. Ayuda a quien busca por esa zona.

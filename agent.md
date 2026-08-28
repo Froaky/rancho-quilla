@@ -146,7 +146,7 @@ al confirmar la reserva.
 
 Los nombres de archivo son la atribución. No mezclar:
 
-- `assets/images/rancho/*` sin prefijo → **Rancho Quilla**, la casa grande (17 fotos).
+- `assets/images/rancho/*` sin prefijo → **Rancho Quilla**, la casa grande (20 fotos).
 - `mate-luna-*` → **Mate Luna**, la de 6 personas (12 fotos).
 - `ranchito-*` → **Ranchito**, la de 2 (8 fotos).
 - `muelle-*`, `bote-*`, `kayak-*`, `atardecer-pesca-*` → **el dique**, común a las
@@ -154,6 +154,12 @@ Los nombres de archivo son la atribución. No mezclar:
 - Todas a máximo **1200px** de ancho y **WebP q80, en un solo encode**. El visor
   las muestra a ~1000px como máximo y la pared a ~450, así que subir de 1200
   sólo agrega peso.
+
+Tres fotos de Rancho Quilla son **nocturnas** (`fogon-cancana-*`,
+`quincho-horno-orilla-anochecer`, `horno-barro-asador-ladrillo-noche`) y van a
+**q86**: el ruido de sensor en las sombras se come bits, y a q80 aparece
+bandeado en los cielos oscuros. La del fogón es la única que respalda la fila
+"patio de cancana para costillar a la estaca" del inventario.
 
 ⚠️ **Nunca reprocesar un WebP que ya está en el repo.** Cada encode con pérdida
 apila artefactos sobre los anteriores: la galería estuvo un rato comprimida dos
@@ -206,7 +212,7 @@ que armar el rompecabezas para poder decidir.
 00  Portada
 01  El predio          <- lo que vale para las tres, dicho una sola vez
 02  Las tres casas     <- tabla de decisión: capacidad, precio y enlace a cada ficha
-02.1  Rancho Quilla    <- ficha: numeral 12 + precio + inventario + 17 fotos + 2 videos
+02.1  Rancho Quilla    <- ficha: numeral 12 + precio + inventario + 20 fotos + 2 videos
 02.2  Mate Luna        <- ficha: numeral 6  + precio + inventario + 12 fotos
 02.3  Ranchito         <- ficha: numeral 2  + precio + inventario + 8 fotos
 03  Dónde queda
