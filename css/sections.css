@@ -291,9 +291,14 @@
 
 .casa-ficha__fotos .wall > *:nth-child(3n + 2) { margin-top: 0; }
 
-.casa-ficha__fotos .wall > *:nth-child(2n) {
+.casa-ficha__fotos .wall:not(.wall--agrupada) > *:nth-child(2n) {
   margin-top: clamp(1.5rem, 4vw, 3rem);
 }
+
+/* En la pared con capítulos el ritmo lo dan los propios capítulos y la
+   lámina de apertura, así que el desfase alternado no hace falta: con
+   los encabezados intercalados el nth-child se corre y el escalonado
+   sale al azar. */
 
 @media (max-width: 56rem) {
   .casa-ficha__body { grid-template-columns: 1fr; }
@@ -304,7 +309,7 @@
 
 @media (max-width: 34rem) {
   .casa-ficha__fotos .wall { grid-template-columns: 1fr; }
-  .casa-ficha__fotos .wall > *:nth-child(2n) {
+  .casa-ficha__fotos .wall:not(.wall--agrupada) > *:nth-child(2n) {
     margin-top: 0;
     margin-left: clamp(1.25rem, 9vw, 3rem);
   }
@@ -342,12 +347,64 @@
   align-items: start;
 }
 
-.wall > *:nth-child(3n + 2) { margin-top: clamp(1.75rem, 4.5vw, 4rem); }
+/* -------------------------------------------------------------
+   Paredes largas: capítulos
+   -------------------------------------------------------------
+   Rancho Quilla tiene 20 fotos y 11 comparten exactamente la misma
+   proporción (2.22:1). En una grilla de tres columnas eso se lee como
+   una hilera de bandas iguales: no hay dónde apoyar la vista.
+
+   Se parte en capítulos temáticos, con el mismo filete + etiqueta que
+   usan los grupos del inventario, y la primera foto de cada capítulo
+   va a doble ancho. Sigue siendo UNA sola pared, así que el visor las
+   recorre las veinte de corrido.
+
+   Se aplica sólo donde hace falta. Mate Luna (12 fotos, 8 proporciones
+   distintas) no lo necesita: cuatro filas se recorren de un vistazo. */
+
+.wall__cap {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: calc(var(--row) * 1.4);
+  padding-top: 0.5rem;
+  border-top: var(--rule-bold) solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.155em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.wall__cap:first-child { margin-top: 0; }
+
+.wall__cap-n {
+  color: var(--ink-70);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* La lámina que abre cada capítulo ocupa las dos columnas de la ficha:
+   le da un punto de entrada a la vista y corta la sucesión de bandas
+   del mismo tamaño. */
+.plate--ancha { grid-column: span 2; }
+
+/* En una sola columna «doble ancho» no significa nada. Va después de la
+   regla base a propósito: las media queries no suman especificidad, así
+   que si esto quedara antes lo pisaría `span 2` y la lámina desbordaría. */
+@media (max-width: 34rem) {
+  .plate--ancha { grid-column: auto; }
+}
+
+.wall:not(.wall--agrupada) > *:nth-child(3n + 2) { margin-top: clamp(1.75rem, 4.5vw, 4rem); }
 
 @media (max-width: 56rem) {
   .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wall > *:nth-child(3n + 2) { margin-top: 0; }
-  .wall > *:nth-child(2n) { margin-top: clamp(1.5rem, 5vw, 3rem); }
+  .wall:not(.wall--agrupada) > *:nth-child(2n) { margin-top: clamp(1.5rem, 5vw, 3rem); }
 }
 
 @media (max-width: 34rem) {
@@ -355,7 +412,7 @@
   .wall > *:nth-child(3n + 2) { margin-top: 0; }
   /* En una columna el desfase se conserva como sangría alternada:
      la identidad no se pierde al colapsar. */
-  .wall > *:nth-child(2n) {
+  .wall:not(.wall--agrupada) > *:nth-child(2n) {
     margin-top: 0;
     margin-left: clamp(1.25rem, 9vw, 3rem);
   }

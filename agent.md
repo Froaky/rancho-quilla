@@ -146,7 +146,9 @@ al confirmar la reserva.
 
 Los nombres de archivo son la atribución. No mezclar:
 
-- `assets/images/rancho/*` sin prefijo → **Rancho Quilla**, la casa grande (20 fotos).
+- `assets/images/rancho/*` sin prefijo → **Rancho Quilla**, la casa grande (20 fotos,
+  repartidas en seis capítulos: el fuego, el quincho y el estar, los dormitorios,
+  la pileta, el patio y el jardín, desde la orilla).
 - `mate-luna-*` → **Mate Luna**, la de 6 personas (12 fotos).
 - `ranchito-*` → **Ranchito**, la de 2 (8 fotos).
 - `muelle-*`, `bote-*`, `kayak-*`, `atardecer-pesca-*` → **el dique**, común a las

@@ -39,6 +39,7 @@ material real del proyecto.
 | Nombre propio por casa | Rancho Quilla, Mate Luna, Ranchito. Son los nombres reales que usa el dueño, y un nombre se recuerda y se recomienda; un tamaño no. |
 | Paspartú + ficha en las fotos | La pared del quincho está cubierta de cuadros. Y resuelve un problema real: las fotos son de teléfono a pleno sol, y un marco las vuelve intencionales. |
 | Desfase de medio módulo | Aparejo de ladrillo del quincho. |
+| Capítulos dentro de una pared larga | Un álbum de veinte fotos se hojea por temas, no de corrido. Y once de las veinte de Rancho Quilla comparten proporción exacta: sin cortes se leen como una hilera. |
 | Radio de borde `0` | El papel no tiene esquinas redondeadas. |
 | Sin overlay en las fotos | Las fotos honestas son el activo que no se puede falsificar. La versión anterior las tapaba con negro al 86%. |
 
@@ -64,6 +65,14 @@ material real del proyecto.
 8. **No hay animación permanente.** El movimiento sólo explica estado, causa o
    relación.
 9. **Las secciones no comparten maqueta.** Cada una tiene la suya, a propósito.
+10. **Una pared de más de ~15 fotos se parte en capítulos.** Con el mismo filete
+    y etiqueta de los grupos del inventario, y la primera lámina de cada
+    capítulo a doble ancho. Sigue siendo **una sola** `.wall` para que el visor
+    recorra la casa entera. Se aplica sólo donde hace falta: Rancho Quilla (20)
+    sí, Mate Luna (12) y Ranchito (8) no.
+    Ojo: en una pared con capítulos el desfase alternado se desactiva
+    (`.wall:not(.wall--agrupada)`), porque el `nth-child` cuenta también los
+    encabezados y el escalonado sale al azar.
 
 ---
 
