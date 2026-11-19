@@ -70,9 +70,9 @@ porque tiene reglas que no son obvias:
 
 Cuando cambien los precios hay que tocar **seis lugares**:
 
-1. La tabla `.tarifas` en `index.html` (sección `#precios`), y la nota de
-   fiestas debajo.
-2. El renglón "Desde" de la portada y el "Desde $X" de las tres meta
+1. La tabla `.tarifas` en `index.html` (sección `#precios`), y el aviso
+   `.margen` de Navidad y Año Nuevo en la columna izquierda de esa sección.
+2. Los renglones "Desde" y "Fiestas" de la portada y el "Desde $X" de las tres meta
    descriptions (`description`, `og:description`, `twitter:description`).
 3. La respuesta 01 del FAQ (`#antes`).
 4. Los dos bloques JSON-LD del `<head>`: `priceRange`, `makesOffer[].price`,
