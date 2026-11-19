@@ -7,9 +7,9 @@ temporario, a la orilla del **Dique Cabra Corral, Salta**.
 
 | Nombre | Capacidad | Por día | Ancla | Prefijo de sus fotos |
 | --- | --- | --- | --- | --- |
-| **Rancho Quilla** | 12 personas | $250.000 | `#rancho-quilla-casa` | *(sin prefijo)* |
-| **Mate Luna** | 6 personas | $120.000 | `#mate-luna` | `mate-luna-` |
-| **Ranchito** | 2 personas | $50.000 | `#ranchito` | `ranchito-` |
+| **Rancho Quilla** | 12 personas | $300.000 | `#rancho-quilla-casa` | *(sin prefijo)* |
+| **Mate Luna** | 6 personas | $150.000 | `#mate-luna` | `mate-luna-` |
+| **Ranchito** | 2 personas | $60.000 | `#ranchito` | `ranchito-` |
 
 ⚠️ **«Rancho Quilla» es a la vez el predio entero y la casa grande.** No es un
 error: la casa grande le da el nombre al lugar. Pero la página tiene que
@@ -53,21 +53,30 @@ porque tiene reglas que no son obvias:
 
 | Casa              | Máximo      | Por día  |
 | ----------------- | ----------- | -------- |
-| Rancho Quilla     | 12 personas | $250.000 |
-| Mate Luna         | 6 personas  | $120.000 |
-| Ranchito          | 2 personas  | $50.000  |
+| Rancho Quilla     | 12 personas | $300.000 |
+| Mate Luna         | 6 personas  | $150.000 |
+| Ranchito          | 2 personas  | $60.000  |
 | Persona excedente | —           | $20.000  |
+| Navidad y Año Nuevo (predio completo) | las tres casas | $550.000 |
 
 - El excedente se cobra **por persona y por día**, por encima del máximo de cada casa.
-- **Vigencia: hasta el 31 de agosto de 2026.**
+- **Navidad y Año Nuevo:** no se alquilan casas sueltas. Sólo el predio
+  completo (las tres casas), **mínimo 3 días**, $550.000 por día. Lo pidió el
+  dueño el 18/11/2026. No dijo si el excedente aplica ni qué días exactos
+  cubre, así que la página no lo afirma.
+- **Vigencia: desde noviembre de 2026**, sin fecha de fin (el dueño no la dio).
+  Por eso el JSON-LD no lleva `priceValidUntil`. Cuando haya fecha de fin,
+  volver a ponerla en los tres lugares del sello y en el JSON-LD.
 
 Cuando cambien los precios hay que tocar **seis lugares**:
 
-1. La tabla `.tarifas` en `index.html` (sección `#precios`).
-2. El renglón "Desde" de la portada.
+1. La tabla `.tarifas` en `index.html` (sección `#precios`), y la nota de
+   fiestas debajo.
+2. El renglón "Desde" de la portada y el "Desde $X" de las tres meta
+   descriptions (`description`, `og:description`, `twitter:description`).
 3. La respuesta 01 del FAQ (`#antes`).
 4. Los dos bloques JSON-LD del `<head>`: `priceRange`, `makesOffer[].price`,
-   `makesOffer[].priceValidUntil` y el texto de la primera pregunta del `FAQPage`.
+   `makesOffer[].priceValidUntil` (hoy sin fecha) y el texto de la primera pregunta del `FAQPage`.
 5. El sello de vigencia: `.vigencia` en `#precios` y `.footer__copy`.
 6. Si cambia el depósito de garantía: pregunta 07 del FAQ y el `FAQPage` del JSON-LD.
 
